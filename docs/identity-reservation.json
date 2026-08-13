@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "status": "RESERVED_NOT_IMPLEMENTED",
+  "apiNamespace": "org.autojs.plugin.r8compiler.api",
+  "serviceAction": "org.autojs.plugin.R8_COMPILER",
+  "engineId": "r8-compiler",
+  "cacheDomain": "autojs6:r8-compiler:v1",
+  "protocol": "1.0",
+  "distributionCoordinate": "org.autojs.plugin.r8compiler:r8-compiler-api:0.1.0",
+  "officialProviderReservation": {
+    "applicationId": "io.github.supermonster003.autojs6.plugin.r8compiler",
+    "pluginId": "r8-compiler",
+    "variant": "r8",
+    "providerId": "autojs6-r8",
+    "serviceComponent": "io.github.supermonster003.autojs6.plugin.r8compiler/.R8CompilerService",
+    "process": ":r8"
+  },
+  "claims": {
+    "providerImplemented": false,
+    "manifestDiscoverable": false,
+    "hostIntegrated": false,
+    "binderVerified": false,
+    "r8Executed": false,
+    "retraceExecuted": false,
+    "deviceVerified": false,
+    "published": false,
+    "pluginConsumed": false
+  }
+}

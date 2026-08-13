@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "AutoJs6",
+  "sourceCommit": "a33a1a81c6b0fbd947e2255eb0b36e68bf7f5322",
+  "sourceModule": "plugin-api/protocol-wire-api",
+  "upstreamCopiedFiles": [
+    {
+      "path": "plugin-api/protocol-wire-api/consumer-rules.pro",
+      "byteLength": 58,
+      "sha256": "3dc6c7ae2edf584270c4f3cb29a48f5c7028bd63c6e288b6d5a340f6131ed5c6"
+    },
+    {
+      "path": "plugin-api/protocol-wire-api/src/main/java/org/autojs/plugin/protocol/wire/TaggedWire.kt",
+      "byteLength": 19856,
+      "sha256": "5d5c672ef0c7907b1a0cf6fd041ff85dc7c864aa07628316db5b9a9abb9e87c8"
+    },
+    {
+      "path": "plugin-api/protocol-wire-api/src/test/java/org/autojs/plugin/protocol/wire/TaggedWireTest.kt",
+      "byteLength": 9713,
+      "sha256": "d892de2da45109db52e5e9cee663143a650ee7eabc45646aae0fcbc939177f21"
+    }
+  ],
+  "localBuildScript": true,
+  "referenceReleaseAar": {
+    "byteLength": 29462,
+    "sha256": "fff8a79b3eb35a7b719b23b7893093bd6496228bb20adc38f2663e8322855577"
+  },
+  "runtimeDependencyOnDexCompilerApi": false
+}

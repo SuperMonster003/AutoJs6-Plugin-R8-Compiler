@@ -1,0 +1,421 @@
+{
+  "schemaVersion": 1,
+  "evidenceBoundary": "CONTRACT_AAR_ONLY",
+  "distributionVersion": "0.1.0",
+  "sourceFingerprint": {
+    "algorithm": "sha256",
+    "scope": "contract-production-v1",
+    "sha256": "a85d40e9e8eebbc347703588fef20adb0ee93a2d992425baca076635d79a3dc8",
+    "fileCount": 24,
+    "files": [
+      {
+        "path": ".gitattributes",
+        "byteLength": 64,
+        "sha256": "dde41386f5c0fc2ba5b3bce99bec43e956998a27c1cc1ea4f6b927c3674f058a"
+      },
+      {
+        "path": "build.gradle.kts",
+        "byteLength": 141,
+        "sha256": "5c5c4da581a2d57b962d8fc1506d272122585b1eb314bb5931d2124a85298e13"
+      },
+      {
+        "path": "gradle.properties",
+        "byteLength": 106,
+        "sha256": "306942bf5a193a32aac35616e6f12d0c9fcd4f9c8f186d7b621a168c38eaaaa3"
+      },
+      {
+        "path": "gradle/libs.versions.toml",
+        "byteLength": 99,
+        "sha256": "962d5f953a24234d842236fd63bc20ac0b9bdfbccd31fe715683ea594496a846"
+      },
+      {
+        "path": "gradle/wrapper/gradle-wrapper.jar",
+        "byteLength": 43764,
+        "sha256": "7d3a4ac4de1c32b59bc6a4eb8ecb8e612ccd0cf1ae1e99f66902da64df296172"
+      },
+      {
+        "path": "gradle/wrapper/gradle-wrapper.properties",
+        "byteLength": 284,
+        "sha256": "48a481023e51abcc35018bcec4a55dae8ee4faf0dfe3212d91f47913a9129e5f"
+      },
+      {
+        "path": "plugin-api/protocol-wire-api/build.gradle.kts",
+        "byteLength": 660,
+        "sha256": "6f098b978388cb976622bd4cd452d0871c48f2f20bec6bc2a234495f1660c08b"
+      },
+      {
+        "path": "plugin-api/protocol-wire-api/consumer-rules.pro",
+        "byteLength": 58,
+        "sha256": "3dc6c7ae2edf584270c4f3cb29a48f5c7028bd63c6e288b6d5a340f6131ed5c6"
+      },
+      {
+        "path": "plugin-api/protocol-wire-api/src/main/java/org/autojs/plugin/protocol/wire/TaggedWire.kt",
+        "byteLength": 19856,
+        "sha256": "5d5c672ef0c7907b1a0cf6fd041ff85dc7c864aa07628316db5b9a9abb9e87c8"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/abi/0.1.0-java-visible-jvm-abi.txt",
+        "byteLength": 404680,
+        "sha256": "b628e1e2edccf0510b7acd31157fb9184947f1d8ccfe61826d0076e7350c96bf"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/build.gradle.kts",
+        "byteLength": 931,
+        "sha256": "dff870f70c0ee4d1ef5dc666459d22b5c262090a277c3dae16528718b6e03e52"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/consumer-rules.pro",
+        "byteLength": 98,
+        "sha256": "400db3adae5ea13a4bfe4dfe4557a9fe149534cf58741441de97cae5df2ee45a"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/aidl/org/autojs/plugin/r8compiler/api/IR8CompilerCallback.aidl",
+        "byteLength": 480,
+        "sha256": "ee1749ec69fda76d0b71d8ee726eb84fe871bb7bbdff53031a787bc3d9da2529"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/aidl/org/autojs/plugin/r8compiler/api/IR8CompilerProvider.aidl",
+        "byteLength": 936,
+        "sha256": "f501348baec7fe4fc6858ef0496a61c64c6e75f6e585718ee9572d4a6f3ceff4"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/aidl/org/autojs/plugin/r8compiler/api/IR8CompilerSession.aidl",
+        "byteLength": 197,
+        "sha256": "cb98259298650c0c1789017da3aa1e077484f7b76332d3a5d16cca5c45708882"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/java/org/autojs/plugin/r8compiler/api/R8CompilerCodec.kt",
+        "byteLength": 16082,
+        "sha256": "7341af08f8fa5a2bc424ce84075c905f6da0d798ce5ae528e54a3ac2cab160ad"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/java/org/autojs/plugin/r8compiler/api/R8CompilerContract.kt",
+        "byteLength": 10399,
+        "sha256": "ce764e185a57fb568cc1c5db4b8f5b4fe0e71618528484c2854f2914ee367c54"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/java/org/autojs/plugin/r8compiler/api/R8CompilerMessages.kt",
+        "byteLength": 9849,
+        "sha256": "6258df79c2d28c934a434ac6113d05a3ef6ca4baba405db61e88d4d4a0595b6c"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/java/org/autojs/plugin/r8compiler/api/R8CompilerValidation.kt",
+        "byteLength": 31860,
+        "sha256": "28d1dda1702c4634f0554eadc44699461a1254209cd9054f27f281b125e590ec"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/java/org/autojs/plugin/r8compiler/api/R8InputBundle.kt",
+        "byteLength": 25020,
+        "sha256": "43327f5548f0c8e4d3108f3004a8acbb8878a9990dab7c63e21463d5859b96b2"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/java/org/autojs/plugin/r8compiler/api/R8RulePolicy.kt",
+        "byteLength": 11097,
+        "sha256": "560645285e04c5fb77018235205143a70b5ce60bb07e6d286f71efa4b47fce5d"
+      },
+      {
+        "path": "scripts/R8JvmAbi.cs",
+        "byteLength": 26166,
+        "sha256": "aac4b5cba9aed4b064ccd411c49e46dbdc964aa95e0f02b9e90c7832d9fa4c30"
+      },
+      {
+        "path": "settings.gradle.kts",
+        "byteLength": 414,
+        "sha256": "dd5c762bae4686504949a805c92fa8dd9ac50e6071c170a3c848c846384f0445"
+      },
+      {
+        "path": "test-consumer/src/main/java/org/autojs/plugin/r8compiler/consumer/R8ContractDetachedConsumer.java",
+        "byteLength": 3169,
+        "sha256": "a499a0c107a8c94bf803311ca75be750194adfc31144f2efed94efde425b1ad6"
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "path": "protocol-wire-api-0.1.0.aar",
+      "byteLength": 29387,
+      "sha256": "1d97a5b44b2c20e85aa12b263fca604a32d6d89275d47a19076861cd20c29a36"
+    },
+    {
+      "path": "r8-compiler-api-0.1.0.aar",
+      "byteLength": 179855,
+      "sha256": "e9df49b7e49992615a15bc0af2372a4525f02b4a2a915a560ddab3128bb2f066"
+    }
+  ],
+  "dependencyBoundary": {
+    "scope": "INTRA_DISTRIBUTION_PLUS_DECLARED_EXTERNALS",
+    "r8ApiDependencies": [
+      {
+        "role": "protocol-wire-api",
+        "artifactSha256": "1d97a5b44b2c20e85aa12b263fca604a32d6d89275d47a19076861cd20c29a36",
+        "embeddedInR8Api": false
+      }
+    ],
+    "r8EngineDependencies": [],
+    "detachedClasspathAarCount": 2,
+    "externalRuntimeRequirements": [
+      {
+        "binaryPackagePrefix": "kotlin/",
+        "version": "UNVERIFIED",
+        "evidence": "OBSERVED_CLASSFILE_REFERENCE",
+        "status": "NOT_STAGED_NOT_RUNTIME_VERIFIED"
+      },
+      {
+        "binaryPackagePrefix": "org/jetbrains/annotations/",
+        "version": "UNVERIFIED",
+        "evidence": "OBSERVED_CLASSFILE_REFERENCE",
+        "status": "NOT_STAGED_NOT_RUNTIME_VERIFIED"
+      }
+    ]
+  },
+  "aidlBoundary": {
+    "sourceDescriptors": [
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/aidl/org/autojs/plugin/r8compiler/api/IR8CompilerCallback.aidl",
+        "byteLength": 480,
+        "sha256": "ee1749ec69fda76d0b71d8ee726eb84fe871bb7bbdff53031a787bc3d9da2529"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/aidl/org/autojs/plugin/r8compiler/api/IR8CompilerProvider.aidl",
+        "byteLength": 936,
+        "sha256": "f501348baec7fe4fc6858ef0496a61c64c6e75f6e585718ee9572d4a6f3ceff4"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/aidl/org/autojs/plugin/r8compiler/api/IR8CompilerSession.aidl",
+        "byteLength": 197,
+        "sha256": "cb98259298650c0c1789017da3aa1e077484f7b76332d3a5d16cca5c45708882"
+      }
+    ],
+    "embeddedDescriptorCount": 0,
+    "generatedClassEntries": [
+      "org/autojs/plugin/r8compiler/api/IR8CompilerCallback.class",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerCallback$Default.class",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerCallback$Stub.class",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerCallback$Stub$Proxy.class",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerProvider.class",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerProvider$_Parcel.class",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerProvider$Default.class",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerProvider$Stub.class",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerProvider$Stub$Proxy.class",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerSession.class",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerSession$Default.class",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerSession$Stub.class",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerSession$Stub$Proxy.class"
+    ],
+    "descriptorCount": 3,
+    "binderMethodDescriptorsVerified": true,
+    "interfaceMethodDescriptors": [
+      "org/autojs/plugin/r8compiler/api/IR8CompilerCallback#onCancelled([B)V",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerCallback#onCompleted([B)V",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerCallback#onFailed([B)V",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerCallback#onProgress([B)V",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerCallback#onStarted([B)V",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerProvider#getCapabilities()[B",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerProvider#getCompilerInfo()[B",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerProvider#openSession([BLandroid/os/ParcelFileDescriptor;Landroid/os/ParcelFileDescriptor;Lorg/autojs/plugin/r8compiler/api/IR8CompilerCallback;)Lorg/autojs/plugin/r8compiler/api/IR8CompilerSession;",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerSession#cancel()V",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerSession#close()V"
+    ],
+    "binderConstants": [
+      "DESCRIPTOR|org/autojs/plugin/r8compiler/api/IR8CompilerCallback|S:0x6f72672e6175746f6a732e706c7567696e2e7238636f6d70696c65722e6170692e495238436f6d70696c657243616c6c6261636b",
+      "DESCRIPTOR|org/autojs/plugin/r8compiler/api/IR8CompilerProvider|S:0x6f72672e6175746f6a732e706c7567696e2e7238636f6d70696c65722e6170692e495238436f6d70696c657250726f7669646572",
+      "DESCRIPTOR|org/autojs/plugin/r8compiler/api/IR8CompilerSession|S:0x6f72672e6175746f6a732e706c7567696e2e7238636f6d70696c65722e6170692e495238436f6d70696c657253657373696f6e",
+      "TRANSACTION|org/autojs/plugin/r8compiler/api/IR8CompilerCallback$Stub|TRANSACTION_onCancelled|I:5",
+      "TRANSACTION|org/autojs/plugin/r8compiler/api/IR8CompilerCallback$Stub|TRANSACTION_onCompleted|I:3",
+      "TRANSACTION|org/autojs/plugin/r8compiler/api/IR8CompilerCallback$Stub|TRANSACTION_onFailed|I:4",
+      "TRANSACTION|org/autojs/plugin/r8compiler/api/IR8CompilerCallback$Stub|TRANSACTION_onProgress|I:2",
+      "TRANSACTION|org/autojs/plugin/r8compiler/api/IR8CompilerCallback$Stub|TRANSACTION_onStarted|I:1",
+      "TRANSACTION|org/autojs/plugin/r8compiler/api/IR8CompilerProvider$Stub|TRANSACTION_getCapabilities|I:2",
+      "TRANSACTION|org/autojs/plugin/r8compiler/api/IR8CompilerProvider$Stub|TRANSACTION_getCompilerInfo|I:1",
+      "TRANSACTION|org/autojs/plugin/r8compiler/api/IR8CompilerProvider$Stub|TRANSACTION_openSession|I:3",
+      "TRANSACTION|org/autojs/plugin/r8compiler/api/IR8CompilerSession$Stub|TRANSACTION_cancel|I:1",
+      "TRANSACTION|org/autojs/plugin/r8compiler/api/IR8CompilerSession$Stub|TRANSACTION_close|I:2"
+    ]
+  },
+  "abiBoundary": {
+    "status": "VERIFIED",
+    "scope": "JAVA_VISIBLE_JVM_BINARY_ABI",
+    "goldenVerified": true,
+    "canonicalization": "STRICT_CLASSFILE_V1",
+    "canonicalSha256": "b628e1e2edccf0510b7acd31157fb9184947f1d8ccfe61826d0076e7350c96bf",
+    "golden": {
+      "path": "plugin-api/r8-compiler-api/abi/0.1.0-java-visible-jvm-abi.txt",
+      "byteLength": 404680,
+      "sha256": "b628e1e2edccf0510b7acd31157fb9184947f1d8ccfe61826d0076e7350c96bf"
+    },
+    "parser": {
+      "path": "scripts/R8JvmAbi.cs",
+      "byteLength": 26166,
+      "sha256": "aac4b5cba9aed4b064ccd411c49e46dbdc964aa95e0f02b9e90c7832d9fa4c30"
+    },
+    "artifacts": [
+      {
+        "path": "protocol-wire-api-0.1.0.aar/classes.jar",
+        "classEntries": [
+          "org/autojs/plugin/protocol/wire/TaggedWireDocument$Companion.class",
+          "org/autojs/plugin/protocol/wire/TaggedWireDocument$validateKnownCardinality$lambda$7$$inlined$groupingBy$1.class",
+          "org/autojs/plugin/protocol/wire/TaggedWireDocument.class",
+          "org/autojs/plugin/protocol/wire/TaggedWireError.class",
+          "org/autojs/plugin/protocol/wire/TaggedWireException.class",
+          "org/autojs/plugin/protocol/wire/TaggedWireField.class",
+          "org/autojs/plugin/protocol/wire/TaggedWireKt.class",
+          "org/autojs/plugin/protocol/wire/TaggedWireLimits.class",
+          "org/autojs/plugin/protocol/wire/TaggedWireProtocol.class",
+          "org/autojs/plugin/protocol/wire/TaggedWireWriter$encode$$inlined$compareBy$1.class",
+          "org/autojs/plugin/protocol/wire/TaggedWireWriter$encode$$inlined$thenBy$1.class",
+          "org/autojs/plugin/protocol/wire/TaggedWireWriter.class"
+        ],
+        "classEntryCount": 12,
+        "visibleClassCount": 11,
+        "visibleMemberCount": 91
+      },
+      {
+        "path": "r8-compiler-api-0.1.0.aar/classes.jar",
+        "classEntries": [
+          "org/autojs/plugin/r8compiler/api/DigestingInput.class",
+          "org/autojs/plugin/r8compiler/api/DigestingOutput.class",
+          "org/autojs/plugin/r8compiler/api/EntryInput.class",
+          "org/autojs/plugin/r8compiler/api/IR8CompilerCallback$Default.class",
+          "org/autojs/plugin/r8compiler/api/IR8CompilerCallback$Stub$Proxy.class",
+          "org/autojs/plugin/r8compiler/api/IR8CompilerCallback$Stub.class",
+          "org/autojs/plugin/r8compiler/api/IR8CompilerCallback.class",
+          "org/autojs/plugin/r8compiler/api/IR8CompilerProvider$Default.class",
+          "org/autojs/plugin/r8compiler/api/IR8CompilerProvider$Stub$Proxy.class",
+          "org/autojs/plugin/r8compiler/api/IR8CompilerProvider$Stub.class",
+          "org/autojs/plugin/r8compiler/api/IR8CompilerProvider$_Parcel.class",
+          "org/autojs/plugin/r8compiler/api/IR8CompilerProvider.class",
+          "org/autojs/plugin/r8compiler/api/IR8CompilerSession$Default.class",
+          "org/autojs/plugin/r8compiler/api/IR8CompilerSession$Stub$Proxy.class",
+          "org/autojs/plugin/r8compiler/api/IR8CompilerSession$Stub.class",
+          "org/autojs/plugin/r8compiler/api/IR8CompilerSession.class",
+          "org/autojs/plugin/r8compiler/api/R8ArtifactBundleCodec$WhenMappings.class",
+          "org/autojs/plugin/r8compiler/api/R8ArtifactBundleCodec.class",
+          "org/autojs/plugin/r8compiler/api/R8ArtifactBundleSummary.class",
+          "org/autojs/plugin/r8compiler/api/R8ArtifactContentValidation.class",
+          "org/autojs/plugin/r8compiler/api/R8ArtifactIdentity.class",
+          "org/autojs/plugin/r8compiler/api/R8ArtifactRole.class",
+          "org/autojs/plugin/r8compiler/api/R8ArtifactSource.class",
+          "org/autojs/plugin/r8compiler/api/R8BundleError.class",
+          "org/autojs/plugin/r8compiler/api/R8BundleException.class",
+          "org/autojs/plugin/r8compiler/api/R8Cancellation.class",
+          "org/autojs/plugin/r8compiler/api/R8CancellationReason.class",
+          "org/autojs/plugin/r8compiler/api/R8CapabilityFingerprint.class",
+          "org/autojs/plugin/r8compiler/api/R8CompileRequest.class",
+          "org/autojs/plugin/r8compiler/api/R8CompilerCapabilities.class",
+          "org/autojs/plugin/r8compiler/api/R8CompilerCodec.class",
+          "org/autojs/plugin/r8compiler/api/R8CompilerContract.class",
+          "org/autojs/plugin/r8compiler/api/R8CompilerContractKt.class",
+          "org/autojs/plugin/r8compiler/api/R8CompilerFamily.class",
+          "org/autojs/plugin/r8compiler/api/R8CompilerInfo.class",
+          "org/autojs/plugin/r8compiler/api/R8CompilerIntent.class",
+          "org/autojs/plugin/r8compiler/api/R8CompilerMessagesKt.class",
+          "org/autojs/plugin/r8compiler/api/R8CompilerProfile.class",
+          "org/autojs/plugin/r8compiler/api/R8CompilerValidation$WhenMappings.class",
+          "org/autojs/plugin/r8compiler/api/R8CompilerValidation.class",
+          "org/autojs/plugin/r8compiler/api/R8ContractException.class",
+          "org/autojs/plugin/r8compiler/api/R8ContractViolation.class",
+          "org/autojs/plugin/r8compiler/api/R8DeterminismClaim.class",
+          "org/autojs/plugin/r8compiler/api/R8Diagnostic.class",
+          "org/autojs/plugin/r8compiler/api/R8DiagnosticSeverity.class",
+          "org/autojs/plugin/r8compiler/api/R8Error.class",
+          "org/autojs/plugin/r8compiler/api/R8ErrorCode.class",
+          "org/autojs/plugin/r8compiler/api/R8FailurePhase.class",
+          "org/autojs/plugin/r8compiler/api/R8FallbackPolicy.class",
+          "org/autojs/plugin/r8compiler/api/R8ImplicitRulePolicy.class",
+          "org/autojs/plugin/r8compiler/api/R8InputBundleCodec.class",
+          "org/autojs/plugin/r8compiler/api/R8InputBundleKt.class",
+          "org/autojs/plugin/r8compiler/api/R8InputBundleSummary.class",
+          "org/autojs/plugin/r8compiler/api/R8InputIdentity.class",
+          "org/autojs/plugin/r8compiler/api/R8InputLayout.class",
+          "org/autojs/plugin/r8compiler/api/R8InputRole.class",
+          "org/autojs/plugin/r8compiler/api/R8InputSetFingerprint.class",
+          "org/autojs/plugin/r8compiler/api/R8InputSource.class",
+          "org/autojs/plugin/r8compiler/api/R8OutputLayout.class",
+          "org/autojs/plugin/r8compiler/api/R8Progress.class",
+          "org/autojs/plugin/r8compiler/api/R8ProgressStage.class",
+          "org/autojs/plugin/r8compiler/api/R8ProtocolVersion$compareTo$1.class",
+          "org/autojs/plugin/r8compiler/api/R8ProtocolVersion$compareTo$2.class",
+          "org/autojs/plugin/r8compiler/api/R8ProtocolVersion.class",
+          "org/autojs/plugin/r8compiler/api/R8RequestId$Companion.class",
+          "org/autojs/plugin/r8compiler/api/R8RequestId.class",
+          "org/autojs/plugin/r8compiler/api/R8RequestedArtifact.class",
+          "org/autojs/plugin/r8compiler/api/R8ResourceLimits.class",
+          "org/autojs/plugin/r8compiler/api/R8Result.class",
+          "org/autojs/plugin/r8compiler/api/R8RetraceMetadata.class",
+          "org/autojs/plugin/r8compiler/api/R8RuleAdmissionLimits$Companion.class",
+          "org/autojs/plugin/r8compiler/api/R8RuleAdmissionLimits.class",
+          "org/autojs/plugin/r8compiler/api/R8RulePolicy$ScanOutcome.class",
+          "org/autojs/plugin/r8compiler/api/R8RulePolicy.class",
+          "org/autojs/plugin/r8compiler/api/R8RulePolicyError.class",
+          "org/autojs/plugin/r8compiler/api/R8RulePolicyException.class",
+          "org/autojs/plugin/r8compiler/api/R8RulePolicySummary.class",
+          "org/autojs/plugin/r8compiler/api/R8RuntimeLibraryFingerprint.class",
+          "org/autojs/plugin/r8compiler/api/R8RuntimeLibraryIdentity.class",
+          "org/autojs/plugin/r8compiler/api/R8RuntimeLibraryModel.class",
+          "org/autojs/plugin/r8compiler/api/R8SessionLaw.class",
+          "org/autojs/plugin/r8compiler/api/R8Sha256$Companion.class",
+          "org/autojs/plugin/r8compiler/api/R8Sha256.class",
+          "org/autojs/plugin/r8compiler/api/R8Started.class",
+          "org/autojs/plugin/r8compiler/api/R8WireCode.class"
+        ],
+        "classEntryCount": 85,
+        "visibleClassCount": 76,
+        "visibleMemberCount": 683
+      }
+    ]
+  },
+  "consumerCompileVerified": true,
+  "consumerCompile": {
+    "verified": true,
+    "javac": "JAVA_HOME/bin/javac.exe",
+    "javacVersion": "javac 21.0.1",
+    "release": 17,
+    "sourcePath": "EMPTY",
+    "classpath": [
+      "android-36/android.jar",
+      "protocol-wire-api/classes.jar",
+      "r8-compiler-api/classes.jar"
+    ],
+    "androidJarSha256": "d9eb9da824d9e247a352f570f01e1169e725b2954bca9e283a71786c59b59f9a",
+    "sourceFiles": [
+      {
+        "path": "test-consumer/src/main/java/org/autojs/plugin/r8compiler/consumer/R8ContractDetachedConsumer.java",
+        "byteLength": 3169,
+        "sha256": "a499a0c107a8c94bf803311ca75be750194adfc31144f2efed94efde425b1ad6"
+      }
+    ],
+    "emittedClass": "org/autojs/plugin/r8compiler/consumer/R8ContractDetachedConsumer.class",
+    "emittedClassSha256": "75e6d1954c4327bd5a01a31450a3940e5fddeb6d42b9f7e06c21d1d1ad6415e6",
+    "linkageSymbols": [
+      "org/autojs/plugin/protocol/wire/TaggedWireProtocol",
+      "org/autojs/plugin/protocol/wire/TaggedWireLimits",
+      "org/autojs/plugin/protocol/wire/TaggedWireWriter",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerCallback",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerProvider",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerSession",
+      "org/autojs/plugin/r8compiler/api/R8CompilerContract",
+      "org/autojs/plugin/r8compiler/api/R8CompilerFamily",
+      "org/autojs/plugin/r8compiler/api/R8CompilerIntent",
+      "org/autojs/plugin/r8compiler/api/R8FallbackPolicy",
+      "org/autojs/plugin/r8compiler/api/R8Sha256"
+    ],
+    "binderCallsCompileVerified": true,
+    "jvmBinaryAbiGoldenVerified": true
+  },
+  "verificationTool": {
+    "path": "scripts/verify-g1-contract-distribution.ps1",
+    "byteLength": 74529,
+    "sha256": "3b12ecdd28187c577bcb3a80fd3d2c1e79988ad33dc5ddee1d93a674c0e3bf33"
+  },
+  "claims": {
+    "providerImplemented": false,
+    "manifestDiscoverable": false,
+    "hostIntegrated": false,
+    "binderVerified": false,
+    "r8Executed": false,
+    "retraceExecuted": false,
+    "deviceVerified": false,
+    "published": false,
+    "pluginConsumed": false
+  }
+}
