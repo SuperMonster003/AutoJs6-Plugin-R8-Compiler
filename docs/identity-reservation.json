@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 1,
-  "status": "LOCAL_PROVIDER_ART_JNI_RETRACE_VERIFIED_NOT_REMOTELY_PUBLISHED",
+  "schemaVersion": 2,
+  "status": "PRIVATE_REMOTE_PROVIDER_ART_JNI_RETRACE_VERIFIED_NOT_PUBLIC",
   "apiNamespace": "org.autojs.plugin.r8compiler.api",
   "serviceAction": "org.autojs.plugin.R8_COMPILER",
   "engineId": "r8-compiler",
@@ -15,6 +15,15 @@
     "serviceComponent": "io.github.supermonster003.autojs6.plugin.r8compiler/.R8CompilerService",
     "process": ":r8"
   },
+  "publication": {
+    "repository": "SuperMonster003/AutoJs6-Plugin-R8-Compiler",
+    "visibility": "PRIVATE",
+    "channel": "GITHUB_PRIVATE_PRERELEASE",
+    "releaseTag": "v0.1.0-provider-dev-private.1",
+    "releaseUrl": "https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/releases/tag/v0.1.0-provider-dev-private.1",
+    "publicPublished": false,
+    "remoteMavenPublished": false
+  },
   "claims": {
     "providerImplemented": true,
     "manifestDiscoverable": true,
@@ -27,8 +36,11 @@
     "jniLinked": true,
     "deviceVerified": true,
     "localPublished": true,
-    "remotePublished": false,
-    "published": false,
+    "remotePublished": true,
+    "sourcePushed": true,
+    "releaseAssetsPublished": true,
+    "publicPublished": false,
+    "published": true,
     "pluginConsumed": true
   }
 }

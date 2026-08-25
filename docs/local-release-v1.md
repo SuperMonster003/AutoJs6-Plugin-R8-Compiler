@@ -4,9 +4,9 @@
 
 G5 creates an append-only release inside this repository's ignored `releases/` directory. It does
 not push Git refs, create a remote release, upload a Maven artifact, install an APK, invoke ADB, or
-claim Binder/device acceptance. The mutable identity field `published=false` continues to mean
-that no official or remote publication has occurred; G5 records the narrower and non-conflicting
-claims `localPublished=true` and `remotePublished=false`.
+claim Binder/device acceptance. At that historical boundary the then-current mutable identity field
+`published=false` means that no official or remote publication has occurred; G5 records the narrower
+and non-conflicting claims `localPublished=true` and `remotePublished=false`.
 
 The authoritative G5 release identity is `0.1.0-provider-dev-local.4`, matching the APK manifest version
 `0.1.0-provider-dev`. A local development build is deliberately not relabelled as the frozen API

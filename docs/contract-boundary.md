@@ -132,9 +132,10 @@ actual alias, external signing path, keystore name, or properties-file name ente
 Gate. The local distribution contains exactly the signed APK, both byte-frozen 0.1.0 AARs, and one
 deterministic manifest. Existing bytes may only be re-read as `IDENTICAL`.
 
-This closes local signing and append-only local APK/API history with `localPublished=true`. It does
-not alter the mutable identity's official/remote `published=false` meaning, and records
-`remotePublished=false`, `installed=false`, `binderVerified=false`, and `deviceVerified=false`.
+At its historical G5 boundary this closes local signing and append-only local APK/API history with
+`localPublished=true`. It does not alter the then-current identity's official/remote
+`published=false` meaning, and records `remotePublished=false`, `installed=false`,
+`binderVerified=false`, and `deviceVerified=false`.
 
 ## G6 authorized device status
 
@@ -152,7 +153,30 @@ prove exact-provider force-stop, Binder death, zero provider terminal callbacks,
 revalidation, authenticated rebind, and recovery.
 
 G6 is explicitly authorized and does not itself install or uninstall packages. It force-stops only
-the exact provider package and blocks the protected physical serials. Its incremental current claims
+the exact provider package and blocks the protected physical serials. Its historical incremental claims
 set Binder, PFD lifecycle, process death, physical-device, and device verification true while keeping
 remote publication, retrace execution, and JNI linking false. See `device-acceptance-v1.md` for the
 exact matrix and fail-closed verifier boundary.
+
+## G7 ART, JNI, and Retrace status
+
+G7 creates the append-only signed `local.5` generation after correcting the provider's compiler
+library input to a byte-pinned Android 36 platform JAR. Its authorized three-target runtime matrix
+executes optimized output on API 25/28/37 ART, links arm64/x86/x86_64 JNI, verifies mapping hashes,
+and runs pinned R8 8.13.17 Retrace against each captured obfuscated stack. Both G7 Gates are local
+historical boundaries and correctly retain `remotePublished=false`.
+
+## G8 private remote publication status
+
+G8 changes no compiler, protocol, APK, AAR, signer, device, or G7 result. Before any Git remote
+exists, it privacy-normalizes both author and committer identities while preserving each commit's
+message, dates, topology, and tree. It then creates an empty GitHub Private repository, verifies that
+visibility before uploading objects, and pushes only the normalized source branch and noreply
+annotated tag.
+
+The Private prerelease republishes the exact four `local.5` files plus a canonical SHA256SUMS asset.
+Two separate post-upload campaigns download all five assets and revalidate names, lengths, and
+SHA-256 digests. The invocation-bound G8 Gate writes PASS only after its downloaded temporary tree
+is safely removed. Current publication claims are `remotePublished=true`,
+`remoteVisibility=PRIVATE`, and `publicPublished=false`; no remote Maven or public-visibility claim
+is included. See `private-remote-release-v1.md` for the privacy, remote, and fail-closed boundaries.

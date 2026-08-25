@@ -4,7 +4,7 @@ This repository owns the independent R8 compiler protocol for AutoJs6.
 
 The byte-frozen `0.1.0` contract distribution contains the typed API, TaggedWire codecs, canonical
 streaming bundle formats, validation, and generated Binder interfaces from three source-frozen
-AIDL descriptors. The repository has now advanced through authorized local G7 ART/JNI/Retrace acceptance:
+AIDL descriptors. The repository has now advanced through authorized G8 private remote publication:
 `:app` builds a separately identified Android application and dedicated `:r8` service that
 consumes those frozen AAR bytes and executes fixed R8 8.13.17. A sibling AutoJs6 working tree now
 contains a default-off Developer-options selector, the explicit `runtime.loadJarWithR8(...)`
@@ -15,7 +15,9 @@ same-environment reproducibility evidence. G6 binds those exact release bytes to
 Binder/PFD execution, lifecycle, hostile-input, and process-death receipts on one physical device
 and two AVDs. G7 adds the corrected `local.5` provider, executes optimized output and JNI on API
 25/28/37 ART (including a 16 KiB AVD), and runs mapping-hash-verified R8 Retrace over each captured
-obfuscated stack. There is no semantic fallback or remote provider publication.
+obfuscated stack. G8 privacy-normalizes the complete Git history, publishes the exact `local.5`
+APK/API bytes in a private GitHub prerelease, and independently downloads and rehashes every asset.
+There is no semantic fallback. Public publication remains false.
 
 ## Frozen boundaries
 
@@ -149,7 +151,8 @@ G6 was explicitly authorized and did not install or uninstall packages itself; t
 targets already contained the host, instrumentation, and official provider. It force-stopped only
 the exact provider package for process-death coverage. The protected devices `QV710AF65F` and
 `968e9f18` were not touched by G6. No Git push, remote release, or remote Maven publication was
-performed; remote publication remains deliberately deferred. After the final report was frozen,
+performed at that historical G6 boundary; remote publication was still deliberately deferred. After
+the final report was frozen,
 the three campaign-owned packages were removed from the Sony and both AVDs, and the campaign-owned
 API 28 AVD was stopped; this post-evidence cleanup does not alter the G6 report.
 
@@ -178,8 +181,28 @@ from the ART stack. Final invocation `36e7e2ff-b734-4034-96ab-cce5a0a037f5` has 
 After the frozen G7 report, campaign packages were removed from the physical target and API 25 AVD;
 the API 37 AVD's pre-existing host/instrumentation APKs were restored byte-for-byte and its provider
 was removed. Temporary raw mapping, stack, and APK-backup material was deleted. No protected device,
-Git push, remote release, or remote Maven publication was involved; remote publication remains the
-only deliberately open compatibility/release checkbox.
+Git push, remote release, or remote Maven publication was involved in that historical G7 boundary.
+
+The invocation-bound G8 Gate proves `PRIVACY_NORMALIZED_PRIVATE_GITHUB_RELEASE`. Before the first
+remote push, both local commits had their author and committer identities changed to the verified
+GitHub ID-based noreply identity. Commit messages, author/committer dates, topology, and both trees
+remained identical; the normalized G1/G7 commits are `2ce4d296a69fc78ff373a39630a1b3796bae9fe7`
+and `884fe5be362f3ec2089514421cd4108b54349bf8`. The predecessor refs, reflogs, and objects were
+removed from the repository and retained only in an external local recovery bundle that was never
+pushed.
+
+The source branch and annotated tag `v0.1.0-provider-dev-private.1` are hosted in the verified
+Private repository
+[`SuperMonster003/AutoJs6-Plugin-R8-Compiler`](https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler).
+Its published prerelease contains exactly the signed APK, both frozen AARs, the `local.5` manifest,
+and a canonical SHA256SUMS asset. All 5/5 assets were downloaded again and matched their local byte
+lengths and SHA-256 digests. Final G8 invocation `ab010b7d-800f-43d9-acc9-27efb087efa2` has Gate
+SHA-256 `ead4d551ae7eb13e319bc5ffed3639edc1ab96c6a85b9088ed7ca070f0a3e000`; verifier SHA-256 is
+`644c8fce1097073b73abc1fef27a9aeaccd06c2db8b8c791c710e64f04b51d75`. Current claims are
+`remotePublished=true`, `remoteVisibility=PRIVATE`, and `publicPublished=false`. No remote Maven
+publication occurred; changing repository visibility is a separate future authorization and Gate.
+The Gate's three-commit branch snapshot is an invocation-time fact; the later noreply evidence commit
+that records this result advances `master` without moving or rewriting the release tag or assets.
 
 The verified local `0.1.0` contract distribution is append-only under
 `plugin-api/r8-compiler-api/releases/0.1.0/`. Its manifest co-records the current production-source

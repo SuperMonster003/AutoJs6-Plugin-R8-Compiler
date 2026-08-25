@@ -48,6 +48,7 @@ invocation independently downloads all five assets into a newly created system-t
 directory, rejects any missing or extra name, and verifies every byte length and SHA-256 digest
 against the local source records. The temporary directory is removed only after its resolved path
 is proven to remain under the system temporary root and to carry the invocation-specific prefix.
+A positive Gate is written only after that invocation directory has been successfully removed.
 
 ## Fail-closed remote verification
 

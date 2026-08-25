@@ -164,6 +164,17 @@ function New-FileRecord {
     }
 }
 
+function Remove-InvocationTemporaryRoot {
+    if (-not [IO.Directory]::Exists($temporaryRoot)) { return }
+    $temporaryParent = [IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd('\') + '\'
+    $candidate = [IO.Path]::GetFullPath($temporaryRoot)
+    $candidateName = [IO.Path]::GetFileName($candidate)
+    Require ($candidate.StartsWith($temporaryParent, [StringComparison]::OrdinalIgnoreCase)) 'The G8 temporary path escaped the system temporary root'
+    Require ($candidateName.StartsWith('autojs6-r8-g8-remote-', [StringComparison]::Ordinal)) 'The G8 temporary path lacks its invocation prefix'
+    Remove-Item -LiteralPath $candidate -Recurse -Force
+    Require (-not [IO.Directory]::Exists($candidate)) 'The G8 temporary download directory was not removed'
+}
+
 function Read-PositiveGate {
     param(
         [Parameter(Mandatory = $true)][string]$Path,
@@ -330,6 +341,9 @@ try {
         $downloadRecords.Add([ordered]@{ name = $name; byteLength = [long]$downloaded.byteLength; sha256 = [string]$downloaded.sha256 })
     }
 
+    $failureStage = 'TEMPORARY_CLEANUP'
+    Remove-InvocationTemporaryRoot
+
     $failureStage = 'FINAL_REPORT'
     $finalReport = [ordered]@{
         schemaVersion = 'autojs6.r8.g8.private-remote-release-gate/v1'
@@ -403,13 +417,5 @@ try {
     try { Write-FailedGate $failureStage } catch { Write-Error 'G8 verification also failed to record its negative Gate' }
     throw
 } finally {
-    if ([IO.Directory]::Exists($temporaryRoot)) {
-        $temporaryParent = [IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd('\') + '\'
-        $candidate = [IO.Path]::GetFullPath($temporaryRoot)
-        $candidateName = [IO.Path]::GetFileName($candidate)
-        if ($candidate.StartsWith($temporaryParent, [StringComparison]::OrdinalIgnoreCase) -and
-            $candidateName.StartsWith('autojs6-r8-g8-remote-', [StringComparison]::Ordinal)) {
-            Remove-Item -LiteralPath $candidate -Recurse -Force
-        }
-    }
+    if ([IO.Directory]::Exists($temporaryRoot)) { Remove-InvocationTemporaryRoot }
 }

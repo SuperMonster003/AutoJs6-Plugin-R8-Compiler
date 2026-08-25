@@ -162,7 +162,7 @@ evidence without rewriting the G3 report. Retrace execution and remote publicati
 
 - [x] Run compatibility corpora across API 24-36 and supported Java/Kotlin inputs.
 - [x] Publish append-only independent local signed APK/API history and same-environment reproducible release evidence.
-- [ ] Publish independent remote APK/API history (explicitly deferred by the owner; local-only for now).
+- [x] Publish independent private remote APK/API history while keeping public publication deferred.
 - [x] Complete authorized device acceptance without reusing unrelated device evidence.
 
 G4 local compatibility evidence (2026-08-24): the dedicated corpus contains 26 real-R8 cells,
@@ -323,5 +323,72 @@ The verifier itself installed or removed nothing and performed no force-stop. Af
 campaign packages were removed from the API 25 AVD and physical target; the API 37 AVD's pre-existing
 host and instrumentation APKs were restored to their exact original bytes and the provider was
 removed. Raw mapping/stack material and temporary APK backups were deleted after path validation.
-No protected device, Git remote, remote release, or remote Maven repository was touched. G4's
-remote-publication checkbox therefore remains the only deliberately open release item.
+No protected device, Git remote, remote release, or remote Maven repository was touched at the
+historical G7 boundary. G8 below later closes the independent remote-history item without rewriting
+G7 or claiming public publication.
+
+## G8: Privacy-normalized private remote release
+
+- [x] Rewrite every pre-remote author and committer identity to the verified GitHub ID-based noreply
+  identity while proving message, date, topology, and tree preservation.
+- [x] Create and independently verify the source repository as GitHub `PRIVATE` before the first push.
+- [x] Push only the normalized source history and noreply annotated tag; audit them through the API
+  and a new clone that does not reuse the local object database.
+- [x] Publish the exact `local.5` APK/API set as a non-draft Private prerelease and redownload/re-hash
+  all assets while retaining `publicPublished=false`.
+
+G8 identity-privacy evidence (2026-08-25): authenticated GitHub owner `SuperMonster003` has account
+ID `30370009`, matching the configured repository-local commit identity
+`30370009+SuperMonster003@users.noreply.github.com`. The original two local commits were never
+pushed. Their author and committer identities were normalized before any remote existed:
+`2a1fb3b70cfe6f4678bd0118a87c905a3fe52bbd` became
+`2ce4d296a69fc78ff373a39630a1b3796bae9fe7` with unchanged tree
+`892db0f4fb8a8ed618970144e80c32fbcdc381f9`, and
+`372db374e95e5536d3a6556131c0b95e9bfdc744` became
+`884fe5be362f3ec2089514421cd4108b54349bf8` with unchanged tree
+`d1010affa348ee1587ed31d010b04146f6c0b94f`. Messages, author dates, committer dates, and the root/child
+topology also remained equal. A verified recovery bundle remains outside the repository and is not
+referenced by any remote ref or release asset; repository-local predecessor refs, reflogs, and
+unreachable objects were removed before the first push.
+
+Remote-source evidence: GitHub repository ID `1345668157` identifies
+[`SuperMonster003/AutoJs6-Plugin-R8-Compiler`](https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler).
+It was created empty with `--private`; the API returned `private=true` and `visibility=private` before
+any object was uploaded. Only normalized `master` and the annotated
+`v0.1.0-provider-dev-private.1` tag were pushed. The tag points to preparation commit
+`29abdf6a2742e3f327b17eb6ca1f50684bd5f72b`, and its tagger uses the same noreply identity. API
+inspection and an independent fresh clone both found exactly three commits, all author/committer
+identities equal to the target noreply address, no predecessor SHA reachable, the expected default
+branch and trees, and zero `git fsck` finding.
+
+Remote-release evidence: published prerelease ID `376144423` at tag
+`v0.1.0-provider-dev-private.1` is non-draft and contains exactly five assets. The exact 33,155,599-byte
+signed APK has SHA-256 `84447972cb0e4e020e5a696d0d2dabeb273e2990067a62f2d1b7590add628265`;
+the 29,387-byte protocol AAR has `1d97a5b44b2c20e85aa12b263fca604a32d6d89275d47a19076861cd20c29a36`;
+the 179,855-byte R8 API AAR has `e9df49b7e49992615a15bc0af2372a4525f02b4a2a915a560ddab3128bb2f066`;
+the 990-byte manifest has `d97ed12a150a991b30e2697258ae0e381afa80667aed5e8272a5a5ebd4ec1583`;
+and the 399-byte canonical SHA256SUMS asset has
+`061e760ca9283f48be1a0d974c502fb087059cb14163bb715ecfdfe9b676e3cb`. Both a direct post-upload
+campaign and the final G8 verifier downloaded all 5/5 assets into separate temporary directories,
+rejected extra/missing names, and matched every byte length and digest. Each validated temporary
+directory was removed after exact path-boundary checks.
+
+Final invocation `ab010b7d-800f-43d9-acc9-27efb087efa2` has G8 Gate SHA-256
+`ead4d551ae7eb13e319bc5ffed3639edc1ab96c6a85b9088ed7ca070f0a3e000`; verifier SHA-256 is
+`644c8fce1097073b73abc1fef27a9aeaccd06c2db8b8c791c710e64f04b51d75`, design SHA-256 is
+`0512c5a507dfbef4d0f33c2faebff7f3f69a66735e10dd36a33e8d32b9aa8c98`, and current identity
+SHA-256 is `8538ad7e250772e4f10ded713cce63f2f531d40fc2c351c9562e80a4cc17982f`. The Gate binds the exact
+positive G7 release/runtime reports, all three remote commits, the annotated tag, Private repository
+metadata, and all redownloaded assets. It records `localPublished=true`, `remotePublished=true`,
+`remoteVisibility=PRIVATE`, `sourcePushed=true`, `releaseAssetsPublished=true`, and
+`publicPublished=false`. No ADB/device task, signing operation, protected device, remote Maven
+publication, or public-visibility change was involved in G8.
+
+The Gate's three-commit count and `29abdf6a2742e3f327b17eb6ca1f50684bd5f72b` branch head are
+invocation-time facts. The later noreply evidence commit that records this completed Gate advances
+`master` without moving or rewriting the annotated release tag or any release asset; the final
+post-push audit covers that resulting remote state separately.
+
+Private-to-Public conversion remains a separate future Gate. Before any visibility change, the full
+Git object database, default branch, tags, release assets, Actions history/logs, tracked paths, and
+secret/privacy findings must be re-audited; G8 does not authorize or claim that conversion.
