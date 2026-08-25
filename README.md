@@ -80,7 +80,9 @@ all terminate the explicit R8 call without D8/dx fallback.
 ## Evidence boundary
 
 G1's immutable report remains `CONTRACT_AAR_ONLY` at commit
-`2a1fb3b70cfe6f4678bd0118a87c905a3fe52bbd`; later Gates do not rewrite it.
+`2ce4d296a69fc78ff373a39630a1b3796bae9fe7`; this is the tree-identical,
+privacy-normalized successor of the original local G1 commit, and later functional Gates do not
+rewrite its evidence boundary.
 
 The invocation-bound G2 v2 Gate proves `LOCAL_PROVIDER_JVM_AND_ANDROID_BUILD`: fixed R8 8.13.17,
 the canonical five-artifact round-trip, provider JVM/security boundaries, pinned
