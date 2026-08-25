@@ -1,0 +1,34 @@
+/*
+ * G7 compiles AutoJs6 with only the dedicated R8 instrumentation sources and injects generated,
+ * invocation-local Java/JNI fixtures into the androidTest APK. Production sources and packaging
+ * inputs are otherwise unchanged.
+ */
+def fixtureRootValue = System.getProperty('r8.g7.fixture.root')
+if (fixtureRootValue == null || fixtureRootValue.trim().isEmpty()) {
+    throw new GradleException('Pass -Dr8.g7.fixture.root=<absolute generated fixture directory>')
+}
+def fixtureRoot = new File(fixtureRootValue).canonicalFile
+def fixtureAssets = new File(fixtureRoot, 'assets')
+def fixtureJniLibs = new File(fixtureRoot, 'jniLibs')
+if (!fixtureAssets.isDirectory() || !fixtureJniLibs.isDirectory()) {
+    throw new GradleException('The generated G7 fixture assets or JNI directory is missing')
+}
+
+gradle.beforeProject { project ->
+    if (project.path != ':app') {
+        return
+    }
+    project.pluginManager.withPlugin('com.android.application') {
+        def android = project.extensions.getByName('android')
+        def r8AndroidTestRoot = project.file(
+            'src/androidTest/java/org/autojs/autojs/core/plugin/r8'
+        )
+        def androidTest = android.sourceSets.getByName('androidTest')
+        androidTest.java.setSrcDirs([r8AndroidTestRoot])
+        if (androidTest.hasProperty('kotlin')) {
+            androidTest.kotlin.setSrcDirs([r8AndroidTestRoot])
+        }
+        androidTest.assets.setSrcDirs([fixtureAssets])
+        androidTest.jniLibs.setSrcDirs([fixtureJniLibs])
+    }
+}

@@ -1,5 +1,9 @@
 [versions]
+desugar = "2.1.5"
 junit = "4.13.2"
+r8 = "8.13.17"
 
 [libraries]
+desugar = { module = "com.android.tools:desugar_jdk_libs_nio", version.ref = "desugar" }
 junit = { module = "junit:junit", version.ref = "junit" }
+r8 = { module = "com.android.tools:r8", version.ref = "r8" }

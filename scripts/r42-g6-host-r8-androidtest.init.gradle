@@ -1,0 +1,21 @@
+/*
+ * G6 compiles the current AutoJs6 production app with only the dedicated R8 device tests.
+ * The host repository contains many independently evolving instrumentation campaigns; their
+ * sources are intentionally outside this producer rather than becoming accidental G6 inputs.
+ */
+gradle.beforeProject { project ->
+    if (project.path != ':app') {
+        return
+    }
+    project.pluginManager.withPlugin('com.android.application') {
+        def android = project.extensions.getByName('android')
+        def r8AndroidTestRoot = project.file(
+            'src/androidTest/java/org/autojs/autojs/core/plugin/r8'
+        )
+        def androidTest = android.sourceSets.getByName('androidTest')
+        androidTest.java.setSrcDirs([r8AndroidTestRoot])
+        if (androidTest.hasProperty('kotlin')) {
+            androidTest.kotlin.setSrcDirs([r8AndroidTestRoot])
+        }
+    }
+}

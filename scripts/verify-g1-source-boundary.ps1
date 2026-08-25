@@ -632,7 +632,7 @@ try {
     $rootBuildPath = Join-Path $repositoryRootFull 'build.gradle.kts'
     $expectedRootBuild = @'
 plugins {
-    id("com.android.library") version "9.2.1" apply false
+    id("com.android.library") version "9.1.0" apply false
 }
 
 tasks.register<Delete>("clean") {

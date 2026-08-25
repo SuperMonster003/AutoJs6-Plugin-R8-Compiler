@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "status": "RESERVED_NOT_IMPLEMENTED",
+  "status": "LOCAL_PROVIDER_ART_JNI_RETRACE_VERIFIED_NOT_REMOTELY_PUBLISHED",
   "apiNamespace": "org.autojs.plugin.r8compiler.api",
   "serviceAction": "org.autojs.plugin.R8_COMPILER",
   "engineId": "r8-compiler",
@@ -16,14 +16,19 @@
     "process": ":r8"
   },
   "claims": {
-    "providerImplemented": false,
-    "manifestDiscoverable": false,
-    "hostIntegrated": false,
-    "binderVerified": false,
-    "r8Executed": false,
-    "retraceExecuted": false,
-    "deviceVerified": false,
+    "providerImplemented": true,
+    "manifestDiscoverable": true,
+    "hostIntegrated": true,
+    "binderVerified": true,
+    "r8Executed": true,
+    "compatibilityCorpusVerified": true,
+    "platformLibraryFixPackaged": true,
+    "retraceExecuted": true,
+    "jniLinked": true,
+    "deviceVerified": true,
+    "localPublished": true,
+    "remotePublished": false,
     "published": false,
-    "pluginConsumed": false
+    "pluginConsumed": true
   }
 }

@@ -17,6 +17,7 @@ dependencyResolutionManagement {
 rootProject.name = "autojs6-plugin-r8-compiler"
 
 include(
+    ":app",
     ":plugin-api:protocol-wire-api",
     ":plugin-api:r8-compiler-api",
 )

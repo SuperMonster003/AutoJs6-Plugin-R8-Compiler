@@ -65,3 +65,94 @@ successfully.
 Archive-entry, expanded-byte, class-file, and DEX-entry counts are provider responsibilities in G2;
 G1 freezes their capability fields and upper bounds but does not claim that an R8 engine enforced
 them.
+
+## G2 implementation status
+
+The current local provider implements those G2 responsibilities without changing protocol 1.0.
+It consumes the immutable 0.1.0 AARs, materializes inputs into a private recoverable workspace,
+enforces archive/class/rule budgets, runs fixed R8 8.13.17, validates indexed DEX output, and
+atomically finalizes the five-artifact bundle in local staging before the output PFD is claimed.
+The API 26+ runner supplies an R8 cancellation checker; the API 24/25 CLI runner is release-only
+and injects only provider-owned report destinations. Neither runner contains a D8/dx fallback.
+
+This status is backed by 6 suites / 42 tests, including real JVM compiler round-trips, the pinned
+core-library/NIO desugaring boundary required by the API 24 provider floor, and the later
+compatibility cells, plus Android lint/APK builds. Folding G4 tests into the full provider
+prerequisite set does not extend the G2 evidence boundary. Its historical report therefore keeps
+Binder/PFD lifecycle, cross-process cancellation, process death, installed-manifest discovery,
+cross-APK host consumption, and device claims false. The later G6 report verifies those behaviors
+incrementally without rewriting G2.
+
+## G3 host integration status
+
+The sibling host now exposes the independent compiler only through the explicit
+`runtime.loadJarWithR8(...)` method family and a default-off Developer-options exact-component
+selector. The existing D8/dx-backed load methods retain their behavior. The process-wide R8
+dispatcher consumes the frozen contract, snapshots the canonical input set, owns the
+request/descriptors/session, validates the callback law, adopts the complete five-artifact bundle,
+and publishes only a verified R8 cache generation.
+
+Only the verified `DEX_ZIP` crosses the final execution seam. The class loader independently
+rehashes it, adopts a read-only `r8_verified_` copy, and has no local D8/dx compiler path from that
+entry. The invocation-bound G3 v4 JVM matrix covers the public overload shapes, Rhino array
+conversion, explicit rules/classpath ownership, success, missing selection, provider failure,
+cancellation, corrupt transactions, and cache behavior. It proves local host integration and that
+every failure remains terminal R8. Its historical report does not claim cross-APK Binder/PFD,
+installation, device execution, Android process death, signing, publication, or retrace execution;
+G5 later supplies local signing and G6 supplies the device/runtime claims.
+
+## G4 local compatibility status
+
+The compatibility corpus executes the production materializer, fixed R8 8.13.17 engine, DEX
+packager, and five-artifact codec for generated Java and project-compiled Kotlin inputs at each
+compiler `minApi` from 24 through 36. Every one of the 26 cells carries reflective access, a
+runtime-composed class name, native methods, Java serialization hooks, a script-facing API, and an
+unkept removal decoy. An indexed-DEX parser verifies class definitions, encoded members and native
+flags rather than relying on raw substring presence. Mapping, seeds, usage, DEX topology, artifact
+roles, sizes, and digests are also checked.
+
+The original JAR controls execute in an isolated JVM loader, and the host's eight Rhino/runtime
+route tests are forced separately. The optimized DEX is not executed on ART, JNI is not linked,
+and no Android serialization or script invocation of the optimized class is claimed. The G4
+evidence boundary is therefore `R8_COMPATIBILITY_CORPUS_JVM_ARTIFACT_AND_SCRIPT_ROUTE`, with
+Binder, device, installation, signing, publication, reproducibility, and retrace execution false
+inside that historical G4 report.
+
+## G5 local release status
+
+G5 separately signs the provider with the externally authorized AutoJs6 signing configuration and
+publishes only to the repository-ignored append-only local release directory. Two independent
+offline source snapshots, with Gradle caches disabled and every task rerun, must produce the same
+unsigned APK. Two independent signing passes must then produce the same signed APK. This is a
+same-machine/toolchain repeatability boundary, not hermetic cross-environment reproducibility.
+
+The publisher validates exactly one signer, API 24-36 v2/v3 signatures, and the complete reserved
+APK manifest identity. Passwords cross only process-local environment variables; no password,
+actual alias, external signing path, keystore name, or properties-file name enters the manifest or
+Gate. The local distribution contains exactly the signed APK, both byte-frozen 0.1.0 AARs, and one
+deterministic manifest. Existing bytes may only be re-read as `IDENTICAL`.
+
+This closes local signing and append-only local APK/API history with `localPublished=true`. It does
+not alter the mutable identity's official/remote `published=false` meaning, and records
+`remotePublished=false`, `installed=false`, `binderVerified=false`, and `deviceVerified=false`.
+
+## G6 authorized device status
+
+G6 consumes the final positive G2-G5 reports and requires the installed provider base APK on every
+target to exactly equal the append-only `local.4` signed APK. One physical API 28 arm64 device, one
+API 28 x86_64 AVD, and one API 25 x86 AVD each execute the dedicated happy-path and lifecycle test
+classes. The verifier validates 9/9 tests and exactly nine structured receipts rather than trusting
+AndroidJUnitRunner success text alone.
+
+The happy receipts prove exact same-signer cross-APK Binder, canonical input/output PFD streaming,
+fresh fixed-R8 execution, five-artifact adoption, a verified cache hit, and production R8-only DEX
+execution. Lifecycle receipts prove the BUSY/single-terminal law, idempotent cancel/close, callee
+descriptor ownership, EOF, recovered admission, and hostile input rejection. Process-death receipts
+prove exact-provider force-stop, Binder death, zero provider terminal callbacks, EOF, identity
+revalidation, authenticated rebind, and recovery.
+
+G6 is explicitly authorized and does not itself install or uninstall packages. It force-stops only
+the exact provider package and blocks the protected physical serials. Its incremental current claims
+set Binder, PFD lifecycle, process death, physical-device, and device verification true while keeping
+remote publication, retrace execution, and JNI linking false. See `device-acceptance-v1.md` for the
+exact matrix and fail-closed verifier boundary.
