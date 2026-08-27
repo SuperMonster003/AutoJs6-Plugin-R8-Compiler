@@ -177,6 +177,10 @@ runtime.loadJarWithR8(program, keepRuleFiles, classpathJars, consumerRuleFiles, 
 - mapping などの成果物は現在ホストが検証のうえ私有キャッシュに保存しており, スクリプトから直接取得できるエクスポート入口はまだありません (ROADMAP を参照).
 - コンパイルはセキュリティ審査ではありません. 信頼できる JAR だけを読み込んでください.
 
+#### keep ルールガイド
+
+`Packages` アクセス、リフレクション、JNI、シリアライズ、公開 API 面の最小レシピは [実践 keep ルールガイド](https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/docs/keep-rules-guide.md) を参照してください.
+
 #### コンパイル失敗時の挙動
 
 この入口の失敗の意味論は意図的に単純です: 完全な R8 成果物を得るか, エラーになるかのどちらかで, 中間状態はありません.
@@ -239,9 +243,9 @@ A: すべてのコンパイルで mapping と retrace メタデータが生成�
 
 A: しません. ネットワークとストレージの権限を持たず, コンパイル入力は AutoJs6 から渡されるファイル記述子のみから読み取り, 通信路上でファイルパスを見ることはなく, 一時ファイルは自身の私有ディレクトリ内に限定されます.
 
-**Q: ランチャーにアイコンや画面がないのはなぜですか?**
+**Q: ランチャー画面では何ができますか?**
 
-A: プラグインにはユーザーインターフェースがなく, AutoJs6 がバインドするコンパイルサービスだけを含みます. これは正常です.
+A: プラグインの読み取り専用画面には、プラグインのバージョン、固定 R8 バージョン、サービスコンポーネントの利用可否、同梱 CHANGELOG が表示されます. この画面で provider は有効化されません; 選択と有効化は引き続き AutoJs6 の開発者オプションでのみ行います.
 
 ******
 
@@ -414,6 +418,12 @@ app/src/main/assets/doc/CHANGELOG-*.md
 ```
 
 `.python/generate_markdown.py` が JSON ソースから全 10 言語の README と CHANGELOG (リポジトリルートの README.md と CHANGELOG.md を含む) を生成します; ドキュメントを変更するときは生成された Markdown ではなく JSON ソースを編集してください.
+
+生成済み Markdown がすべてソースと一致することをワークツリーを変更せずに確認するには、次を実行します:
+
+```powershell
+python .python/generate_markdown.py --check
+```
 
 ******
 

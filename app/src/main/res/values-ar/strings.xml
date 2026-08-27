@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AutoJs6 R8 Compiler</string>
+    <string name="app_summary">موفّر مترجم R8 بإعداد release كامل لتطبيق AutoJs6</string>
+    <string name="version_label">الإصدارات</string>
+    <string name="version_value">الملحق %1$s\nR8 %2$s</string>
+    <string name="service_label">خدمة الترجمة</string>
+    <string name="service_available">متاحة</string>
+    <string name="service_unavailable">غير متاحة أو معطّلة</string>
+    <string name="service_component_value">المكوّن\n%1$s</string>
+    <string name="service_status_note">تؤكد هذه الحالة فقط أن مكوّن الخدمة مثبّت ومفعّل. اختر الموفّر بصورة منفصلة في خيارات المطوّر في AutoJs6.</string>
+    <string name="open_changelog">عرض سجل التغييرات</string>
+    <string name="changelog_title">سجل التغييرات</string>
+    <string name="changelog_load_error">تعذر تحميل سجل التغييرات المضمّن.</string>
+</resources>

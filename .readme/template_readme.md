@@ -111,6 +111,10 @@ console.log("R8 compiler example: " + Example.answer());
 
 {{ p_user_guide_example_note }}
 
+#### {{ h4_keep_rules_guide }}
+
+{{ p_keep_rules_guide }}
+
 #### {{ h4_user_guide_failure }}
 
 {{ p_user_guide_failure }}
@@ -270,6 +274,12 @@ app/src/main/assets/doc/CHANGELOG-*.md
 ```
 
 {{ p_resource_layout }}.
+
+{{ text_generated_docs_check }}:
+
+```powershell
+python .python/generate_markdown.py --check
+```
 
 ******
 

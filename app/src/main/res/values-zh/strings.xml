@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AutoJs6 R8 Compiler</string>
+    <string name="app_summary">为 AutoJs6 提供完整 release 配置的 R8 编译服务</string>
+    <string name="version_label">版本</string>
+    <string name="version_value">插件 %1$s\nR8 %2$s</string>
+    <string name="service_label">编译服务</string>
+    <string name="service_available">可用</string>
+    <string name="service_unavailable">不可用或已停用</string>
+    <string name="service_component_value">组件\n%1$s</string>
+    <string name="service_status_note">此状态仅表示服务组件已安装且可用。请另行在 AutoJs6 开发者选项中选择并启用 provider。</string>
+    <string name="open_changelog">查看更新日志</string>
+    <string name="changelog_title">更新日志</string>
+    <string name="changelog_load_error">无法读取内置更新日志。</string>
+</resources>

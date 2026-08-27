@@ -177,6 +177,10 @@ Points clés :
 - Le mapping et les autres artefacts sont actuellement vérifiés et stockés dans le cache privé de l'hôte ; il n'existe pas encore d'entrée d'export côté script (voir ROADMAP).
 - La compilation n'est pas un audit de sécurité ; ne chargez que des JAR de confiance.
 
+#### Guide des règles keep
+
+Pour des recettes minimales couvrant l'accès `Packages`, la réflexion, JNI, la sérialisation et une API publique, consultez le [guide pratique des règles keep](https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/docs/keep-rules-guide.md).
+
 #### Que se passe-t-il en cas d'échec
 
 La sémantique d'échec de cette entrée est volontairement simple : soit vous obtenez les artefacts R8 complets, soit une erreur -- rien entre les deux.
@@ -239,9 +243,9 @@ R : Chaque compilation produit un mapping et des métadonnées retrace, que l'h�
 
 R : Non. Il n'a aucune permission réseau ou stockage, lit l'entrée de compilation uniquement depuis les descripteurs de fichiers transmis par AutoJs6, ne voit jamais de chemins de fichiers sur le canal, et garde ses fichiers temporaires strictement dans son propre répertoire privé.
 
-**Q : Pourquoi n'y a-t-il ni icône ni interface dans le lanceur ?**
+**Q : À quoi sert l'interface du lanceur ?**
 
-R : Le plugin n'a pas d'interface utilisateur ; il ne contient que le service de compilation auquel AutoJs6 se lie. C'est normal.
+R : L'écran en lecture seule du plugin affiche sa version, la version R8 épinglée, la disponibilité du composant de service et le journal des modifications inclus. Il n'active pas le fournisseur ; sa sélection et son activation restent exclusivement dans les options développeur d'AutoJs6.
 
 ******
 
@@ -414,6 +418,12 @@ app/src/main/assets/doc/CHANGELOG-*.md
 ```
 
 `.python/generate_markdown.py` génère le README et le CHANGELOG dans les 10 langues (y compris README.md et CHANGELOG.md à la racine du dépôt) à partir de sources JSON ; pour modifier la documentation, éditez les sources JSON plutôt que le Markdown généré.
+
+Pour vérifier que chaque fichier Markdown généré correspond à sa source sans modifier l'espace de travail, exécutez:
+
+```powershell
+python .python/generate_markdown.py --check
+```
 
 ******
 

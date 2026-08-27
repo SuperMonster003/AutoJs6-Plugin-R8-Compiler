@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AutoJs6 R8 Compiler</string>
+    <string name="app_summary">Провайдер компилятора R8 с полным release-профилем для AutoJs6</string>
+    <string name="version_label">Версии</string>
+    <string name="version_value">Плагин %1$s\nR8 %2$s</string>
+    <string name="service_label">Сервис компиляции</string>
+    <string name="service_available">Доступен</string>
+    <string name="service_unavailable">Недоступен или отключён</string>
+    <string name="service_component_value">Компонент\n%1$s</string>
+    <string name="service_status_note">Этот статус подтверждает только установку и включение компонента сервиса. Провайдер выбирается отдельно в параметрах разработчика AutoJs6.</string>
+    <string name="open_changelog">Открыть журнал изменений</string>
+    <string name="changelog_title">Журнал изменений</string>
+    <string name="changelog_load_error">Не удалось загрузить встроенный журнал изменений.</string>
+</resources>

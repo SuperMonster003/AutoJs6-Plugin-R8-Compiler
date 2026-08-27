@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AutoJs6 R8 Compiler</string>
+    <string name="app_summary">Full-release R8 compiler provider for AutoJs6</string>
+    <string name="version_label">Versions</string>
+    <string name="version_value">Plugin %1$s\nR8 %2$s</string>
+    <string name="service_label">Compiler service</string>
+    <string name="service_available">Available</string>
+    <string name="service_unavailable">Unavailable or disabled</string>
+    <string name="service_component_value">Component\n%1$s</string>
+    <string name="service_status_note">This status only confirms that the service component is installed and enabled. Select the provider separately in AutoJs6 developer options.</string>
+    <string name="open_changelog">View changelog</string>
+    <string name="changelog_title">Changelog</string>
+    <string name="changelog_load_error">The bundled changelog could not be loaded.</string>
 </resources>

@@ -177,6 +177,10 @@ runtime.loadJarWithR8(program, keepRuleFiles, classpathJars, consumerRuleFiles, 
 - mapping 等產物目前由主程式驗證後存入私人快取, 暫無腳本可直接讀取的匯出入口 (見 ROADMAP).
 - 編譯不等於安全審查, 只載入你信任的 JAR.
 
+#### keep 規則入門
+
+關於 `Packages` 存取、反射、JNI、序列化與公開 API 介面的最小可用配方，請閱讀 [keep 規則實用指南](https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/docs/keep-rules-guide.md).
+
 #### 編譯失敗時會發生甚麼
 
 本入口的失敗語義非常簡單: 要麼取得完整 R8 產物, 要麼拋出錯誤, 沒有中間態.
@@ -239,9 +243,9 @@ adb -s <serial> logcat -d -v threadtime AndroidClassLoader:D AndroidRuntime:E *:
 
 答: 不會. 插件沒有網絡與儲存權限, 只能透過 AutoJs6 遞來的檔案描述符讀取待編譯內容, 線上資料不含檔案路徑, 暫存檔案全部位於自己的私人目錄.
 
-**問: 為甚麼在啟動器裏找不到它的圖示或介面?**
+**問: 啟動器中的插件介面有甚麼作用?**
 
-答: 插件沒有使用者介面, 只包含一個供 AutoJs6 綁定的編譯服務, 這是正常現象.
+答: 插件的唯讀介面顯示插件版本、固定 R8 版本、服務元件可用狀態與內置更新日誌. 它不會啟用 provider; 選擇與啟用仍只可在 AutoJs6 開發者選項中完成.
 
 ******
 
@@ -414,6 +418,12 @@ app/src/main/assets/doc/CHANGELOG-*.md
 ```
 
 `.python/generate_markdown.py` 從 JSON 來源產生全部 10 種語言的 README 與 CHANGELOG (含儲存庫根目錄的 README.md 與 CHANGELOG.md); 修改文件請編輯 JSON 來源而非產生的 Markdown.
+
+如需在不修改工作區的情況下驗證全部已產生 Markdown 與來源檔案一致，請執行:
+
+```powershell
+python .python/generate_markdown.py --check
+```
 
 ******
 

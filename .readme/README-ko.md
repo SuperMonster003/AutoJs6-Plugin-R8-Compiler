@@ -177,6 +177,10 @@ runtime.loadJarWithR8(program, keepRuleFiles, classpathJars, consumerRuleFiles, 
 - mapping 등 산출물은 현재 호스트가 검증 후 사설 캐시에 저장하며, 스크립트에서 직접 가져올 수 있는 내보내기 진입점은 아직 없습니다 (ROADMAP 참조).
 - 컴파일은 보안 검토가 아닙니다. 신뢰하는 JAR만 로드하세요.
 
+#### keep 규칙 가이드
+
+`Packages` 접근, 리플렉션, JNI, 직렬화 및 공개 API 표면에 대한 최소 레시피는 [실전 keep 규칙 가이드](https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/docs/keep-rules-guide.md)를 참조하세요.
+
 #### 실패하면 어떻게 되나요
 
 이 진입점의 실패 의미론은 의도적으로 단순합니다: 완전한 R8 산출물을 얻거나, 오류가 나거나 -- 중간 상태는 없습니다.
@@ -239,9 +243,9 @@ A: 모든 컴파일은 mapping과 retrace 메타데이터를 생성하며 호스
 
 A: 아니요. 네트워크와 저장소 권한이 없으며, 컴파일 입력은 AutoJs6가 건네주는 파일 디스크립터에서만 읽고, 전송 경로에서 파일 경로를 보지 못하며, 임시 파일은 자체 사설 디렉터리 안에만 둡니다.
 
-**Q: 런처에 아이콘이나 화면이 없는 이유는?**
+**Q: 런처 화면에서는 무엇을 할 수 있나요?**
 
-A: 플러그인에는 사용자 인터페이스가 없고, AutoJs6가 바인딩하는 컴파일 서비스만 들어 있습니다. 정상입니다.
+A: 플러그인의 읽기 전용 화면은 플러그인 버전, 고정된 R8 버전, 서비스 컴포넌트 가용 상태와 내장 변경 기록을 보여 줍니다. 이 화면은 provider를 활성화하지 않으며, 선택과 활성화는 계속 AutoJs6 개발자 옵션에서만 수행합니다.
 
 ******
 
@@ -414,6 +418,12 @@ app/src/main/assets/doc/CHANGELOG-*.md
 ```
 
 `.python/generate_markdown.py`가 JSON 소스로부터 10개 언어 전체의 README와 CHANGELOG (저장소 루트의 README.md와 CHANGELOG.md 포함)를 생성합니다; 문서를 수정할 때는 생성된 Markdown이 아니라 JSON 소스를 편집하세요.
+
+생성된 모든 Markdown이 소스와 일치하는지 작업 트리를 수정하지 않고 확인하려면 다음을 실행하세요:
+
+```powershell
+python .python/generate_markdown.py --check
+```
 
 ******
 

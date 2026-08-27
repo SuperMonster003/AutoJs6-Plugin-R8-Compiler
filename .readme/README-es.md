@@ -177,6 +177,10 @@ Puntos clave:
 - El mapping y los demás artefactos se verifican y almacenan actualmente en la caché privada del host; todavía no hay una entrada de exportación para scripts (ver ROADMAP).
 - Compilar no es una revisión de seguridad; carga solo JAR en los que confíes.
 
+#### Guía de reglas keep
+
+Para recetas mínimas sobre acceso con `Packages`, reflexión, JNI, serialización y una API pública, consulta la [guía práctica de reglas keep](https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/docs/keep-rules-guide.md).
+
 #### Qué ocurre cuando falla
 
 La semántica de fallo de esta entrada es deliberadamente simple: o consigues los artefactos R8 completos o un error -- nada intermedio.
@@ -239,9 +243,9 @@ R: Cada compilación produce mapping y metadatos de retrace, que el host verific
 
 R: No. No tiene permisos de red ni de almacenamiento, lee la entrada de compilación solo de los descriptores de archivo que le entrega AutoJs6, nunca ve rutas de archivo en el canal y mantiene los archivos temporales estrictamente dentro de su propio directorio privado.
 
-**P: ¿Por qué no hay icono ni interfaz en el lanzador?**
+**P: ¿Qué hace la interfaz del lanzador?**
 
-R: El plugin no tiene interfaz de usuario; solo contiene el servicio de compilación al que se vincula AutoJs6. Es lo esperado.
+R: La pantalla de solo lectura del plugin muestra su versión, la versión fijada de R8, la disponibilidad del componente de servicio y el registro de cambios incluido. No activa el proveedor; la selección y activación siguen estando exclusivamente en las opciones de desarrollador de AutoJs6.
 
 ******
 
@@ -414,6 +418,12 @@ app/src/main/assets/doc/CHANGELOG-*.md
 ```
 
 `.python/generate_markdown.py` genera el README y el CHANGELOG en los 10 idiomas (incluidos el README.md y el CHANGELOG.md de la raíz del repositorio) a partir de fuentes JSON; para cambiar la documentación, edita las fuentes JSON en lugar del Markdown generado.
+
+Para comprobar que cada Markdown generado coincide con su fuente sin modificar el área de trabajo, ejecuta:
+
+```powershell
+python .python/generate_markdown.py --check
+```
 
 ******
 

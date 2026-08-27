@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AutoJs6 R8 Compiler</string>
+    <string name="app_summary">AutoJs6 用フル release R8 コンパイラ provider</string>
+    <string name="version_label">バージョン</string>
+    <string name="version_value">プラグイン %1$s\nR8 %2$s</string>
+    <string name="service_label">コンパイラサービス</string>
+    <string name="service_available">利用可能</string>
+    <string name="service_unavailable">利用不可または無効</string>
+    <string name="service_component_value">コンポーネント\n%1$s</string>
+    <string name="service_status_note">この状態はサービスコンポーネントがインストール済みで有効なことだけを示します。provider は AutoJs6 の開発者オプションで別途選択してください。</string>
+    <string name="open_changelog">変更履歴を表示</string>
+    <string name="changelog_title">変更履歴</string>
+    <string name="changelog_load_error">同梱の変更履歴を読み込めませんでした。</string>
+</resources>

@@ -177,6 +177,10 @@ Key points:
 - Mapping and the other artifacts are currently verified and stored in the host's private cache; there is no script-facing export entry yet (see ROADMAP).
 - Compilation is not a security review; only load JARs you trust.
 
+#### Keep-rule guide
+
+For minimal recipes covering `Packages` access, reflection, JNI, serialization, and a public API surface, see the [practical keep-rule guide](https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/docs/keep-rules-guide.md).
+
 #### What happens on failure
 
 The failure semantics of this entry are deliberately simple: you either get full R8 artifacts or an error -- nothing in between.
@@ -239,9 +243,9 @@ A: Every compilation produces mapping and retrace metadata, which the host verif
 
 A: No. It has no network or storage permission, reads compile input only from file descriptors handed over by AutoJs6, never sees file paths on the wire, and keeps temporary files strictly inside its own private directory.
 
-**Q: Why is there no icon or UI for it in the launcher?**
+**Q: What does the launcher UI do?**
 
-A: The plugin has no user interface; it contains only the compile service that AutoJs6 binds to. This is expected.
+A: The plugin's read-only screen shows the plugin version, pinned R8 version, service-component availability, and the bundled changelog. It does not enable the provider; selection and activation remain exclusively in AutoJs6 developer options.
 
 ******
 
@@ -414,6 +418,12 @@ app/src/main/assets/doc/CHANGELOG-*.md
 ```
 
 `.python/generate_markdown.py` generates the README and CHANGELOG in all 10 languages (including the repository-root README.md and CHANGELOG.md) from JSON sources; to change the documentation, edit the JSON sources rather than the generated Markdown.
+
+To verify that every generated Markdown file matches its source without modifying the working tree, run:
+
+```powershell
+python .python/generate_markdown.py --check
+```
 
 ******
 
