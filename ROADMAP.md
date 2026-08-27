@@ -91,11 +91,16 @@ G1 的不可变报告为 `CONTRACT_AAR_ONLY` (隐私规范化后对应提交 `2c
 
 目标: 把当前仅作溯源的 `RETRACE_METADATA` 与缓存 mapping 变成用户可用的堆栈还原能力. 协议 1.0 有意不含 retrace RPC, 本阶段以协议 1.1 增量扩展实现.
 
-- [ ] 契约设计: 在 `docs/` 起草协议 1.1 retrace 契约 (请求/响应 wire 格式, mapping 溯源绑定, 预算上限与错误码), 保持无路径与 fail-closed 语义; 契约通过评审后按 G1 同等标准冻结.
-- [ ] 提供者实现 retrace RPC: 接收混淆堆栈文本与 mapping 标识, 校验 mapping 哈希后调用内置 R8 retrace 还原, 输出还原堆栈; 新增对应 JVM 测试套件.
-- [ ] 宿主脚本入口 (例如 `runtime.retraceR8Stack(...)`): 未选择提供者时 fail-closed; 联动文档站, TypeScript 声明与 Offline Docs 同步.
-- [ ] 产物导出: 为 `loadJarWithR8` 提供可选的 mapping/seeds/usage 导出能力 (导出目录参数或专用 API), 落盘前重新哈希校验, 不破坏现有缓存语义.
+- [x] 契约设计: 在 `docs/` 起草协议 1.1 retrace 契约 (请求/响应 wire 格式, mapping 溯源绑定, 预算上限与错误码), 保持无路径与 fail-closed 语义; 契约通过评审后按 G1 同等标准冻结.
+  - 2026-08-27: `docs/retrace-protocol-v1.1.md` 与 0.2.0 分发清单已冻结协议 1.1 的 append-only Binder 事务 4/5、typed wire、预算和错误码；冻结 AAR SHA-256 为 `ea1416913db1a93328c2fc8017f36a790e9e2ca04b8ad1c234d763da2d367424`，Java-visible ABI SHA-256 为 `474a3c71d44b6203f4a84c8dad840923d49c8074f356036653bf1dd6e8b60ada`，双 clean build、ABI/golden 与 detached Java 17 consumer 验证通过 (`160511c`).
+- [x] 提供者实现 retrace RPC: 接收混淆堆栈文本与 mapping 标识, 校验 mapping 哈希后调用内置 R8 retrace 还原, 输出还原堆栈; 新增对应 JVM 测试套件.
+  - 2026-08-27: 提供者已实现真实 R8 Retrace、mapping SHA-256 绑定、进程级 compile/retrace 互斥、空白与预算校验及 typed failure；`testDebugUnitTest` 共 55 项通过，`lintDebug`、Debug/Release 构建通过 (`160511c`).
+- [x] 宿主脚本入口 (例如 `runtime.retraceR8Stack(...)`): 未选择提供者时 fail-closed; 联动文档站, TypeScript 声明与 Offline Docs 同步.
+  - 2026-08-27: AutoJs6 已提供 `runtime.retraceR8Stack(...)`、协商/传输/清理与 fail-closed 路由 (`dafddc732`, `f18c2748d`)；DTS (`58ec3fc`)、Ace LSP (`aabd683`)、在线文档 (`3a61ea5`) 与 Offline Docs (`bfa4489`) 已同步并分别通过生成器、类型、语义诊断、lint/构建或离线 APK 验证.
+- [x] 产物导出: 为 `loadJarWithR8` 提供可选的 mapping/seeds/usage 导出能力 (导出目录参数或专用 API), 落盘前重新哈希校验, 不破坏现有缓存语义.
+  - 2026-08-27: `loadJarWithR8` 已增加可选导出目录重载，仅导出 mapping/seeds/usage/retrace-metadata，不导出 DEX；所有文件在暂存后重新哈希并以同父目录原子改名提交，宿主完整 R8 JVM 测试集 68 项通过 (`dafddc732`, `f18c2748d`).
 - [ ] 端到端验证: 复用 G7 的堆栈样本与设备矩阵 (API 25/28/37), 通过脚本入口完成一次真实混淆崩溃的还原并留存回执.
+  - 2026-08-27: 契约、提供者与宿主的本地/JVM 闭环已通过；本轮未获设备操作授权，未执行 API 25/28/37 真机/AVD 脚本入口验收，故本项保持未完成且不作设备通过声明.
 
 ## G11: 文档与用户体验
 
