@@ -1,0 +1,72 @@
+{
+  "changelog_label_hint": "提示",
+  "changelog_label_feature": "新增",
+  "changelog_label_fix": "修复",
+  "changelog_label_improvement": "优化",
+  "changelog_label_dependency": "依赖",
+  "$data": {
+    "v0.1.0-provider-dev-private.1 (local.5)": {
+      "released_date": "2026/08/25",
+      "hint": [
+        "当前版本. 通过私有 GitHub prerelease 发布 (含签名 APK, 两个冻结契约 AAR, 发布清单与 SHA256SUMS 共 5 项资产, 全部经重新下载与逐字节校验), 尚未公开发布",
+        "安装后默认不生效, 需在 AutoJs6 开发者选项中手动启用; 详细步骤见 README 的 \"安装与使用\" 章节"
+      ],
+      "feature": [
+        "内置经字节校验的 Android 36 平台库作为 R8 编译库, 不再依赖设备 boot classpath; 修复部分设备上 boot JAR 为资源壳导致的编译失败",
+        "添加有界且路径脱敏的 R8 诊断信息收集, 覆盖提供者启动与引擎导入失败场景"
+      ],
+      "improvement": [
+        "在 API 25/28/37 (含 16 KiB 页大小模拟器) 的 ART 上完成优化产物运行验证: 反射, 动态类名, 序列化, 脚本入口, 移除诱饵检查, arm64/x86/x86_64 JNI 调用, 以及 mapping 哈希校验后的 R8 Retrace 堆栈还原"
+      ]
+    },
+    "v0.1.0-provider-dev (local.4)": {
+      "released_date": "2026/08/25",
+      "fix": [
+        "以零字节的公开 `Os.read`/`Os.write` 内核探针替换 `/proc/self/fdinfo` 访问模式检查, 解决部分设备 (如 Sony API 28) 的 procfs 访问限制; 继续保留 `Os.fstat` 别名拒绝"
+      ],
+      "improvement": [
+        "在 1 台真机与 2 台模拟器 (API 25/28) 上完成跨 APK Binder/PFD 设备验收: 快乐路径, 生命周期, 恶意输入与进程死亡共 9/9 用例通过"
+      ]
+    },
+    "v0.1.0-provider-dev (local.3)": {
+      "released_date": "2026/08/25",
+      "fix": [
+        "为 API 24 至 28 固定 core-library/NIO desugaring (desugar_jdk_libs_nio 2.1.5), 修复低版本设备缺失 Java 11 核心库能力导致的运行失败"
+      ]
+    },
+    "v0.1.0-provider-dev (local.2)": {
+      "released_date": "2026/08/25",
+      "fix": [
+        "移除发布脚本对 PowerShell 模块自动加载哈希的依赖, 保证与发布环境无关的可复现签名流程"
+      ]
+    },
+    "v0.1.0-provider-dev (local.1)": {
+      "released_date": "2026/08/25",
+      "hint": [
+        "首个本地签名发布 (bootstrap 代次); 双离线快照字节级一致的可复现构建, append-only 本地发布目录自此建立"
+      ],
+      "feature": [
+        "作为 AutoJs6 的显式 R8 编译插件: 脚本通过 `runtime.loadJarWithR8()` 请求完整 release 编译 (shrinking + optimization + obfuscation)",
+        "一次编译返回五件产物: DEX ZIP, mapping, seeds, usage 与 retrace 元数据, 逐项绑定 SHA-256 并由宿主独立复验",
+        "无回退语义: 任何失败都以 R8 错误结束, 绝不静默改用 D8/dx; 宿主侧使用独立的 R8 缓存域 `autojs6:r8-compiler:v1`",
+        "编译运行在插件独立 `:r8` 进程的私有沙箱中, 仅接受同签名 AutoJs6 调用 (受 `org.autojs.permission.PLUGIN` 权限保护), 无网络与存储权限",
+        "严格校验输入: 规范化无路径输入包, 规则严格 UTF-8 且危险指令 fail-closed, 归档/类数据/输出各环节均有硬性上限",
+        "编译参数 minApi 24 至 36 全覆盖: 26 格 Java/Kotlin 真实 R8 兼容语料, 含反射, 动态类名, JNI, 序列化与移除诱饵验证",
+        "纯 JVM 实现, 单个 universal APK 覆盖所有设备架构"
+      ],
+      "dependency": [
+        "内置 Google R8 8.13.17 (Maven `com.android.tools:r8`)"
+      ]
+    },
+    "v0.1.0 (contract)": {
+      "released_date": "2026/08/14",
+      "hint": [
+        "协议契约冻结, 不含应用与运行时行为; 本条目记录接口边界的建立"
+      ],
+      "feature": [
+        "冻结独立 R8 编译协议 1.0: API 命名空间 `org.autojs.plugin.r8compiler.api`, 发现 action `org.autojs.plugin.R8_COMPILER`, 引擎标识 `r8-compiler`",
+        "冻结规范化输入/产物流式包格式, 三份 AIDL 描述符与 Java 可见 JVM ABI; 以 append-only 方式发布 0.1.0 契约 AAR (protocol-wire-api 与 r8-compiler-api)"
+      ]
+    }
+  }
+}

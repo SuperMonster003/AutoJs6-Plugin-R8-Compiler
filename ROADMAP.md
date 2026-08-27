@@ -1,394 +1,126 @@
-# AutoJs6 R8 Compiler Roadmap
+# AutoJs6-Plugin-R8-Compiler 开发路线图
 
-Updated: 2026-08-25
+更新日期: 2026-08-27
 
-## G1: Independent contract AAR
+本路线图按 "阶段 (Gate)" 推进: 每个条目都应当可勾选, 可落地, 并给出可核验的完成定义.
+G1 至 G8 为已完成的历史阶段, 其详细英文证据边界见 `docs/` 目录与 Git 历史
+(旧版 ROADMAP 全文保留在提交 `277ce8a` 之前的历史中); 已冻结的 Gate 报告不会被重写,
+后续能力只通过新的 Gate 增量闭环.
 
-- [x] Freeze the independent namespace, action, engine, wire schemas, AIDL descriptors, and Java-visible JVM binary ABI.
-- [x] Validate bounded canonical input and artifact bundles, ordered identities, and SHA-256 binding.
-- [x] Validate explicit rules and output semantics, including fail-closed dangerous directives.
-- [x] Produce an immutable local `0.1.0` AAR distribution that co-records a source snapshot,
-  scanned artifacts, and explicit intra-distribution/external dependency boundaries.
-- [x] Prove a detached consumer compiles against the staged AAR without source-project fallback.
-- [x] Persist a fail-closed report with evidence level `CONTRACT_AAR_ONLY` and all runtime claims false.
+******
 
-G1 local evidence (2026-08-14): 126 JVM contract tests across 13 suites passed (14 protocol-wire
-and 112 R8 contract), including 1,024 fixed-seed mutation variants. Both debug lint tasks completed
-with 0 errors; the R8 API report has 0 warnings and the protocol module has one wrapper-version
-advisory. Both release AARs assembled. The source-boundary self-test is 43/43 and the distribution
-self-test is 31/31. The strict classfile golden covers 97 class entries, 87 Java-visible classes,
-774 visible members, 10 AIDL interface method descriptors, three Binder `DESCRIPTOR` constants,
-and ten transaction constants; its SHA-256 is
-`b628e1e2edccf0510b7acd31157fb9184947f1d8ccfe61826d0076e7350c96bf`.
+## 已完成阶段 (G1 ~ G8)
 
-The append-only distribution was created and then independently re-read as `IDENTICAL`. Its
-manifest SHA-256 is `40c307e1280fa011064f4e7f06215ec17364bfe88cc74bfff5ae0a5d2827b16a`;
-the protocol-wire and R8 API AAR SHA-256 values are
-`1d97a5b44b2c20e85aa12b263fca604a32d6d89275d47a19076861cd20c29a36` and
-`e9df49b7e49992615a15bc0af2372a4525f02b4a2a915a560ddab3128bb2f066`.
-The detached Java consumer used an empty `-sourcepath` and only Android 36 plus the two extracted
-AAR `classes.jar` files. The persisted local report SHA-256 is
-`28425adc67ced736b434524c1708f35267d1fe2a9feeff9be8cb2f9e616815fd`.
-The co-recorded source fingerprint is
-`a85d40e9e8eebbc347703588fef20adb0ee93a2d992425baca076635d79a3dc8`, and the
-distribution verifier SHA-256 is
-`3b12ecdd28187c577bcb3a80fd3d2c1e79988ad33dc5ddee1d93a674c0e3bf33`.
-It remains `CONTRACT_AAR_ONLY`, `published=false`, and every runtime claim false.
+### G1: 独立契约 AAR (2026-08-14)
 
-G1 does not create an app, provider service, compiler engine, host route, fallback, APK, or device
-evidence. Those are later gates and must not be inferred from an AAR build.
+- [x] 冻结独立命名空间, 发现 action, 引擎标识, wire 格式, AIDL 描述符与 Java 可见 JVM ABI.
+- [x] 校验有界规范化输入/产物包, 有序身份与 SHA-256 绑定; 危险规则指令 fail-closed.
+- [x] 以 append-only 方式发布不可变的本地 `0.1.0` AAR 分发 (protocol-wire-api 与 r8-compiler-api), 并证明脱离源码工程的独立消费者可以编译通过.
 
-## G2: Provider implementation
+### G2: 提供者实现 (2026-08-24)
 
-- [x] Add a separately identified application and isolated provider service.
-- [x] Implement bounded R8 execution and atomic multi-artifact publication.
-- [x] Verify Binder/PFD lifecycle, cancellation, ownership, hostile inputs, and process death.
+- [x] 添加独立标识的应用与隔离的 `R8CompilerService` (进程 `:r8`, 权限 `org.autojs.permission.PLUGIN`).
+- [x] 实现有界 R8 执行 (固定 8.13.17, FULL_RELEASE, 无 D8/dx 路径) 与五产物原子发布.
+- [x] JVM 层验证 Binder/PFD 所有权, 取消, 超时, 恶意输入与工作区恢复 (6 套件 / 42 测试).
 
-G2 local provider evidence (2026-08-24): the repository now contains an installable `:app` with
-application ID `io.github.supermonster003.autojs6.plugin.r8compiler` and one exported,
-permission-protected `R8CompilerService` in process `:r8`. The service consumes the byte-frozen
-0.1.0 protocol AARs rather than their source projects, authenticates the exact same-signature
-AutoJs6 caller, rejects descriptor access-mode/alias violations before asynchronous work, owns one
-process-wide session, recovers stale private workspaces, and enforces explicit cancellation and
-deadline terminal states. No production source contains a D8/dx route.
+### G3: 宿主集成 (2026-08-25)
 
-The provider materializes the canonical input bundle only into isolated staging, revalidates JAR
-framing/entries/class budgets and extracted rule content, executes fixed R8 8.13.17 with shrinking,
-optimization and obfuscation enabled, validates indexed DEX output, and finalizes exactly
-`DEX_ZIP`, `MAPPING_TEXT`, `SEEDS_TEXT`, `USAGE_TEXT`, and `RETRACE_METADATA` into one local
-canonical artifact bundle before claiming the output descriptor. The API 24/25 CLI seam is locked
-to `--release` plus provider-owned report controls; API 26+ uses `R8Command` and its cooperative
-cancellation checker. Failure remains an R8 terminal and has no semantic fallback.
+- [x] 宿主 (AutoJs6) 添加默认关闭的开发者选项精确组件选择器, 绑定签名与协议 1.0 协商.
+- [x] 落地 `runtime.loadJarWithR8(...)` 三重载 (keep 规则必填; 可选有序 classpath 与 consumer 规则); `runtime.loadJar(...)` 等原有入口不受影响.
+- [x] 证明调度后任何失败都保持 R8 终态, 绝不回退 D8/dx; R8 缓存域 (`autojs6:r8-compiler:v1`) 与 DEX 语义缓存完全隔离.
 
-The local gate is now 6 suites / 42 tests with no failure, error, or skip. The 16 non-corpus tests
-still cover a real JVM R8 compile of a generated Java JAR, contract-side consumption of all five
-artifacts, aggregate output budget rejection, an API 24 CLI boundary, hostile rules/input checks,
-workspace recovery, exact identity/AAR checks, terminal state ownership, and the API 24 provider
-floor's pinned core-library/NIO desugaring configuration. The additional 26
-parameterized cells are the later G4 Java/Kotlin compatibility corpus; including them in the full
-G2 prerequisite set does not extend G2 into ART, Binder, or device evidence. Android lint is 0
-errors / 2 version-boundary warnings; Debug and unsigned Release APKs assemble successfully.
-`verifyG2Provider` invalidates its fixed report before prerequisites; an unrelated `--tests`
-producer failure was exercised and left `passed=false` before the positive gate was restored.
+### G4: 兼容性语料 (2026-08-24)
 
-The final v2 gate invocation is `e8d210c8-0022-47be-9846-4a17b11c6e52`; the gate SHA-256 is
-`c7913af510bc24ab2a24c989886722f351e4d72f307f7fc0bff4aba6e296bfae`, and its self-recorded
-verifier SHA-256 is `99b28d8df8e3fe3452903eb683f05d361b05e7585c4cbc8b383f2299c689f166`.
-The Debug and unsigned Release APK SHA-256 values are
-`164714cbeae84b09b57afbc46532983ff8b52a67480270d434007a2bfe6ef33e` and
-`ae5ba2c507d680352b5cea61d4cd02f3e2365c7c54bf44e4190602ffb08d364b`; the report contains only
-repository-relative paths. Its source-boundary test locks the API 24 desugaring configuration and
-the procfs-free zero-byte `Os.read`/`Os.write` descriptor capability probes while retaining
-`Os.fstat` alias rejection.
+- [x] 26 格 Java/Kotlin x minApi 24-36 真实 R8 语料: 反射, 动态类名, JNI 描述符, 序列化, 脚本 API 与移除诱饵逐项验证; 宿主 8 项 Rhino/runtime 路由测试同步通过.
 
-This report is `LOCAL_PROVIDER_JVM_AND_ANDROID_BUILD`, not Binder or device acceptance. Its
-historical claims remain bounded to G2. The later authorized G6 Gate below independently closes the
-third implementation checkbox without rewriting G2. The G2 report records
-`laterHostIntegrationPresent=true` and `extendsThisG2EvidenceBoundary=false`; its own
-`hostIntegrated` claim remains false. The Release APK is unsigned, no APK/API was remotely
-published, and the G2 invocation itself ran no ADB or device operation.
+### G5: 本地签名发布 (2026-08-25)
 
-## G3: Host integration
+- [x] 建立 append-only 本地发布目录 (`releases/provider/0.1.0-provider-dev/local.N/`), 双离线快照可复现构建, 独立签名字节级一致 (v2/v3, 单一授权证书).
+- [x] `local.1` 至 `local.4` 逐代次修复: PowerShell 发布环境依赖, API 24-28 core-library desugaring, Sony procfs 限制 (改用零字节 `Os.read`/`Os.write` 探针).
 
-- [x] Add default-off, explicit exact-component selection with signer and protocol pinning.
-- [x] Prove that every post-dispatch failure remains an R8 failure and never falls back to D8/dx.
-- [x] Isolate R8 cache identity from the existing D8 semantic cache.
+### G6: 设备验收 (2026-08-25)
 
-G3 local host-integration evidence (2026-08-25): sibling `AutoJs6` at final gate base commit
-`e826803c18e1aecd16f687945a04c02eff6d398a` consumes the exact frozen R8 API AAR bytes and an
-explicit protocol-wire source whose SHA-256 matches the G1 snapshot. A dedicated Developer-options
-preference remains default-off, discovers only the reserved R8 action, and persists one
-user-selected exact same-signature component. Selection pins component, UID, version, update time
-and the complete signer set; binding uses an explicit `ComponentName`, identity is re-inspected
-before negotiation, and callbacks must carry the pinned package UID.
+- [x] 授权跨 APK Binder/PFD 设备验收: 真机 (API 28 arm64) 与两台 AVD (API 25/28), 快乐路径 + 生命周期 + 进程死亡共 9/9 用例, 9 份结构化回执全部验证.
 
-The production entry is the three-overload `runtime.loadJarWithR8(...)` method family. It requires
-one or more explicit keep-rule files and optionally accepts ordered classpath JARs plus consumer
-rules with parallel classpath-owner ordinals. Rhino conversion of script arrays into `String[]` and
-`int[]` is covered. `runtime.loadJar(...)` and `runtime.loadJarWithClasspath(...)` are unchanged and
-never select R8 implicitly. Missing selection, invalid arguments, provider/transport failure,
-cancellation, corrupt output, cache failure, and load failure all terminate the explicit R8 call;
-none authorizes D8/dx fallback.
+### G7: ART, JNI 与 Retrace 闭环 (2026-08-25)
 
-The process-wide dispatcher owns the complete R8-only transaction. It snapshots bounded program,
-classpath, keep-rule and consumer-rule streams into a private canonical input bundle, constructs
-only protocol 1.0 / `R8_EXPLICIT` / `FULL_RELEASE` / fallback `NONE`, opens distinct read-only and
-write-only descriptors, enforces the callback/session law, and adopts no output until the result,
-canonical bundle, five artifact digests, bounded text/retrace metadata, contiguous DEX ZIP names,
-DEX header/signature/checksum, and negotiated budgets all pass. Timeout, cancellation, Binder-death
-injection, remote failure, malformed or duplicate terminal callbacks, corrupt bundle/DEX, and
-descriptor/session cleanup failures all end as R8 failures with semantic fallback disabled.
+- [x] 以字节校验的内置 Android 36 平台库替换设备 boot classpath 作为编译库, 发布 append-only `local.5` 代次.
+- [x] 在 API 25/28/37 ART (含 16 KiB 页大小 AVD) 上执行优化产物, 验证 arm64/x86/x86_64 JNI 真实调用.
+- [x] 校验 mapping 哈希后, 用字节固定的 R8 8.13.17 Retrace 从混淆堆栈还原原始类, 方法与源码行.
 
-Verified output is copied into an R8-only `partial-<uuid>` generation and becomes visible only by a
-same-directory rename to `entry-<semantic-sha>-<uuid>`. Lookup rebinds the new request ID, repeats
-bundle/artifact validation, and hashes each opened descriptor again; corrupt cache data is evicted
-and redispatched to the same selected R8 provider. Only the verified `DEX_ZIP` then crosses a
-separate class-loader seam, which rechecks size/SHA-256 and atomically adopts a read-only
-`r8_verified_` copy without calling a local compiler. The transaction domain remains
-`autojs6:r8-compiler:v1`, the directory remains `r8-compiler-cache-v1`, and all 25 production R8
-sources remain free of DEX host transport, `dex-compiler-api`, and D8/dx fallback routes.
+### G8: 隐私规范化的私有远程发布 (2026-08-25)
 
-The invocation-bound v4 gate atomically invalidates its fixed report and invokes the focused host
-Test task with `--no-daemon --rerun-tasks`. After the host advanced to the recorded commit, final
-positive invocation `49f8c6cb-e547-4fea-9bc1-c53be48fff75` executed all 537 host tasks and passed
-11 suites / 49 tests
-with no failure, error, or skip. The report hashes all 25 production sources, 13 test sources and 15
-external integration/resource files, contains neither workspace absolute path, and has SHA-256
-`b4c8e257e31c151fd069cac26a3d33470ec8f4dfacc6d7760b163b542f57b53a`; its self-recorded verifier
-SHA-256 is `579cc569791205e89ad7acba3d30bdcee5a1e9bce45aa7e6bd56bc7f34158d79`.
+- [x] 首次推送前将全部提交作者/提交者身份规范化为 GitHub noreply 身份 (消息, 日期, 拓扑与树保持不变).
+- [x] 创建并验证 Private 仓库后推送规范化历史与注解标签 `v0.1.0-provider-dev-private.1`.
+- [x] 以非草稿 Private prerelease 发布 `local.5` 的 5 项资产 (签名 APK, 两个契约 AAR, 清单, SHA256SUMS), 全部重新下载并逐字节校验; `publicPublished` 保持 `false`.
 
-An additional non-gate host packaging check completed `:app:assembleAppDebug`. The current mixed
-workspace universal APK is 43,991,748 bytes with SHA-256
-`3fb6642c88e62a99411bd7c266d537f793c54d3339896792b6b22fbb1fee9dc6`; `apkanalyzer dex packages`
-found the host R8 package, frozen R8 API namespace, and exactly the intended two-, three-, and
-five-argument `loadJarWithR8` signatures. This APK is not a frozen Gate artifact, published release,
-or installed artifact. The host build banner's bundled R8 8.13.19 remains AGP's APK/D8 packaging
-toolchain, not the provider compiler identity, which remains fixed R8 8.13.17.
+### 历史证据锚点
 
-Online generated documentation, the non-versioned Offline Docs asset copy, the TypeScript
-declaration repository, and the Ace bundled declaration copy now describe the same three overloads;
-documentation generation/check and `tsc --noEmit` pass. This is local synchronization, not remote
-publication.
+| Gate | 最终 invocation | Gate 报告 SHA-256 |
+|---|---|---|
+| G2 v2 | `e8d210c8-0022-47be-9846-4a17b11c6e52` | `c7913af510bc24ab2a24c989886722f351e4d72f307f7fc0bff4aba6e296bfae` |
+| G3 v4 | `49f8c6cb-e547-4fea-9bc1-c53be48fff75` | `b4c8e257e31c151fd069cac26a3d33470ec8f4dfacc6d7760b163b542f57b53a` |
+| G4 v1 | `0c7b701f-918d-4b45-9da4-e731b27cfe63` | `879d4682bdf485e71bd883308d5a59eebaeb393b93973f131cbd14cbdf9214f1` |
+| G5 v1 | `a85ba7ca-0177-4575-8f20-c6d35d58e1ea` | `994a9ba471e94aef78423a4bb313dea2be84a4a77c7b731665e1cfd28ab0826f` |
+| G6 v1 | `1d978a79-4d08-41d8-a443-0115fb91cb59` | `24fc3e2b09182859e4405ab1d125efd2fefdced843f0f89bc106c70e60e32970` |
+| G7 发布 | `2efce169-b337-47e5-8814-b2aa152232a4` | `fe3df1fdce2b6ff675b41cad8d2da4720a6554da86230f11d1440f1d5f66953d` |
+| G7 运行时 | `36e7e2ff-b734-4034-96ab-cce5a0a037f5` | `263a80a840b93d73de31e727ce9a76a824e44f326f3ae99b22a6f64850a466ff` |
+| G8 v1 | `ab010b7d-800f-43d9-acc9-27efb087efa2` | `ead4d551ae7eb13e319bc5ffed3639edc1ab96c6a85b9088ed7ca070f0a3e000` |
 
-This closes all three local G3 implementation checkboxes. At its historical evidence boundary the
-v4 report accurately sets
-`hostIntegrated=true`, `publicOrScriptEntry=true`, `runtimeDispatchImplemented=true`,
-`postDispatchRunnerVerified=true`, artifact adoption and persistent R8 cache true, while keeping
-`binderVerified=false`, `deviceVerified=false`, and `published=false`. G5 later supplies local
-signing and G6 supplies cross-APK Binder/PFD, device execution, and real Android process-death
-evidence without rewriting the G3 report. Retrace execution and remote publication remain open.
+G1 的不可变报告为 `CONTRACT_AAR_ONLY` (隐私规范化后对应提交 `2ce4d296a69fc78ff373a39630a1b3796bae9fe7`);
+两个契约 AAR 的 SHA-256 分别为 `1d97a5b44b2c20e85aa12b263fca604a32d6d89275d47a19076861cd20c29a36` (protocol-wire-api)
+与 `e9df49b7e49992615a15bc0af2372a4525f02b4a2a915a560ddab3128bb2f066` (r8-compiler-api).
+各阶段完整边界描述见 `docs/contract-boundary.md`, `docs/r8-compatibility-corpus-v1.md`,
+`docs/local-release-v1.md`, `docs/device-acceptance-v1.md`, `docs/art-jni-retrace-acceptance-v1.md`
+与 `docs/private-remote-release-v1.md`.
 
-## G4: Compatibility and release
+******
 
-- [x] Run compatibility corpora across API 24-36 and supported Java/Kotlin inputs.
-- [x] Publish append-only independent local signed APK/API history and same-environment reproducible release evidence.
-- [x] Publish independent private remote APK/API history while keeping public publication deferred.
-- [x] Complete authorized device acceptance without reusing unrelated device evidence.
+## G9: 公开发布
 
-G4 local compatibility evidence (2026-08-24): the dedicated corpus contains 26 real-R8 cells,
-formed by generated Java `--release 8` and project-compiled Kotlin inputs at every compiler
-`minApi` from 24 through 36. Each cell carries reflection, a runtime-composed class name, JNI
-native methods, Java serialization hooks, and an AutoJs6 script-facing public API. An unkept
-`RemovedDecoy` must disappear from DEX and appear in usage, so the corpus does not pass by globally
-disabling shrinking. `minApi` remains a compiler parameter rather than a device API execution
-claim.
+目标: 将当前 Private 仓库与 prerelease 转为可公开获取的正式发布. G8 明确约定可见性转换是独立的未来 Gate, 转换前必须完成完整复审.
 
-Before R8, an isolated JVM loader executes the reflection, dynamic-name, serialization, and public
-API controls and inspects the JNI native modifiers. The same input then traverses the production
-canonical materializer, fixed R8 8.13.17, DEX packager, and five-artifact codec. A structural DEX
-parser verifies actual class definitions, encoded fields/methods and native access flags; mapping,
-seeds, usage, exact artifact roles, hashes, and canonical `classes*.dex` topology are also checked.
-Each cell atomically writes a path-free receipt with ART execution, JNI linking, and device claims
-fixed false. The host side separately forces all 8 existing Rhino/runtime route tests.
+- [ ] 公开前复审: 重新审计完整 Git 对象库, 默认分支, 全部标签, Release 资产, Actions 历史/日志, 跟踪路径与密钥/隐私扫描结果; 复审报告存入 `docs/` 并绑定被审计的提交与资产哈希.
+- [ ] 仓库可见性 Private 到 Public 切换, 切换后独立验证 API 返回的可见性状态, 并同步更新 `docs/identity-reservation.json` 中 `publication` 与 `claims` 字段.
+- [ ] 发布首个公开版本 (非 prerelease): 包含签名 APK, 两个契约 AAR, 发布清单与 SHA256SUMS; 发布后从公网独立重新下载并校验全部资产字节与哈希.
+- [ ] 确认包含 `runtime.loadJarWithR8()` 集成的 AutoJs6 公开版本可用, 并在 README (`paired_host_build`) 中记录经验证的最低宿主 build.
+- [ ] README 头部追加 GitHub 徽章 (Release / Issues / License), 并在 AutoJs6-Official-Plugins-Index 注册本插件条目.
 
-The invocation-bound verifier has a fail-closed Test producer and atomically replaces its fixed
-report. Final positive invocation `0c7b701f-918d-4b45-9da4-e731b27cfe63` passed provider 26/26 and
-host 8/8; the host child actually executed 537/537 tasks. All 26 path-free receipts are individually
-bound into the final report.
+## G10: Retrace 能力开放
 
-The final G4 report SHA-256 is
-`879d4682bdf485e71bd883308d5a59eebaeb393b93973f131cbd14cbdf9214f1`; its self-recorded verifier
-SHA-256 is `ea92853a859982dfc2d528585088a1f6452a578a1602f2453e1df3b2d6bf2640`. It binds the current G2
-report `c7913af510bc24ab2a24c989886722f351e4d72f307f7fc0bff4aba6e296bfae`, G3 report
-`b4c8e257e31c151fd069cac26a3d33470ec8f4dfacc6d7760b163b542f57b53a`, exact corpus sources,
-host route sources, design, verifier, and all receipts; an independent rehash found zero mismatch.
-The G4 corpus report itself closes only the local compiler/artifact compatibility checkbox and
-correctly keeps its historical publication claims false. Optimized DEX was not run on ART, JNI was
-not linked, and no APK was installed. The separate G5 evidence below closes local signing,
-same-environment reproducibility, and append-only local history without rewriting the G4 report;
-G6 closes Binder/device acceptance. Remote publication remains open.
+目标: 把当前仅作溯源的 `RETRACE_METADATA` 与缓存 mapping 变成用户可用的堆栈还原能力. 协议 1.0 有意不含 retrace RPC, 本阶段以协议 1.1 增量扩展实现.
 
-G5 local signed-release evidence (2026-08-25): two different temporary source snapshots each run
-exactly `:app:assembleRelease` offline with daemon/build/configuration caches disabled and all 48
-tasks forced to rerun. Their 7,656,013-byte unsigned APKs are byte-identical with SHA-256
-`f12235ce6922ce4b1cb04c5b31a73e72be5a3d60110a2c707824ffafc0b0c125`. Independent signing with
-the authorized external AutoJs6 configuration produces identical 7,662,017-byte APKs with SHA-256
-`ecf88bdf4800d04b7002cefc8ef7605a8e1feb69e1003cd56d6b604e50bc7a30`.
+- [ ] 契约设计: 在 `docs/` 起草协议 1.1 retrace 契约 (请求/响应 wire 格式, mapping 溯源绑定, 预算上限与错误码), 保持无路径与 fail-closed 语义; 契约通过评审后按 G1 同等标准冻结.
+- [ ] 提供者实现 retrace RPC: 接收混淆堆栈文本与 mapping 标识, 校验 mapping 哈希后调用内置 R8 retrace 还原, 输出还原堆栈; 新增对应 JVM 测试套件.
+- [ ] 宿主脚本入口 (例如 `runtime.retraceR8Stack(...)`): 未选择提供者时 fail-closed; 联动文档站, TypeScript 声明与 Offline Docs 同步.
+- [ ] 产物导出: 为 `loadJarWithR8` 提供可选的 mapping/seeds/usage 导出能力 (导出目录参数或专用 API), 落盘前重新哈希校验, 不破坏现有缓存语义.
+- [ ] 端到端验证: 复用 G7 的堆栈样本与设备矩阵 (API 25/28/37), 通过脚本入口完成一次真实混淆崩溃的还原并留存回执.
 
-`apksigner` verifies exactly one certificate, SHA-256
-`31a681fcfffb3e428420cae280ded89292b12a3b0f59e19b7a73e32a8ae4c213`, across API 24-36 with
-v2/v3 true and v1/v3.1/v3.2/v4 false. The manifest binds 48 release-input files under source
-fingerprint `75e2269ae8c3f5490cd72f4569cade2e61d3f097ee2bcceefd459eb28f919ef5`, both frozen G1 AARs,
-the current G2/G3/G4 reports, publisher, design, and toolchain. The authoritative append-only
-generation is `releases/provider/0.1.0-provider-dev/local.4/`; its manifest SHA-256 is
-`20c1c80d431c9c08c8f9aa8ad23070f25386a4290f38446384770c5eb76f4b81`.
+## G11: 文档与用户体验
 
-`local.1` remains the bootstrap generation. `local.2` removed a PowerShell module-autoload hash
-dependency but device acceptance exposed missing Java 11 core-library desugaring on API 24-28.
-`local.3` added pinned desugaring; AVD acceptance passed, then Sony API 28 denied
-`/proc/self/fdinfo`. `local.4` replaces procfs parsing with zero-byte public `Os.read`/`Os.write`
-kernel capability probes and retains `Os.fstat` alias rejection. No generation was overwritten or
-deleted.
+目标: 让普通用户无需阅读协议文档即可理解, 安装与使用插件.
 
-Before publication, negative invocation `c78a89fc-6f6a-4044-a74e-f61ab24caf00` supplied an
-unrelated expected source fingerprint, exited before build/signing, wrote `passed=false` with Gate
-SHA-256 `efbc4706541894b0e44ee469c718b4aae24971a72b9b2f1d95487dde9878ab61`, created no `local.4`,
-and left the first three generation tree digests unchanged. First positive invocation
-`1d057b71-15c6-4edb-a118-62a7c0ebda23` created `local.4`; final invocation
-`a85ba7ca-0177-4575-8f20-c6d35d58e1ea` rebuilt both snapshots and returned `IDENTICAL`. Final G5
-Gate SHA-256 is `994a9ba471e94aef78423a4bb313dea2be84a4a77c7b731665e1cfd28ab0826f`; publisher SHA-256 is
-`086debf76deca7570e6039bd1b572ab45e59bbad9db248efb087b9e2ae7d0087`. G5 itself records
-`localPublished=true`, `remotePublished=false`, and the correct historical pre-device
-`deviceVerified=false`.
+- [x] 参照 DEX Compiler 插件建立 Python 多语言文档管线: `.readme/` 与 `.changelog/` JSON 源 + `.python/generate_markdown.py`, 生成 10 种语言的 README 与 CHANGELOG (含仓库根目录 README.md / CHANGELOG.md). (2026-08-27)
+- [x] 重写面向用户的 README (简介, 工作原理, 与 DEX 插件的关系, 安装指南, FAQ, 能力边界, 技术参考) 与按发布代次组织的 CHANGELOG. (2026-08-27)
+- [ ] 文档一致性自检: 提供检查脚本 (或后续 CI 任务), 重新生成文档并与工作区内容对比, 不一致即失败, 防止手改生成物.
+- [ ] keep 规则入门指南: 面向脚本作者的常见配方 (Packages 反射访问, JNI 方法, 序列化类, 保留公共 API 面), 存入 `docs/` 并从 README 链接.
+- [ ] 应用内说明: 为插件补充最小信息展示 (版本, 服务组件状态, 更新日志入口) 与 10 种语言的界面字符串; 在此之前至少保证发布页描述与 README 同步.
 
-G6 authorized device evidence (2026-08-25): the standalone verifier requires an explicit consent
-switch and three distinct non-protected serials. It does not install or uninstall packages. It
-pulls the already installed host, instrumentation, and provider base APKs, requires the single
-authorized signer, and requires every installed provider to exactly equal the official `local.4`
-length and SHA-256. Its fixed matrix is Sony G8441 API 28 arm64, API 28 x86_64 AVD, and API 25 x86
-AVD.
+## G12: 引擎升级与兼容性维护
 
-Each target ran one happy-path test and two lifecycle/process-death tests: 9/9 tests and exactly 9
-validated receipts. The happy receipts prove real same-signer cross-APK Binder/PFD, fresh R8
-8.13.17, a verified cache hit, all five artifacts, and production R8-only `answer42`. Lifecycle
-receipts prove blocked-pipe BUSY behavior, a single terminal, idempotent cancel/close, callee PFD
-ownership and EOF, gate recovery, and hostile `INVALID_BUNDLE` / `INPUT_VALIDATION`. Process-death
-receipts prove exact-provider force-stop, Binder death, zero provider terminal callbacks, EOF,
-identity revalidation, authenticated rebind, and recovery.
+目标: 在不破坏已冻结契约与缓存语义的前提下, 持续跟进编译器与 Android 平台演进.
 
-Final G6 invocation `1d978a79-4d08-41d8-a443-0115fb91cb59` has Gate SHA-256
-`24fc3e2b09182859e4405ab1d125efd2fefdced843f0f89bc106c70e60e32970`; verifier SHA-256 is
-`c4abd0d0e9faf41a72d2efbc500496e1d949acd15099eb4ca519de0586b809fd`. An independent rehash of
-all prerequisite reports, androidTest sources, current identity, design, and verifier found zero
-mismatch; the report contains no local absolute path, signing-material name, secret, or protected
-serial. Current claims now set Binder/PFD lifecycle/process-death/physical-device/device verification
-true while keeping retrace, JNI linking, and remote publication false. No Git push, remote release,
-or remote Maven upload occurred; `QV710AF65F` and `968e9f18` were not touched by G6.
+- [ ] R8 升级 Gate: 评估并升级固定 R8 版本 (当前 8.13.17); 升级必须重跑全部 JVM 套件与 26 格兼容语料, 产出新的 Gate 报告与新的发布代次后方可发布.
+- [ ] 平台演进评估: 跟踪协议 capability 的 minApi/编译库上限 (当前 24-36 与 Android 36 平台库), 评估 API 37+ 支持与新版内置平台库的字节固定方案.
+- [ ] 性能基准: 参照 DEX 插件 R5.2 基准方案, 建立大/中/小语料的冷/热编译耗时与峰值内存基线, 明确数字化晋级门槛并记录在 `docs/`.
+- [ ] 并行度与内存调优: 在基准之上评估 R8 工作线程与内存上限配置, 要求输出产物与缓存语义保持不变.
+- [ ] 依赖 pin 巡检: 定期核对 `desugar_jdk_libs_nio` (当前 2.1.5) 与 Android 平台库 pin 的可用更新; 任何升级都需重跑 API 24-28 低版本设备验收.
 
-After the final Gate and independent rehash, the exact host, instrumentation, and provider packages
-installed by this campaign were removed from `BH900ASK9E`, `emulator-5560`, and `emulator-5556`.
-The campaign-owned API 28 AVD was then stopped; Sony and the API 25 AVD were rechecked clean. This
-post-evidence cleanup removed only campaign app data and does not mutate the frozen G6 report or any
-local release generation.
+******
 
-## G7: ART, JNI, and Retrace closure
+## 维护原则
 
-- [x] Replace device boot-classpath resource shells as compiler input with a byte-pinned Android
-  platform library while retaining a device-runtime fingerprint.
-- [x] Execute the optimized fixture through the explicit host/provider route on API 25, API 28,
-  and API 37 ART, including a 16 KiB page-size AVD.
-- [x] Link ABI-specific JNI libraries and verify real instance and static native calls.
-- [x] Verify the mapping hash and execute pinned R8 Retrace against an obfuscated ART stack.
-- [x] Publish an append-only signed `local.5` generation locally; keep remote publication deferred.
-
-G7 provider correction evidence (2026-08-25): the first real ART campaign exposed that the
-device-reported Android boot-classpath JARs on the selected devices were resource shells without
-the class definitions R8 requires. The provider now packages a byte-pinned Android 36 platform
-library, materializes it atomically inside private storage, verifies it before use, and gives R8
-that coherent compiler library instead of the stripped device shells. Runtime-library identity
-still binds the observed device boot files together with the compiler library. The embedded
-27,768,026-byte platform library has SHA-256
-`d9eb9da824d9e247a352f570f01e1169e725b2954bca9e283a71786c59b59f9a`.
-
-The same correction also adds bounded, path-redacted R8 diagnostics that survive provider startup
-and import failures without leaking absolute paths or preserving a stale PASS. Provider verification
-now passes 8 suites / 50 tests, including dedicated platform-materialization and diagnostic
-collector tests. Android lint remains 0 errors / 2 version advisories, and both Debug and Release
-assemble successfully.
-
-The append-only `releases/provider/0.1.0-provider-dev/local.5/` generation preserves every earlier
-local release. Two isolated offline snapshots, with all tasks rerun, produced the same
-33,150,783-byte unsigned APK with SHA-256
-`9335c3142ce48975741bcd5e0a5937c3340f1a1c574dfd20238ec0bc3528100b`; independent signing
-produced the same 33,155,599-byte APK with SHA-256
-`84447972cb0e4e020e5a696d0d2dabeb273e2990067a62f2d1b7590add628265`. It has exactly the
-authorized certificate SHA-256
-`31a681fcfffb3e428420cae280ded89292b12a3b0f59e19b7a73e32a8ae4c213` and verifies with v2/v3.
-The release manifest SHA-256 is
-`d97ed12a150a991b30e2697258ae0e381afa80667aed5e8272a5a5ebd4ec1583`, under source
-fingerprint `4155d375952d6946a12034b91a4ce97e676ae58f33f42382430cced042b0a164`.
-Final local-release invocation `2efce169-b337-47e5-8814-b2aa152232a4` returned `IDENTICAL`; its
-Gate SHA-256 is `fe3df1fdce2b6ff675b41cad8d2da4720a6554da86230f11d1440f1d5f66953d`.
-
-The authorization-bound G7 runtime matrix then installed the exact `local.5` bytes only on Sony
-G8441 API 28 arm64, an API 25 x86 AVD, and an API 37 x86_64 16 KiB AVD. All 3/3 focused tests and
-3/3 structured receipts passed. Each target executed optimized DEX on ART and verified reflection,
-a runtime-composed class name, Java serialization, the script-facing entry, removed-decoy
-shrinking, obfuscated failure capture, and real JNI calls returning `42` and `g7-jni-static`.
-
-For every receipt, the verifier separately checked the embedded mapping hash and ran real Retrace
-from the byte-pinned 18,279,079-byte R8 8.13.17 JAR, SHA-256
-`d31fd0dc751d48740009cdd9a485126acb1d0d14c59b9f05579479940f4adf74`, on JDK 21. All three
-retraced stacks restore `G7ObfuscatedCrash.explode`, source line 8, and
-`G7RuntimeFixture.crashForRetrace`, while removing the raw obfuscated frame.
-
-Final G7 invocation `36e7e2ff-b734-4034-96ab-cce5a0a037f5` has Gate SHA-256
-`263a80a840b93d73de31e727ce9a76a824e44f326f3ae99b22a6f64850a466ff`; verifier SHA-256 is
-`d4a76471ea2b1d8862027a9a8ad94b4825d6910ab5ba91a6aa282f1e395fd2e5`. Its prerequisite and
-source bindings independently rehash without mismatch, and it records local publication, ART,
-reflection, dynamic-name lookup, serialization, script entry, JNI, mapping verification, Retrace,
-API 25/28/37, physical-device, and 16 KiB claims true while keeping `remotePublished=false`.
-
-The verifier itself installed or removed nothing and performed no force-stop. After the final Gate,
-campaign packages were removed from the API 25 AVD and physical target; the API 37 AVD's pre-existing
-host and instrumentation APKs were restored to their exact original bytes and the provider was
-removed. Raw mapping/stack material and temporary APK backups were deleted after path validation.
-No protected device, Git remote, remote release, or remote Maven repository was touched at the
-historical G7 boundary. G8 below later closes the independent remote-history item without rewriting
-G7 or claiming public publication.
-
-## G8: Privacy-normalized private remote release
-
-- [x] Rewrite every pre-remote author and committer identity to the verified GitHub ID-based noreply
-  identity while proving message, date, topology, and tree preservation.
-- [x] Create and independently verify the source repository as GitHub `PRIVATE` before the first push.
-- [x] Push only the normalized source history and noreply annotated tag; audit them through the API
-  and a new clone that does not reuse the local object database.
-- [x] Publish the exact `local.5` APK/API set as a non-draft Private prerelease and redownload/re-hash
-  all assets while retaining `publicPublished=false`.
-
-G8 identity-privacy evidence (2026-08-25): authenticated GitHub owner `SuperMonster003` has account
-ID `30370009`, matching the configured repository-local commit identity
-`30370009+SuperMonster003@users.noreply.github.com`. The original two local commits were never
-pushed. Their author and committer identities were normalized before any remote existed:
-`2a1fb3b70cfe6f4678bd0118a87c905a3fe52bbd` became
-`2ce4d296a69fc78ff373a39630a1b3796bae9fe7` with unchanged tree
-`892db0f4fb8a8ed618970144e80c32fbcdc381f9`, and
-`372db374e95e5536d3a6556131c0b95e9bfdc744` became
-`884fe5be362f3ec2089514421cd4108b54349bf8` with unchanged tree
-`d1010affa348ee1587ed31d010b04146f6c0b94f`. Messages, author dates, committer dates, and the root/child
-topology also remained equal. A verified recovery bundle remains outside the repository and is not
-referenced by any remote ref or release asset; repository-local predecessor refs, reflogs, and
-unreachable objects were removed before the first push.
-
-Remote-source evidence: GitHub repository ID `1345668157` identifies
-[`SuperMonster003/AutoJs6-Plugin-R8-Compiler`](https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler).
-It was created empty with `--private`; the API returned `private=true` and `visibility=private` before
-any object was uploaded. Only normalized `master` and the annotated
-`v0.1.0-provider-dev-private.1` tag were pushed. The tag points to preparation commit
-`29abdf6a2742e3f327b17eb6ca1f50684bd5f72b`, and its tagger uses the same noreply identity. API
-inspection and an independent fresh clone both found exactly three commits, all author/committer
-identities equal to the target noreply address, no predecessor SHA reachable, the expected default
-branch and trees, and zero `git fsck` finding.
-
-Remote-release evidence: published prerelease ID `376144423` at tag
-`v0.1.0-provider-dev-private.1` is non-draft and contains exactly five assets. The exact 33,155,599-byte
-signed APK has SHA-256 `84447972cb0e4e020e5a696d0d2dabeb273e2990067a62f2d1b7590add628265`;
-the 29,387-byte protocol AAR has `1d97a5b44b2c20e85aa12b263fca604a32d6d89275d47a19076861cd20c29a36`;
-the 179,855-byte R8 API AAR has `e9df49b7e49992615a15bc0af2372a4525f02b4a2a915a560ddab3128bb2f066`;
-the 990-byte manifest has `d97ed12a150a991b30e2697258ae0e381afa80667aed5e8272a5a5ebd4ec1583`;
-and the 399-byte canonical SHA256SUMS asset has
-`061e760ca9283f48be1a0d974c502fb087059cb14163bb715ecfdfe9b676e3cb`. Both a direct post-upload
-campaign and the final G8 verifier downloaded all 5/5 assets into separate temporary directories,
-rejected extra/missing names, and matched every byte length and digest. Each validated temporary
-directory was removed after exact path-boundary checks.
-
-Final invocation `ab010b7d-800f-43d9-acc9-27efb087efa2` has G8 Gate SHA-256
-`ead4d551ae7eb13e319bc5ffed3639edc1ab96c6a85b9088ed7ca070f0a3e000`; verifier SHA-256 is
-`644c8fce1097073b73abc1fef27a9aeaccd06c2db8b8c791c710e64f04b51d75`, design SHA-256 is
-`0512c5a507dfbef4d0f33c2faebff7f3f69a66735e10dd36a33e8d32b9aa8c98`, and current identity
-SHA-256 is `8538ad7e250772e4f10ded713cce63f2f531d40fc2c351c9562e80a4cc17982f`. The Gate binds the exact
-positive G7 release/runtime reports, all three remote commits, the annotated tag, Private repository
-metadata, and all redownloaded assets. It records `localPublished=true`, `remotePublished=true`,
-`remoteVisibility=PRIVATE`, `sourcePushed=true`, `releaseAssetsPublished=true`, and
-`publicPublished=false`. No ADB/device task, signing operation, protected device, remote Maven
-publication, or public-visibility change was involved in G8.
-
-The Gate's three-commit count and `29abdf6a2742e3f327b17eb6ca1f50684bd5f72b` branch head are
-invocation-time facts. The later noreply evidence commit that records this completed Gate advances
-`master` without moving or rewriting the annotated release tag or any release asset; the final
-post-push audit covers that resulting remote state separately.
-
-Private-to-Public conversion remains a separate future Gate. Before any visibility change, the full
-Git object database, default branch, tags, release assets, Actions history/logs, tracked paths, and
-secret/privacy findings must be re-audited; G8 does not authorize or claim that conversion.
+- `releases/` 目录保持 append-only: 任何代次只能新增, 不得覆盖或删除; 已冻结的 Gate 报告与历史证据不重写.
+- 协议兼容性: 1.x 内只做增量扩展 (如 G10 的 retrace); 破坏性变更需要新的主版本与新的冻结契约分发.
+- 文档唯一可编辑源为 `.readme/` 与 `.changelog/` 下的 JSON 与模板; 生成的 Markdown 不手改.
+- 每个新 Gate 沿用既有模式: 失效优先 (fail-closed), 报告绑定 invocation 与 SHA-256, 先负向验证再正向闭环.
