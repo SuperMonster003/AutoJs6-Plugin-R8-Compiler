@@ -53,8 +53,8 @@ internal class RemoteR8CompileSession(
     private val worker: ExecutorService,
     private val scheduler: ScheduledExecutorService,
     private val callbackLane: SerialCallbackLane,
-    private val onFinished: (RemoteR8CompileSession) -> Unit,
-) : IR8CompilerSession.Stub() {
+    private val onFinished: (RemoteR8ServiceSession) -> Unit,
+) : IR8CompilerSession.Stub(), RemoteR8ServiceSession {
     private val decodedRequest: Result<R8CompileRequest> = try {
         Result.success(R8CompilerCodec.decodeRequest(requestMetadata))
     } catch (error: VirtualMachineError) {
@@ -92,7 +92,7 @@ internal class RemoteR8CompileSession(
         finishCancellation(R8CancellationReason.SESSION_CLOSED)
     }
 
-    fun start() {
+    override fun start() {
         if (!terminalController.runBeforeWorker(::linkCallbackDeath)) {
             cleanup()
             return
@@ -100,7 +100,7 @@ internal class RemoteR8CompileSession(
         submitWorker()
     }
 
-    fun rejectBusy() {
+    override fun rejectBusy() {
         currentPhase.set(R8FailurePhase.NEGOTIATION)
         if (!terminalController.runBeforeWorker(::linkCallbackDeath)) {
             cleanup()
@@ -116,7 +116,7 @@ internal class RemoteR8CompileSession(
         }
     }
 
-    fun serviceDestroyed() {
+    override fun serviceDestroyed() {
         abortAndCleanupIfNoWorker()
     }
 

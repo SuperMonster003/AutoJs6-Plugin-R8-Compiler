@@ -7,18 +7,21 @@ import android.os.ParcelFileDescriptor
 import io.github.supermonster003.autojs6.plugin.r8compiler.service.HostCallerVerifier
 import io.github.supermonster003.autojs6.plugin.r8compiler.service.OwnedParcelFileDescriptors
 import io.github.supermonster003.autojs6.plugin.r8compiler.service.RemoteR8CompileSession
+import io.github.supermonster003.autojs6.plugin.r8compiler.service.RemoteR8RetraceSession
+import io.github.supermonster003.autojs6.plugin.r8compiler.service.RemoteR8ServiceSession
 import io.github.supermonster003.autojs6.plugin.r8compiler.service.SerialCallbackLane
 import org.autojs.plugin.r8compiler.api.IR8CompilerCallback
 import org.autojs.plugin.r8compiler.api.IR8CompilerProvider
 import org.autojs.plugin.r8compiler.api.IR8CompilerSession
 import org.autojs.plugin.r8compiler.api.R8CompilerCodec
 import org.autojs.plugin.r8compiler.api.R8CompilerContract
+import org.autojs.plugin.r8compiler.api.R8RetraceCodec
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
 
-private val processSessionGate = SingleActiveSessionGate<RemoteR8CompileSession>()
+private val processSessionGate = SingleActiveSessionGate<RemoteR8ServiceSession>()
 private val processWorkspaceRecovery = ProcessWorkspaceRecovery()
 
 class R8CompilerService : Service() {
@@ -26,12 +29,15 @@ class R8CompilerService : Service() {
     private lateinit var worker: ExecutorService
     private lateinit var scheduler: ScheduledExecutorService
     private lateinit var callbackLane: SerialCallbackLane
-    private val sessions = ConcurrentHashMap.newKeySet<RemoteR8CompileSession>()
+    private val sessions = ConcurrentHashMap.newKeySet<RemoteR8ServiceSession>()
     private val runtimeLibraries by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
         RuntimeLibrarySet.discover(applicationContext)
     }
     private val capabilities by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
         R8CompilerRuntime.capabilities(runtimeLibraries)
+    }
+    private val retraceCapabilities by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
+        R8CompilerRuntime.retraceCapabilities()
     }
 
     override fun onCreate() {
@@ -51,7 +57,7 @@ class R8CompilerService : Service() {
         binder.takeIf { intent?.action == R8CompilerContract.SERVICE_ACTION }
 
     override fun onDestroy() {
-        sessions.toList().forEach(RemoteR8CompileSession::serviceDestroyed)
+        sessions.toList().forEach(RemoteR8ServiceSession::serviceDestroyed)
         sessions.clear()
         worker.shutdownNow()
         scheduler.shutdownNow()
@@ -96,6 +102,60 @@ class R8CompilerService : Service() {
                     callback = callback,
                     capabilities = this@R8CompilerService.capabilities,
                     runtimeLibraries = runtimeLibraries,
+                    callerVerifier = callerVerifier,
+                    worker = worker,
+                    scheduler = scheduler,
+                    callbackLane = callbackLane,
+                    onFinished = { finished ->
+                        processSessionGate.release(finished)
+                        sessions.remove(finished)
+                    },
+                )
+            } catch (error: Throwable) {
+                descriptors.close()
+                throw error
+            }
+            sessions += session
+            if (processSessionGate.tryAcquire(session)) session.start() else session.rejectBusy()
+            return session
+        }
+
+        override fun getRetraceCapabilities(): ByteArray {
+            callerVerifier.enforceAllowedCaller()
+            return R8RetraceCodec.encodeCapabilities(
+                this@R8CompilerService.retraceCapabilities,
+            )
+        }
+
+        override fun openRetraceSession(
+            request: ByteArray?,
+            inputBundleFd: ParcelFileDescriptor?,
+            outputStackTraceFd: ParcelFileDescriptor?,
+            callback: IR8CompilerCallback?,
+        ): IR8CompilerSession {
+            val ownerUid = try {
+                callerVerifier.enforceAllowedCaller()
+            } catch (error: Throwable) {
+                OwnedParcelFileDescriptors.closeIncoming(inputBundleFd, outputStackTraceFd)
+                throw error
+            }
+            if (request == null || inputBundleFd == null ||
+                outputStackTraceFd == null || callback == null
+            ) {
+                OwnedParcelFileDescriptors.closeIncoming(inputBundleFd, outputStackTraceFd)
+                throw IllegalArgumentException("R8 retrace session arguments must not be null")
+            }
+            val descriptors = OwnedParcelFileDescriptors.duplicateAndValidate(
+                inputBundleFd,
+                outputStackTraceFd,
+            )
+            val session = try {
+                RemoteR8RetraceSession(
+                    ownerUid = ownerUid,
+                    requestMetadata = request.copyOf(),
+                    descriptors = descriptors,
+                    callback = callback,
+                    capabilities = this@R8CompilerService.retraceCapabilities,
                     callerVerifier = callerVerifier,
                     worker = worker,
                     scheduler = scheduler,

@@ -45,18 +45,18 @@ class R8ProviderBoundaryTest {
     @Test
     fun providerConsumesTheFrozenContractArtifactsByExactBytes() {
         val root = File(requireNotNull(System.getProperty("r8.provider.root")))
-        val release = root.resolve("plugin-api/r8-compiler-api/releases/0.1.0")
+        val release = root.resolve("plugin-api/r8-compiler-api/releases/0.2.0")
         assertEquals(
             "1d97a5b44b2c20e85aa12b263fca604a32d6d89275d47a19076861cd20c29a36",
             sha256(release.resolve("protocol-wire-api-0.1.0.aar")),
         )
         assertEquals(
-            "e9df49b7e49992615a15bc0af2372a4525f02b4a2a915a560ddab3128bb2f066",
-            sha256(release.resolve("r8-compiler-api-0.1.0.aar")),
+            "ea1416913db1a93328c2fc8017f36a790e9e2ca04b8ad1c234d763da2d367424",
+            sha256(release.resolve("r8-compiler-api-0.2.0.aar")),
         )
         val build = root.resolve("app/build.gradle.kts").readText()
         assertTrue(build.contains("protocol-wire-api-0.1.0.aar"))
-        assertTrue(build.contains("r8-compiler-api-0.1.0.aar"))
+        assertTrue(build.contains("r8-compiler-api-0.2.0.aar"))
         assertFalse(build.contains("project(\":plugin-api:r8-compiler-api\")"))
     }
 

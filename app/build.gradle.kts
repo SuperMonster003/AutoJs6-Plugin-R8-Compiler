@@ -92,7 +92,7 @@ android {
         minSdk = 24
         targetSdk = 36
         versionCode = 1
-        versionName = "0.1.0-provider-dev"
+        versionName = "0.2.0-provider-dev"
 
         buildConfigField("String", "R8_COMPILER_VERSION", "\"$pinnedR8Version\"")
         buildConfigField(
@@ -163,8 +163,8 @@ dependencies {
     coreLibraryDesugaring(libs.desugar)
     implementation(
         files(
-            "../plugin-api/r8-compiler-api/releases/0.1.0/protocol-wire-api-0.1.0.aar",
-            "../plugin-api/r8-compiler-api/releases/0.1.0/r8-compiler-api-0.1.0.aar",
+            "../plugin-api/r8-compiler-api/releases/0.2.0/protocol-wire-api-0.1.0.aar",
+            "../plugin-api/r8-compiler-api/releases/0.2.0/r8-compiler-api-0.2.0.aar",
         ),
     )
     implementation(libs.r8)

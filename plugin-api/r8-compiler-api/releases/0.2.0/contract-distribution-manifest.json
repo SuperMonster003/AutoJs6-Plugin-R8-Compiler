@@ -1,0 +1,291 @@
+{
+  "schemaVersion": 1,
+  "evidenceBoundary": "RETRACE_CONTRACT_AAR_ONLY",
+  "distributionVersion": "0.2.0",
+  "protocolVersion": "1.1",
+  "sourceFingerprint": {
+    "algorithm": "sha256",
+    "scope": "retrace-contract-production-v1.1",
+    "sha256": "0306a9e94cbbf19f8da148cd307edac4b3c0e2b24833fb2ed870426fcf348d02",
+    "fileCount": 29,
+    "files": [
+      {
+        "path": ".gitattributes",
+        "byteLength": 64,
+        "sha256": "dde41386f5c0fc2ba5b3bce99bec43e956998a27c1cc1ea4f6b927c3674f058a"
+      },
+      {
+        "path": "build.gradle.kts",
+        "byteLength": 3539,
+        "sha256": "8b87bb16a8444cc51cac2f41aa90f3a748d2f577fe936129a1a627aa5773420b"
+      },
+      {
+        "path": "docs/retrace-protocol-v1.1.md",
+        "byteLength": 10309,
+        "sha256": "f24fdb1556528da2acba3f4c8e3a7f30939c8ae85f39c0cf6c1e1b4298004ae3"
+      },
+      {
+        "path": "gradle.properties",
+        "byteLength": 106,
+        "sha256": "306942bf5a193a32aac35616e6f12d0c9fcd4f9c8f186d7b621a168c38eaaaa3"
+      },
+      {
+        "path": "gradle/libs.versions.toml",
+        "byteLength": 282,
+        "sha256": "ef9b511e0bf718b42cac46a1a825ee6b8fb2f1c891cea93f12853c4feba22fad"
+      },
+      {
+        "path": "gradle/wrapper/gradle-wrapper.jar",
+        "byteLength": 43764,
+        "sha256": "7d3a4ac4de1c32b59bc6a4eb8ecb8e612ccd0cf1ae1e99f66902da64df296172"
+      },
+      {
+        "path": "gradle/wrapper/gradle-wrapper.properties",
+        "byteLength": 284,
+        "sha256": "48a481023e51abcc35018bcec4a55dae8ee4faf0dfe3212d91f47913a9129e5f"
+      },
+      {
+        "path": "plugin-api/protocol-wire-api/build.gradle.kts",
+        "byteLength": 660,
+        "sha256": "6f098b978388cb976622bd4cd452d0871c48f2f20bec6bc2a234495f1660c08b"
+      },
+      {
+        "path": "plugin-api/protocol-wire-api/consumer-rules.pro",
+        "byteLength": 58,
+        "sha256": "3dc6c7ae2edf584270c4f3cb29a48f5c7028bd63c6e288b6d5a340f6131ed5c6"
+      },
+      {
+        "path": "plugin-api/protocol-wire-api/src/main/java/org/autojs/plugin/protocol/wire/TaggedWire.kt",
+        "byteLength": 19856,
+        "sha256": "5d5c672ef0c7907b1a0cf6fd041ff85dc7c864aa07628316db5b9a9abb9e87c8"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/build.gradle.kts",
+        "byteLength": 931,
+        "sha256": "c1e9fd83784e2909006b1096db5b01bbf04ca8ca59d5a760dd2d1e46106c6b45"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/consumer-rules.pro",
+        "byteLength": 98,
+        "sha256": "400db3adae5ea13a4bfe4dfe4557a9fe149534cf58741441de97cae5df2ee45a"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/aidl/org/autojs/plugin/r8compiler/api/IR8CompilerCallback.aidl",
+        "byteLength": 480,
+        "sha256": "ee1749ec69fda76d0b71d8ee726eb84fe871bb7bbdff53031a787bc3d9da2529"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/aidl/org/autojs/plugin/r8compiler/api/IR8CompilerProvider.aidl",
+        "byteLength": 1448,
+        "sha256": "b8724cf852b79e5cc8b2c47a60ac32d9eac20efbb1ad655c7ff6b1f3643b0cea"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/aidl/org/autojs/plugin/r8compiler/api/IR8CompilerSession.aidl",
+        "byteLength": 197,
+        "sha256": "cb98259298650c0c1789017da3aa1e077484f7b76332d3a5d16cca5c45708882"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/java/org/autojs/plugin/r8compiler/api/R8CompilerCodec.kt",
+        "byteLength": 16082,
+        "sha256": "7341af08f8fa5a2bc424ce84075c905f6da0d798ce5ae528e54a3ac2cab160ad"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/java/org/autojs/plugin/r8compiler/api/R8CompilerContract.kt",
+        "byteLength": 11433,
+        "sha256": "00f2343d365d45724db3df6f3342fec5937adac97dc43c46cdf85c7d8041d994"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/java/org/autojs/plugin/r8compiler/api/R8CompilerMessages.kt",
+        "byteLength": 9849,
+        "sha256": "6258df79c2d28c934a434ac6113d05a3ef6ca4baba405db61e88d4d4a0595b6c"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/java/org/autojs/plugin/r8compiler/api/R8CompilerValidation.kt",
+        "byteLength": 31860,
+        "sha256": "28d1dda1702c4634f0554eadc44699461a1254209cd9054f27f281b125e590ec"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/java/org/autojs/plugin/r8compiler/api/R8InputBundle.kt",
+        "byteLength": 25020,
+        "sha256": "43327f5548f0c8e4d3108f3004a8acbb8878a9990dab7c63e21463d5859b96b2"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/java/org/autojs/plugin/r8compiler/api/R8RetraceCodec.kt",
+        "byteLength": 14051,
+        "sha256": "18c925a0eff9a984b9437f16aff97c2a72d11daf80f55dd2aa3efe5af7dd1d99"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/java/org/autojs/plugin/r8compiler/api/R8RetraceInputBundle.kt",
+        "byteLength": 12254,
+        "sha256": "fb5fc137e101b43064e093d4aa2b6cdb5f9ffecebaefd05327974d97c392e3c5"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/java/org/autojs/plugin/r8compiler/api/R8RetraceMessages.kt",
+        "byteLength": 6342,
+        "sha256": "a59e5bc57b4a5c997880b58950bdcc36fb7b5ea736e878eaa627eb24b4034cc1"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/java/org/autojs/plugin/r8compiler/api/R8RetraceValidation.kt",
+        "byteLength": 17323,
+        "sha256": "c13daf70fbfaac06f47ed49e8e8932fe329d5c259be44f09b6272476f3c816f9"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/java/org/autojs/plugin/r8compiler/api/R8RulePolicy.kt",
+        "byteLength": 11097,
+        "sha256": "560645285e04c5fb77018235205143a70b5ce60bb07e6d286f71efa4b47fce5d"
+      },
+      {
+        "path": "scripts/R8JvmAbi.cs",
+        "byteLength": 26166,
+        "sha256": "aac4b5cba9aed4b064ccd411c49e46dbdc964aa95e0f02b9e90c7832d9fa4c30"
+      },
+      {
+        "path": "scripts/verify-g10-retrace-contract.ps1",
+        "byteLength": 20827,
+        "sha256": "7b3eeb5a040b69897a451f060061f6e114fb8447b768ff1c6a1039a47e2f983d"
+      },
+      {
+        "path": "settings.gradle.kts",
+        "byteLength": 426,
+        "sha256": "183c65bc2c9c7b610fd1d887fa248975d96877110de31619a8402f057d53e7a8"
+      },
+      {
+        "path": "test-consumer-g10/src/main/java/org/autojs/plugin/r8compiler/consumer/R8RetraceContractDetachedConsumer.java",
+        "byteLength": 2762,
+        "sha256": "9a00e1941bab15dc6af6f38149b8e311b1b3dc6211a3c89478b8edceb0609178"
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "path": "protocol-wire-api-0.1.0.aar",
+      "byteLength": 29387,
+      "sha256": "1d97a5b44b2c20e85aa12b263fca604a32d6d89275d47a19076861cd20c29a36"
+    },
+    {
+      "path": "r8-compiler-api-0.2.0.aar",
+      "byteLength": 249658,
+      "sha256": "ea1416913db1a93328c2fc8017f36a790e9e2ca04b8ad1c234d763da2d367424"
+    }
+  ],
+  "reproducibility": {
+    "scope": "SAME_MACHINE_CLEAN_REBUILD",
+    "protocolByteIdentical": true,
+    "r8ApiByteIdentical": true,
+    "buildCount": 2,
+    "buildCache": "DISABLED"
+  },
+  "aidlBoundary": {
+    "sourceDescriptors": [
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/aidl/org/autojs/plugin/r8compiler/api/IR8CompilerCallback.aidl",
+        "byteLength": 480,
+        "normalizedLfSha256": "ee1749ec69fda76d0b71d8ee726eb84fe871bb7bbdff53031a787bc3d9da2529"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/aidl/org/autojs/plugin/r8compiler/api/IR8CompilerProvider.aidl",
+        "byteLength": 1448,
+        "normalizedLfSha256": "b8724cf852b79e5cc8b2c47a60ac32d9eac20efbb1ad655c7ff6b1f3643b0cea"
+      },
+      {
+        "path": "plugin-api/r8-compiler-api/src/main/aidl/org/autojs/plugin/r8compiler/api/IR8CompilerSession.aidl",
+        "byteLength": 197,
+        "normalizedLfSha256": "cb98259298650c0c1789017da3aa1e077484f7b76332d3a5d16cca5c45708882"
+      }
+    ],
+    "existingProviderTransactionsPreserved": [
+      1,
+      2,
+      3
+    ],
+    "appendedProviderTransactions": [
+      4,
+      5
+    ],
+    "interfaceMethodDescriptors": [
+      "org/autojs/plugin/r8compiler/api/IR8CompilerCallback#onCancelled([B)V",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerCallback#onCompleted([B)V",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerCallback#onFailed([B)V",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerCallback#onProgress([B)V",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerCallback#onStarted([B)V",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerProvider#getCapabilities()[B",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerProvider#getCompilerInfo()[B",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerProvider#getRetraceCapabilities()[B",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerProvider#openRetraceSession([BLandroid/os/ParcelFileDescriptor;Landroid/os/ParcelFileDescriptor;Lorg/autojs/plugin/r8compiler/api/IR8CompilerCallback;)Lorg/autojs/plugin/r8compiler/api/IR8CompilerSession;",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerProvider#openSession([BLandroid/os/ParcelFileDescriptor;Landroid/os/ParcelFileDescriptor;Lorg/autojs/plugin/r8compiler/api/IR8CompilerCallback;)Lorg/autojs/plugin/r8compiler/api/IR8CompilerSession;",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerSession#cancel()V",
+      "org/autojs/plugin/r8compiler/api/IR8CompilerSession#close()V"
+    ],
+    "binderConstants": [
+      "DESCRIPTOR|org/autojs/plugin/r8compiler/api/IR8CompilerCallback|S:0x6f72672e6175746f6a732e706c7567696e2e7238636f6d70696c65722e6170692e495238436f6d70696c657243616c6c6261636b",
+      "DESCRIPTOR|org/autojs/plugin/r8compiler/api/IR8CompilerProvider|S:0x6f72672e6175746f6a732e706c7567696e2e7238636f6d70696c65722e6170692e495238436f6d70696c657250726f7669646572",
+      "DESCRIPTOR|org/autojs/plugin/r8compiler/api/IR8CompilerSession|S:0x6f72672e6175746f6a732e706c7567696e2e7238636f6d70696c65722e6170692e495238436f6d70696c657253657373696f6e",
+      "TRANSACTION|org/autojs/plugin/r8compiler/api/IR8CompilerCallback$Stub|TRANSACTION_onCancelled|I:5",
+      "TRANSACTION|org/autojs/plugin/r8compiler/api/IR8CompilerCallback$Stub|TRANSACTION_onCompleted|I:3",
+      "TRANSACTION|org/autojs/plugin/r8compiler/api/IR8CompilerCallback$Stub|TRANSACTION_onFailed|I:4",
+      "TRANSACTION|org/autojs/plugin/r8compiler/api/IR8CompilerCallback$Stub|TRANSACTION_onProgress|I:2",
+      "TRANSACTION|org/autojs/plugin/r8compiler/api/IR8CompilerCallback$Stub|TRANSACTION_onStarted|I:1",
+      "TRANSACTION|org/autojs/plugin/r8compiler/api/IR8CompilerProvider$Stub|TRANSACTION_getCapabilities|I:2",
+      "TRANSACTION|org/autojs/plugin/r8compiler/api/IR8CompilerProvider$Stub|TRANSACTION_getCompilerInfo|I:1",
+      "TRANSACTION|org/autojs/plugin/r8compiler/api/IR8CompilerProvider$Stub|TRANSACTION_getRetraceCapabilities|I:4",
+      "TRANSACTION|org/autojs/plugin/r8compiler/api/IR8CompilerProvider$Stub|TRANSACTION_openRetraceSession|I:5",
+      "TRANSACTION|org/autojs/plugin/r8compiler/api/IR8CompilerProvider$Stub|TRANSACTION_openSession|I:3",
+      "TRANSACTION|org/autojs/plugin/r8compiler/api/IR8CompilerSession$Stub|TRANSACTION_cancel|I:1",
+      "TRANSACTION|org/autojs/plugin/r8compiler/api/IR8CompilerSession$Stub|TRANSACTION_close|I:2"
+    ]
+  },
+  "abiBoundary": {
+    "status": "VERIFIED",
+    "scope": "JAVA_VISIBLE_JVM_BINARY_ABI",
+    "canonicalization": "STRICT_CLASSFILE_V1",
+    "canonicalSha256": "474a3c71d44b6203f4a84c8dad840923d49c8074f356036653bf1dd6e8b60ada",
+    "golden": {
+      "path": "plugin-api/r8-compiler-api/abi/0.2.0-java-visible-jvm-abi.txt",
+      "byteLength": 554660,
+      "sha256": "474a3c71d44b6203f4a84c8dad840923d49c8074f356036653bf1dd6e8b60ada"
+    },
+    "parser": {
+      "path": "scripts/R8JvmAbi.cs",
+      "byteLength": 26166,
+      "sha256": "aac4b5cba9aed4b064ccd411c49e46dbdc964aa95e0f02b9e90c7832d9fa4c30"
+    },
+    "protocol": {
+      "classEntryCount": 12,
+      "visibleClassCount": 11,
+      "visibleMemberCount": 91
+    },
+    "r8Api": {
+      "classEntryCount": 114,
+      "visibleClassCount": 103,
+      "visibleMemberCount": 944
+    }
+  },
+  "wireGoldens": {
+    "capabilitiesSha256": "96c34cd4b1dbb0228c1edc09dc8a24260b144f9ef3788eafceef3fcf32a00e60",
+    "requestSha256": "472df75f6d1c70d9949eb7c6ecaa3875082139648f9b36dbf3cae55b6832813a",
+    "inputBundleSha256": "a60652baad0e637a0910e3305d236fd69803caa0c1dd8fbea899ffbe0bdfd1b1",
+    "verifiedBy": ":plugin-api:r8-compiler-api:testDebugUnitTest"
+  },
+  "consumerCompile": {
+    "verified": true,
+    "javacVersion": "javac 21.0.1",
+    "release": 17,
+    "sourcePath": "EMPTY",
+    "androidJarSha256": "d9eb9da824d9e247a352f570f01e1169e725b2954bca9e283a71786c59b59f9a",
+    "source": {
+      "path": "test-consumer-g10/src/main/java/org/autojs/plugin/r8compiler/consumer/R8RetraceContractDetachedConsumer.java",
+      "byteLength": 2762,
+      "sha256": "9a00e1941bab15dc6af6f38149b8e311b1b3dc6211a3c89478b8edceb0609178"
+    },
+    "emittedClass": "org/autojs/plugin/r8compiler/consumer/R8RetraceContractDetachedConsumer.class",
+    "emittedClassSha256": "d54f71e4d4e498a136fdefc316ca88407a9383c0013262d70ecd8c2cb5e6d9fa"
+  },
+  "claims": {
+    "compilationProtocolUnchanged": true,
+    "retraceAppendOnly": true,
+    "pathFreeWire": true,
+    "r8EngineEmbeddedInApi": false,
+    "deviceExecution": false,
+    "crossMachineReproducibility": false
+  }
+}

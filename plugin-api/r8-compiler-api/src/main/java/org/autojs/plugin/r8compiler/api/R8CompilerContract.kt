@@ -17,6 +17,7 @@ object R8CompilerContract {
 
     const val PROTOCOL_MAJOR = 1
     const val PROTOCOL_MINOR = 0
+    const val RETRACE_PROTOCOL_MINOR = 1
     const val SCHEMA_MAJOR = 1
     const val SCHEMA_MINOR = 0
 
@@ -35,6 +36,15 @@ object R8CompilerContract {
     const val SCHEMA_RESULT = 0x5238_0013
     const val SCHEMA_ERROR = 0x5238_0014
     const val SCHEMA_CANCELLATION = 0x5238_0015
+    const val SCHEMA_RETRACE_CAPABILITIES = 0x5238_0020
+    const val SCHEMA_RETRACE_RESOURCE_LIMITS = 0x5238_0021
+    const val SCHEMA_RETRACE_INPUT_IDENTITY = 0x5238_0022
+    const val SCHEMA_RETRACE_REQUEST = 0x5238_0023
+    const val SCHEMA_RETRACE_STARTED = 0x5238_0024
+    const val SCHEMA_RETRACE_PROGRESS = 0x5238_0025
+    const val SCHEMA_RETRACE_RESULT = 0x5238_0026
+    const val SCHEMA_RETRACE_ERROR = 0x5238_0027
+    const val SCHEMA_RETRACE_CANCELLATION = 0x5238_0028
 
     const val CANONICALIZATION_POLICY_VERSION = 1
     const val RULE_POLICY_VERSION = 1
@@ -65,18 +75,26 @@ object R8CompilerContract {
     const val MAX_SEEDS_BYTES = 16L * 1024 * 1024
     const val MAX_USAGE_BYTES = 16L * 1024 * 1024
     const val MAX_RETRACE_METADATA_BYTES = 256L * 1024
+    const val MAX_OBFUSCATED_STACK_TRACE_BYTES = 1024L * 1024
+    const val MAX_RETRACED_STACK_TRACE_BYTES = 4L * 1024 * 1024
+    const val MIN_RETRACE_INPUT_BUNDLE_BYTES = 163L
+    const val MAX_RETRACE_INPUT_BUNDLE_BYTES = MAX_MAPPING_BYTES +
+        MAX_RETRACE_METADATA_BYTES + MAX_OBFUSCATED_STACK_TRACE_BYTES + 160L
     const val MAX_DEX_ENTRIES = 64
     const val MAX_DIAGNOSTIC_BYTES = 64 * 1024
     const val MAX_RUNTIME_LIBRARY_IDENTITIES = 512
     const val MAX_TIMEOUT_MILLIS = 300_000L
     const val DEFAULT_TIMEOUT_MILLIS = 120_000L
     const val MAX_CONCURRENT_SESSIONS = 1
+    const val DEFAULT_RETRACE_TIMEOUT_MILLIS = 30_000L
+    const val MAX_RETRACE_TIMEOUT_MILLIS = 120_000L
     const val MAX_VERSION_TEXT_BYTES = 128
     const val MAX_PROVIDER_ID_BYTES = 128
     const val MIN_SUPPORTED_API = 24
     const val MAX_SUPPORTED_API = 36
 
     val PROTOCOL_V1 = R8ProtocolVersion(PROTOCOL_MAJOR, PROTOCOL_MINOR)
+    val PROTOCOL_V1_1 = R8ProtocolVersion(PROTOCOL_MAJOR, RETRACE_PROTOCOL_MINOR)
 }
 
 data class R8ProtocolVersion(val major: Int, val minor: Int) : Comparable<R8ProtocolVersion> {

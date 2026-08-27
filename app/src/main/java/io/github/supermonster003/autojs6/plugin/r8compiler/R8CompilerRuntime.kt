@@ -15,6 +15,11 @@ import org.autojs.plugin.r8compiler.api.R8ImplicitRulePolicy
 import org.autojs.plugin.r8compiler.api.R8InputLayout
 import org.autojs.plugin.r8compiler.api.R8OutputLayout
 import org.autojs.plugin.r8compiler.api.R8ResourceLimits
+import org.autojs.plugin.r8compiler.api.R8RetraceCapabilities
+import org.autojs.plugin.r8compiler.api.R8RetraceCapabilityFingerprint
+import org.autojs.plugin.r8compiler.api.R8RetraceInputLayout
+import org.autojs.plugin.r8compiler.api.R8RetraceOutputLayout
+import org.autojs.plugin.r8compiler.api.R8RetraceResourceLimits
 import org.autojs.plugin.r8compiler.api.R8RuntimeLibraryModel
 import org.autojs.plugin.r8compiler.api.R8Sha256
 
@@ -74,6 +79,18 @@ internal object R8CompilerRuntime {
         maxTimeoutMillis = 300_000L,
     )
 
+    private val retraceLimits = R8RetraceResourceLimits(
+        maxMappingBytes = 16L * 1024 * 1024,
+        maxRetraceMetadataBytes = 256L * 1024,
+        maxObfuscatedStackTraceBytes = 1024L * 1024,
+        maxInputBundleBytes = 16L * 1024 * 1024 + 256L * 1024 + 1024L * 1024 + 160L,
+        maxRetracedStackTraceBytes = 4L * 1024 * 1024,
+        maxDiagnosticBytes = 64 * 1024,
+        maxConcurrentSessions = 1,
+        defaultTimeoutMillis = R8CompilerContract.DEFAULT_RETRACE_TIMEOUT_MILLIS,
+        maxTimeoutMillis = R8CompilerContract.MAX_RETRACE_TIMEOUT_MILLIS,
+    )
+
     fun info(context: Context): R8CompilerInfo {
         val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
         val versionCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
@@ -84,7 +101,7 @@ internal object R8CompilerRuntime {
         }
         return R8CompilerInfo(
             protocolMin = R8CompilerContract.PROTOCOL_V1,
-            protocolMax = R8CompilerContract.PROTOCOL_V1,
+            protocolMax = R8CompilerContract.PROTOCOL_V1_1,
             providerId = PROVIDER_ID,
             providerVersionName = packageInfo.versionName.orEmpty(),
             providerVersionCode = versionCode,
@@ -116,5 +133,21 @@ internal object R8CompilerRuntime {
 
         val provisional = create(R8Sha256.ZERO)
         return create(R8CapabilityFingerprint.compute(provisional))
+    }
+
+    fun retraceCapabilities(): R8RetraceCapabilities {
+        fun create(fingerprint: R8Sha256) = R8RetraceCapabilities(
+            compilerFamily = R8CompilerFamily.R8,
+            compilerVersion = compilerVersion,
+            mappingFormatId = R8CompilerContract.MAPPING_FORMAT_ID,
+            mappingFormatVersion = "1",
+            inputLayout = R8RetraceInputLayout.MAPPING_METADATA_AND_STACK_BUNDLE_V1,
+            outputLayout = R8RetraceOutputLayout.UTF8_LF_STACK_TRACE_V1,
+            limits = retraceLimits,
+            capabilityFingerprint = fingerprint,
+        )
+
+        val provisional = create(R8Sha256.ZERO)
+        return create(R8RetraceCapabilityFingerprint.compute(provisional))
     }
 }

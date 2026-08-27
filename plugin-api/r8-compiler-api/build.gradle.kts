@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "org.autojs.plugin.r8compiler"
-version = "0.1.0"
+version = "0.2.0"
 
 android {
     namespace = "org.autojs.plugin.r8compiler.api"
@@ -17,7 +17,7 @@ android {
     lint {
         targetSdk = 36
         abortOnError = true
-        // Protocol 0.1 is intentionally frozen to the API 24-36 compatibility range.
+        // Protocol 1.x is intentionally frozen to the API 24-36 compatibility range.
         disable += "GradleDependency"
     }
 
