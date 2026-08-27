@@ -66,6 +66,7 @@ G1 至 G8 为已完成的历史阶段, 其详细英文证据边界见 `docs/` �
 | G7 发布 | `2efce169-b337-47e5-8814-b2aa152232a4` | `fe3df1fdce2b6ff675b41cad8d2da4720a6554da86230f11d1440f1d5f66953d` |
 | G7 运行时 | `36e7e2ff-b734-4034-96ab-cce5a0a037f5` | `263a80a840b93d73de31e727ce9a76a824e44f326f3ae99b22a6f64850a466ff` |
 | G8 v1 | `ab010b7d-800f-43d9-acc9-27efb087efa2` | `ead4d551ae7eb13e319bc5ffed3639edc1ab96c6a85b9088ed7ca070f0a3e000` |
+| G10 设备 Retrace | `4079ecc3-6039-44be-ae46-4abbc76bb801` | `ad2b94493dfaa091ccd4476caa3a1832b436d78eafb4fb5e8012a8d189bdba31` |
 
 G1 的不可变报告为 `CONTRACT_AAR_ONLY` (隐私规范化后对应提交 `2ce4d296a69fc78ff373a39630a1b3796bae9fe7`);
 两个契约 AAR 的 SHA-256 分别为 `1d97a5b44b2c20e85aa12b263fca604a32d6d89275d47a19076861cd20c29a36` (protocol-wire-api)
@@ -94,13 +95,13 @@ G1 的不可变报告为 `CONTRACT_AAR_ONLY` (隐私规范化后对应提交 `2c
 - [x] 契约设计: 在 `docs/` 起草协议 1.1 retrace 契约 (请求/响应 wire 格式, mapping 溯源绑定, 预算上限与错误码), 保持无路径与 fail-closed 语义; 契约通过评审后按 G1 同等标准冻结.
   - 2026-08-27: `docs/retrace-protocol-v1.1.md` 与 0.2.0 分发清单已冻结协议 1.1 的 append-only Binder 事务 4/5、typed wire、预算和错误码；冻结 AAR SHA-256 为 `ea1416913db1a93328c2fc8017f36a790e9e2ca04b8ad1c234d763da2d367424`，Java-visible ABI SHA-256 为 `474a3c71d44b6203f4a84c8dad840923d49c8074f356036653bf1dd6e8b60ada`，双 clean build、ABI/golden 与 detached Java 17 consumer 验证通过 (`160511c`).
 - [x] 提供者实现 retrace RPC: 接收混淆堆栈文本与 mapping 标识, 校验 mapping 哈希后调用内置 R8 retrace 还原, 输出还原堆栈; 新增对应 JVM 测试套件.
-  - 2026-08-27: 提供者已实现真实 R8 Retrace、mapping SHA-256 绑定、进程级 compile/retrace 互斥、空白与预算校验及 typed failure；`testDebugUnitTest` 共 55 项通过，`lintDebug`、Debug/Release 构建通过 (`160511c`).
+  - 2026-08-27: 提供者已实现真实 R8 Retrace、mapping SHA-256 绑定、进程级 compile/retrace 互斥、空白与预算校验及 typed failure；API 24/25 使用不依赖命名正则组的兼容解析器并继续调用 R8 通用 Retrace 引擎，API 26+ 保留 `RetraceCommand`；`testDebugUnitTest` 共 56 项通过，API 25 直接设备测试、`lintDebug`、Debug/Release 构建通过 (`160511c`, `09027ee`).
 - [x] 宿主脚本入口 (例如 `runtime.retraceR8Stack(...)`): 未选择提供者时 fail-closed; 联动文档站, TypeScript 声明与 Offline Docs 同步.
   - 2026-08-27: AutoJs6 已提供 `runtime.retraceR8Stack(...)`、协商/传输/清理与 fail-closed 路由 (`dafddc732`, `f18c2748d`)；DTS (`58ec3fc`)、Ace LSP (`aabd683`)、在线文档 (`3a61ea5`) 与 Offline Docs (`bfa4489`) 已同步并分别通过生成器、类型、语义诊断、lint/构建或离线 APK 验证.
 - [x] 产物导出: 为 `loadJarWithR8` 提供可选的 mapping/seeds/usage 导出能力 (导出目录参数或专用 API), 落盘前重新哈希校验, 不破坏现有缓存语义.
-  - 2026-08-27: `loadJarWithR8` 已增加可选导出目录重载，仅导出 mapping/seeds/usage/retrace-metadata，不导出 DEX；所有文件在暂存后重新哈希并以同父目录原子改名提交，宿主完整 R8 JVM 测试集 68 项通过 (`dafddc732`, `f18c2748d`).
-- [ ] 端到端验证: 复用 G7 的堆栈样本与设备矩阵 (API 25/28/37), 通过脚本入口完成一次真实混淆崩溃的还原并留存回执.
-  - 2026-08-27: 契约、提供者与宿主的本地/JVM 闭环已通过；本轮未获设备操作授权，未执行 API 25/28/37 真机/AVD 脚本入口验收，故本项保持未完成且不作设备通过声明.
+  - 2026-08-27: `loadJarWithR8` 已增加可选导出目录重载，仅导出 mapping/seeds/usage/retrace-metadata，不导出 DEX；所有文件在暂存后重新哈希，API 26+ 以同父目录原子 NIO 改名提交，API 24/25 以检查结果的同父目录 `File.renameTo` 提交；干净 worktree 中宿主完整 R8 JVM 测试集 68/68 通过，冻结源码哈希在校验前规范化 CRLF/CR 为 LF，冻结 AAR 仍按原始字节校验 (`dafddc732`, `f18c2748d`, `86101b2e0`, `ea37eef8c`).
+- [x] 端到端验证: 复用 G7 的堆栈样本与设备矩阵 (API 25/28/37), 通过脚本入口完成一次真实混淆崩溃的还原并留存回执.
+  - 2026-08-27: 经明确设备授权，三台 AVD (API 25 x86、API 28 x86_64、API 37 x86_64 16 KiB) 以同一新 invocation 完成跨 APK 新编译、ART 真实崩溃、生产 Rhino `runtime.retraceR8Stack(...)`、原始类/方法/源码行恢复、四报告导出及篡改 mapping fail-closed 拒绝，3/3 正向与 3/3 负向均通过且无 fallback/DEX 导出；固定报告为 `build/reports/r42-g10/device-retrace-gate.json`，invocation `4079ecc3-6039-44be-ae46-4abbc76bb801`，SHA-256 `ad2b94493dfaa091ccd4476caa3a1832b436d78eafb4fb5e8012a8d189bdba31` (`0f979615b`, `86101b2e0`, `09027ee`). 设备矩阵同时暴露并固化修复了 mapping 格式版本 `2.2`、API 24/25 导出及 R8 命名正则组 API 26 边界；提供者 56 项 JVM 测试、API 25 直接设备回归、lint 与 Debug/Release 构建均通过. G9 可见性转换仍保持未执行.
 
 ## G11: 文档与用户体验
 
