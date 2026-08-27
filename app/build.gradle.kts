@@ -93,6 +93,7 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "0.2.0-provider-dev"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "R8_COMPILER_VERSION", "\"$pinnedR8Version\"")
         buildConfigField(
@@ -169,6 +170,8 @@ dependencies {
     )
     implementation(libs.r8)
     testImplementation(libs.junit)
+    androidTestImplementation(libs.junit)
+    androidTestImplementation("androidx.test:runner:1.7.0")
 }
 
 tasks.withType<Test>().configureEach {

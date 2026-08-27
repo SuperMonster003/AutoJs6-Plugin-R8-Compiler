@@ -7,11 +7,13 @@ import org.autojs.plugin.r8compiler.api.R8CompilerContract
 import org.autojs.plugin.r8compiler.api.R8CompilerValidation
 import org.autojs.plugin.r8compiler.api.R8ErrorCode
 import org.autojs.plugin.r8compiler.api.R8FailurePhase
+import org.autojs.plugin.r8compiler.api.R8RetraceInputBundleCodec
 import org.autojs.plugin.r8compiler.api.R8Result
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import java.io.ByteArrayOutputStream
 import java.nio.file.Files
 import java.util.concurrent.atomic.AtomicReference
 import java.util.zip.ZipInputStream
@@ -66,10 +68,22 @@ class R8CompilerEngineIntegrationTest {
                     }
                 }
                 assertEquals(R8ArtifactRole.values().toSet(), payloads.keys)
-                assertTrue(payloads.getValue(R8ArtifactRole.MAPPING_TEXT).isNotEmpty())
+                val mapping = payloads.getValue(R8ArtifactRole.MAPPING_TEXT)
+                val retraceMetadata = payloads.getValue(R8ArtifactRole.RETRACE_METADATA)
+                assertTrue(mapping.isNotEmpty())
                 assertTrue(payloads.getValue(R8ArtifactRole.USAGE_TEXT).isNotEmpty())
-                assertTrue(payloads.getValue(R8ArtifactRole.RETRACE_METADATA).isNotEmpty())
-                R8CompilerCodec.decodeRetraceMetadata(payloads.getValue(R8ArtifactRole.RETRACE_METADATA))
+                assertTrue(retraceMetadata.isNotEmpty())
+                val decodedRetraceMetadata = R8CompilerCodec.decodeRetraceMetadata(retraceMetadata)
+                val retraceCapabilities = R8CompilerRuntime.retraceCapabilities()
+                assertEquals(retraceCapabilities.mappingFormatId, decodedRetraceMetadata.formatId)
+                assertEquals(retraceCapabilities.mappingFormatVersion, decodedRetraceMetadata.formatVersion)
+                R8RetraceInputBundleCodec.write(
+                    ByteArrayOutputStream(),
+                    mapping,
+                    retraceMetadata,
+                    "java.lang.IllegalStateException\n    at a.a(SourceFile:1)\n".toByteArray(),
+                    retraceCapabilities,
+                )
 
                 val dexNames = ArrayList<String>()
                 ZipInputStream(payloads.getValue(R8ArtifactRole.DEX_ZIP).inputStream()).use { zip ->

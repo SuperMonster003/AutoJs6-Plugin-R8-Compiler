@@ -140,7 +140,8 @@ internal object R8CompilerRuntime {
             compilerFamily = R8CompilerFamily.R8,
             compilerVersion = compilerVersion,
             mappingFormatId = R8CompilerContract.MAPPING_FORMAT_ID,
-            mappingFormatVersion = "1",
+            // R8 8.13.17 emits the version from its mapping header, not the bundle schema version.
+            mappingFormatVersion = "2.2",
             inputLayout = R8RetraceInputLayout.MAPPING_METADATA_AND_STACK_BUNDLE_V1,
             outputLayout = R8RetraceOutputLayout.UTF8_LF_STACK_TRACE_V1,
             limits = retraceLimits,

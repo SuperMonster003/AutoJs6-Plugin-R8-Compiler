@@ -1,5 +1,6 @@
 package io.github.supermonster003.autojs6.plugin.r8compiler
 
+import android.os.Build
 import com.android.tools.r8.DiagnosticsHandler
 import com.android.tools.r8.retrace.ProguardMapProducer
 import com.android.tools.r8.retrace.ProguardMappingSupplier
@@ -113,6 +114,18 @@ internal fun interface R8RetraceCommandRunner {
 }
 
 private object AndroidR8RetraceCommandRunner : R8RetraceCommandRunner {
+    override fun run(
+        mappingBytes: ByteArray,
+        obfuscatedStackTrace: List<String>,
+        diagnostics: DiagnosticsHandler,
+    ): List<String> = if (Build.VERSION.SDK_INT in 1 until Build.VERSION_CODES.O) {
+        Api25CompatibleR8RetraceCommandRunner.run(mappingBytes, obfuscatedStackTrace, diagnostics)
+    } else {
+        ModernAndroidR8RetraceCommandRunner.run(mappingBytes, obfuscatedStackTrace, diagnostics)
+    }
+}
+
+private object ModernAndroidR8RetraceCommandRunner : R8RetraceCommandRunner {
     override fun run(
         mappingBytes: ByteArray,
         obfuscatedStackTrace: List<String>,

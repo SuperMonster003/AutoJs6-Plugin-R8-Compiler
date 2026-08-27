@@ -27,6 +27,25 @@ import java.util.UUID
 
 class R8RetraceEngineTest {
     @Test
+    fun api25CompatibleRunnerRetracesWithoutNamedMatcherGroups() {
+        val mapping = (
+            "sample.Main -> a:\n" +
+                "    7:7:void crash():42:42 -> a\n"
+            ).toByteArray()
+        val retraced = Api25CompatibleR8RetraceCommandRunner.run(
+            mapping,
+            listOf(
+                "java.lang.IllegalStateException: broken",
+                "    at a.a(SourceFile:7)",
+            ),
+            R8DiagnosticCollector(64 * 1024),
+        )
+
+        assertEquals("java.lang.IllegalStateException: broken", retraced[0])
+        assertEquals("    at sample.Main.crash(Main.java:42)", retraced[1])
+    }
+
+    @Test
     fun embeddedR8RetracesARealObfuscatedFrame() {
         val fixture = fixture()
         val produced = R8RetraceEngine().retrace(
