@@ -81,6 +81,7 @@ G1 的不可变报告为 `CONTRACT_AAR_ONLY` (隐私规范化后对应提交 `2c
 目标: 将当前 Private 仓库与 prerelease 转为可公开获取的正式发布. G8 明确约定可见性转换是独立的未来 Gate, 转换前必须完成完整复审.
 
 - [ ] 公开前复审: 重新审计完整 Git 对象库, 默认分支, 全部标签, Release 资产, Actions 历史/日志, 跟踪路径与密钥/隐私扫描结果; 复审报告存入 `docs/` 并绑定被审计的提交与资产哈希.
+  - 基线只读审计已完成并记录于 `docs/public-readiness-audit-v1.md` (2026-08-27): 未发现可行动 secret/隐私泄露, 但本地领先远端 2 个提交且 Release `prerelease` 元数据与冻结声明漂移, 因此 `readyForVisibilityChange=false`; G10 完成并形成最终远端候选后必须全量重跑, 本项暂不勾选.
 - [ ] 仓库可见性 Private 到 Public 切换, 切换后独立验证 API 返回的可见性状态, 并同步更新 `docs/identity-reservation.json` 中 `publication` 与 `claims` 字段.
 - [ ] 发布首个公开版本 (非 prerelease): 包含签名 APK, 两个契约 AAR, 发布清单与 SHA256SUMS; 发布后从公网独立重新下载并校验全部资产字节与哈希.
 - [ ] 确认包含 `runtime.loadJarWithR8()` 集成的 AutoJs6 公开版本可用, 并在 README (`paired_host_build`) 中记录经验证的最低宿主 build.
