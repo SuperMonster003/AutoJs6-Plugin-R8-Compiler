@@ -4,6 +4,12 @@
 
 ******
 
+# v0.2.0
+
+###### 2026/09/11
+
+* `Mejora` La verificación de compilación rechaza dependencias nativas accidentales y genera un informe JSON
+
 # v0.1.0-provider-dev-private.1 (local.5)
 
 ###### 2026/08/25

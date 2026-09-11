@@ -342,6 +342,12 @@ cache domain: autojs6:r8-compiler:v1
 
 ******
 
+# v0.2.0
+
+###### 2026/09/11
+
+* `Улучшение` Проверка сборки отклоняет непреднамеренные нативные зависимости и создает отчет JSON
+
 # v0.1.0-provider-dev-private.1 (local.5)
 
 ###### 2026/08/25
@@ -358,12 +364,6 @@ cache domain: autojs6:r8-compiler:v1
 
 * `Исправление` Инспекция режима доступа через `/proc/self/fdinfo` заменена нулевыми публичными пробами ядра `Os.read`/`Os.write`, что устраняет ограничения procfs на некоторых устройствах (например, Sony API 28) при сохранении отклонения алиасов через `Os.fstat`
 * `Улучшение` Завершена меж-APK приёмка Binder/PFD на 1 физическом устройстве и 2 эмуляторах (API 25/28): счастливый путь, жизненный цикл, враждебный ввод и смерть процесса -- 9/9 тестов пройдены
-
-# v0.1.0-provider-dev (local.3)
-
-###### 2026/08/25
-
-* `Исправление` Закреплён core-library/NIO desugaring (desugar_jdk_libs_nio 2.1.5) для API 24-28, исправлены сбои выполнения из-за отсутствия возможностей базовой библиотеки Java 11 на старых устройствах
 
 ##### Другие выпуски
 
@@ -435,3 +435,6 @@ python .python/generate_markdown.py --check
 - Проект R8: https://r8.googlesource.com/r8
 - Плагин DEX Compiler (D8): https://github.com/SuperMonster003/AutoJs6-Plugin-DEX-Compiler
 - Страница закрытого выпуска (нужен доступ): https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/releases/tag/v0.1.0-provider-dev-private.1
+
+
+[16 KB page alignment and build verification](https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/docs/16kb.md)

@@ -11,6 +11,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true">
 
+        <meta-data
+            android:name="org.autojs.plugin.contract.NATIVE_PAGE_ALIGNMENT"
+            android:value="0" />
+
         <activity
             android:name=".ChangelogActivity"
             android:exported="false"

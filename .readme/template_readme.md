@@ -291,3 +291,6 @@ python .python/generate_markdown.py --check
 - {{ text_link_upstream }}: {{ upstream_url }}
 - {{ text_link_dex_plugin }}: {{ dex_plugin_repo_url }}
 - {{ text_link_release_page }}: {{ release_url }}
+
+
+[16 KB page alignment and build verification](https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/docs/16kb.md)

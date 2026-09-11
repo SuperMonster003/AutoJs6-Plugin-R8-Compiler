@@ -342,6 +342,12 @@ El desarrollo avanza mediante gates verificables: G1 congelación del contrato, 
 
 ******
 
+# v0.2.0
+
+###### 2026/09/11
+
+* `Mejora` La verificación de compilación rechaza dependencias nativas accidentales y genera un informe JSON
+
 # v0.1.0-provider-dev-private.1 (local.5)
 
 ###### 2026/08/25
@@ -358,12 +364,6 @@ El desarrollo avanza mediante gates verificables: G1 congelación del contrato, 
 
 * `Corrección` Sustituir la inspección del modo de acceso por `/proc/self/fdinfo` por sondas de kernel públicas `Os.read`/`Os.write` de cero bytes, resolviendo las restricciones de procfs de algunos dispositivos (como Sony API 28) y conservando el rechazo de alias con `Os.fstat`
 * `Mejora` Completar la aceptación de dispositivo Binder/PFD entre APK en 1 dispositivo físico y 2 emuladores (API 25/28): camino feliz, ciclo de vida, entrada hostil y muerte de proceso -- 9/9 pruebas superadas
-
-# v0.1.0-provider-dev (local.3)
-
-###### 2026/08/25
-
-* `Corrección` Fijar el desugaring core-library/NIO (desugar_jdk_libs_nio 2.1.5) para API 24 a 28, corrigiendo fallos de ejecución por capacidades ausentes de la biblioteca central de Java 11 en dispositivos antiguos
 
 ##### Más versiones
 
@@ -435,3 +435,6 @@ python .python/generate_markdown.py --check
 - Proyecto R8: https://r8.googlesource.com/r8
 - Plugin DEX Compiler (D8): https://github.com/SuperMonster003/AutoJs6-Plugin-DEX-Compiler
 - Página de release privada (requiere acceso): https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/releases/tag/v0.1.0-provider-dev-private.1
+
+
+[16 KB page alignment and build verification](https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/docs/16kb.md)

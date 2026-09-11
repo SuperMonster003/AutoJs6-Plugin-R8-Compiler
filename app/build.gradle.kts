@@ -76,6 +76,7 @@ abstract class PrepareR8PlatformLibraryAsset : DefaultTask() {
 }
 
 plugins {
+    id("io.github.supermonster003.autojs6-native-alignment")
     id("com.android.application")
 }
 
@@ -185,3 +186,6 @@ tasks.withType<Test>().configureEach {
         systemProperty("r8.android.jar", file("$androidHome/platforms/android-36/android.jar").absolutePath)
     }
 }
+
+// Reject accidental native dependencies on every ABI.
+nativeAlignment { expectNoNativeLibraries.set(true) }

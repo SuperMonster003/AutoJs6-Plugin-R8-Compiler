@@ -342,6 +342,12 @@ cache domain: autojs6:r8-compiler:v1
 
 ******
 
+# v0.2.0
+
+###### 2026/09/11
+
+* `改善` 意図しないネイティブ依存関係をビルド時に拒否し, JSON レポートを生成
+
 # v0.1.0-provider-dev-private.1 (local.5)
 
 ###### 2026/08/25
@@ -358,12 +364,6 @@ cache domain: autojs6:r8-compiler:v1
 
 * `修正` `/proc/self/fdinfo` によるアクセスモード検査をゼロバイトの公開 `Os.read`/`Os.write` カーネルプローブへ置き換え, 一部デバイス (Sony API 28 など) の procfs 制限を解消; `Os.fstat` によるエイリアス拒否は維持
 * `改善` 実機 1 台とエミュレーター 2 台 (API 25/28) で APK 間 Binder/PFD デバイス受け入れを完了: ハッピーパス, ライフサイクル, 敵対的入力, プロセス死 -- 9/9 テスト合格
-
-# v0.1.0-provider-dev (local.3)
-
-###### 2026/08/25
-
-* `修正` API 24 から 28 向けに core-library/NIO desugaring (desugar_jdk_libs_nio 2.1.5) を固定し, 旧デバイスで Java 11 コアライブラリ機能の欠如による実行失敗を修正
 
 ##### その他のリリース
 
@@ -435,3 +435,6 @@ python .python/generate_markdown.py --check
 - R8 プロジェクト: https://r8.googlesource.com/r8
 - DEX Compiler プラグイン (D8): https://github.com/SuperMonster003/AutoJs6-Plugin-DEX-Compiler
 - プライベートリリースページ (アクセス権が必要): https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/releases/tag/v0.1.0-provider-dev-private.1
+
+
+[16 KB page alignment and build verification](https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/docs/16kb.md)

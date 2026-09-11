@@ -342,6 +342,12 @@ cache domain: autojs6:r8-compiler:v1
 
 ******
 
+# v0.2.0
+
+###### 2026/09/11
+
+* `优化` 构建阶段阻止意外引入原生依赖, 并输出 JSON 校验报告
+
 # v0.1.0-provider-dev-private.1 (local.5)
 
 ###### 2026/08/25
@@ -358,12 +364,6 @@ cache domain: autojs6:r8-compiler:v1
 
 * `修复` 以零字节的公开 `Os.read`/`Os.write` 内核探针替换 `/proc/self/fdinfo` 访问模式检查, 解决部分设备 (如 Sony API 28) 的 procfs 访问限制; 继续保留 `Os.fstat` 别名拒绝
 * `优化` 在 1 台真机与 2 台模拟器 (API 25/28) 上完成跨 APK Binder/PFD 设备验收: 快乐路径, 生命周期, 恶意输入与进程死亡共 9/9 用例通过
-
-# v0.1.0-provider-dev (local.3)
-
-###### 2026/08/25
-
-* `修复` 为 API 24 至 28 固定 core-library/NIO desugaring (desugar_jdk_libs_nio 2.1.5), 修复低版本设备缺失 Java 11 核心库能力导致的运行失败
 
 ##### 更多版本
 
@@ -435,3 +435,6 @@ python .python/generate_markdown.py --check
 - R8 项目: https://r8.googlesource.com/r8
 - DEX Compiler 插件 (D8): https://github.com/SuperMonster003/AutoJs6-Plugin-DEX-Compiler
 - 私有发布页 (需要访问权限): https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/releases/tag/v0.1.0-provider-dev-private.1
+
+
+[16 KB page alignment and build verification](https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/docs/16kb.md)
