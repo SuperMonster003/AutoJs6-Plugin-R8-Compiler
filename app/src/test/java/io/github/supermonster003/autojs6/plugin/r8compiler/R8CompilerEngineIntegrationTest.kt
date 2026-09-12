@@ -143,7 +143,7 @@ class R8CompilerEngineIntegrationTest {
 
     @Test
     fun api24CliIsReleaseOnlyAndCarriesExplicitRulesWithoutFallback() {
-        val root = Files.createTempDirectory("r8-provider-cli-").toFile()
+        val root = Files.createTempDirectory("r8-provider-cli-d8-path-").toFile()
         try {
             val (runtime, capabilities) = R8ProviderTestFixtures.capabilities()
             val fixture = R8ProviderTestFixtures.requestFixture(root, capabilities)
@@ -179,7 +179,13 @@ class R8CompilerEngineIntegrationTest {
                 assertTrue("--pg-conf" in arguments)
                 assertTrue("--output" in arguments)
                 assertFalse("--debug" in arguments)
-                assertFalse(arguments.any { it.contains("d8", ignoreCase = true) || it.equals("dx", true) })
+                val forbiddenFallbackArguments = arguments.filter {
+                    it.equals("d8", ignoreCase = true) || it.equals("dx", ignoreCase = true)
+                }
+                assertTrue(
+                    "Unexpected D8/DX CLI argument(s): $forbiddenFallbackArguments; all arguments: $arguments",
+                    forbiddenFallbackArguments.isEmpty(),
+                )
                 assertTrue(workspace.providerControlRules.readText().contains("-printmapping"))
                 assertTrue(workspace.providerControlRules.readText().contains("-printseeds"))
                 assertTrue(workspace.providerControlRules.readText().contains("-printusage"))
