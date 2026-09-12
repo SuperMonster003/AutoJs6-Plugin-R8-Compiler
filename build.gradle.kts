@@ -4,8 +4,8 @@ import java.nio.file.StandardCopyOption
 import java.util.UUID
 
 plugins {
-    id("com.android.application") version "9.1.0" apply false
-    id("com.android.library") version "9.1.0" apply false
+    id("com.android.application") version System.getProperty("gradle.agp.version") apply false
+    id("com.android.library") version System.getProperty("gradle.agp.version") apply false
 }
 
 tasks.register<Delete>("clean") {
