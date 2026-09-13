@@ -12,6 +12,8 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 import java.io.File
 import java.security.MessageDigest
+import javax.xml.parsers.DocumentBuilderFactory
+import org.w3c.dom.Element
 
 class R8ProviderBoundaryTest {
     @Test
@@ -31,14 +33,28 @@ class R8ProviderBoundaryTest {
     }
 
     @Test
-    fun manifestExposesOnlyThePinnedR8ServiceInItsDedicatedProcess() {
+    fun manifestExposesOnlyProtectedCompilerAndMetadataServices() {
         val root = File(requireNotNull(System.getProperty("r8.provider.root")))
         val manifest = root.resolve("app/src/main/AndroidManifest.xml").readText()
-        assertTrue(manifest.contains("android:name=\".R8CompilerService\""))
-        assertTrue(manifest.contains("android:process=\":r8\""))
-        assertTrue(manifest.contains("android:permission=\"${R8CompilerContract.PLUGIN_PERMISSION}\""))
-        assertTrue(manifest.contains("android:name=\"${R8CompilerContract.SERVICE_ACTION}\""))
-        assertEquals(1, Regex("<service\\b").findAll(manifest).count())
+        val document = DocumentBuilderFactory.newInstance().apply { isNamespaceAware = true }
+            .newDocumentBuilder().parse(root.resolve("app/src/main/AndroidManifest.xml"))
+        val nodes = document.getElementsByTagName("service")
+        assertEquals(2, nodes.length)
+        val services = (0 until nodes.length).map { nodes.item(it) as Element }
+            .associateBy { it.getAttributeNS(ANDROID_NAMESPACE, "name") }
+        assertEquals(setOf(".R8CompilerService", ".R8PluginInfoService"), services.keys)
+        services.values.forEach { service ->
+            assertEquals("true", service.getAttributeNS(ANDROID_NAMESPACE, "exported"))
+            assertEquals(R8CompilerContract.PLUGIN_PERMISSION, service.getAttributeNS(ANDROID_NAMESPACE, "permission"))
+        }
+        val compiler = services.getValue(".R8CompilerService")
+        assertEquals(":r8", compiler.getAttributeNS(ANDROID_NAMESPACE, "process"))
+        fun actionNames(service: Element): Set<String> {
+            val actions = service.getElementsByTagName("action")
+            return (0 until actions.length).map { (actions.item(it) as Element).getAttributeNS(ANDROID_NAMESPACE, "name") }.toSet()
+        }
+        assertEquals(setOf(R8CompilerContract.SERVICE_ACTION), actionNames(compiler))
+        assertEquals(setOf("org.autojs.plugin.INFO"), actionNames(services.getValue(".R8PluginInfoService")))
         assertFalse(manifest.contains("DEX_COMPILER"))
     }
 
@@ -69,7 +85,7 @@ class R8ProviderBoundaryTest {
             "app/src/main/java/io/github/supermonster003/autojs6/plugin/r8compiler/service/" +
                 "OwnedParcelFileDescriptors.kt",
         ).readText()
-        assertTrue(build.contains("minSdk = 24"))
+        assertEquals("24", System.getProperty("r8.provider.minSdk"))
         assertTrue(build.contains("isCoreLibraryDesugaringEnabled = true"))
         assertTrue(build.contains("coreLibraryDesugaring(libs.desugar)"))
         assertTrue(catalog.contains("desugar = \"2.1.5\""))
@@ -84,4 +100,8 @@ class R8ProviderBoundaryTest {
     private fun sha256(file: File): String = MessageDigest.getInstance("SHA-256")
         .digest(file.readBytes())
         .joinToString("") { "%02x".format(it.toInt() and 0xff) }
+
+    private companion object {
+        const val ANDROID_NAMESPACE = "http://schemas.android.com/apk/res/android"
+    }
 }
