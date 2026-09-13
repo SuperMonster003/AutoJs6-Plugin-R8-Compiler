@@ -214,6 +214,7 @@ dependencies {
 
 tasks.withType<Test>().configureEach {
     systemProperty("r8.provider.root", rootProject.layout.projectDirectory.asFile.absolutePath)
+    systemProperty("r8.provider.minSdk", requireNotNull(android.defaultConfig.minSdk))
     systemProperty(
         "r8.compatibility.report.dir",
         rootProject.layout.buildDirectory.dir("reports/r42-g4/corpus-cases").get().asFile.absolutePath,
