@@ -1,7 +1,12 @@
 <!--suppress HtmlDeprecatedAttribute, HttpUrlsUsage -->
 
 <div align="center">
-  <h1>AutoJs6-Plugin-R8-Compiler</h1>
+  <p><img src="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="R8 Compiler icon" width="128" /></p>
+  <p>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/releases"><img alt="Release" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-R8-Compiler?label=Release" /></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/issues"><img alt="Issues" src="https://img.shields.io/github/issues/SuperMonster003/AutoJs6-Plugin-R8-Compiler?label=Issues" /></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/github/license/SuperMonster003/AutoJs6-Plugin-R8-Compiler?label=License" /></a>
+  </p>
 
   <p>Автономный плагин компилятора R8 для AutoJs6. Компилирует JAR-файлы скриптов в DEX с полным release-профилем (shrink + optimize + obfuscate) в изолированном процессе</p>
 
@@ -293,9 +298,9 @@ plugin id: r8-compiler
 protocol provider id: autojs6-r8
 engine: r8-compiler
 variant: r8
-protocol: 1.0
+protocol: 1.0–1.1
 api namespace: org.autojs.plugin.r8compiler.api
-distribution: org.autojs.plugin.r8compiler:r8-compiler-api:0.1.0
+distribution: org.autojs.plugin.r8compiler:r8-compiler-api:0.2.0
 cache domain: autojs6:r8-compiler:v1
 ```
 
@@ -342,11 +347,18 @@ cache domain: autojs6:r8-compiler:v1
 
 ******
 
+# v0.2.1
+
+###### 2026/09/13
+
+* `Улучшение` Согласованные переводы, явная активация плагина и проверка пакетов выпуска
+
 # v0.2.0
 
-###### 2026/09/11
+###### 2026/09/13
 
 * `Улучшение` Проверка сборки отклоняет непреднамеренные нативные зависимости и создает отчет JSON
+* `Улучшение` Согласованные переводы, явная активация плагина и проверка пакетов выпуска
 
 # v0.1.0-provider-dev-private.1 (local.5)
 
@@ -357,13 +369,6 @@ cache domain: autojs6:r8-compiler:v1
 * `Функция` Встроена байт-верифицированная платформенная библиотека Android 36 в качестве библиотеки компилятора R8 вместо зависимости от boot classpath устройства; исправлены сбои компиляции на устройствах, где boot-JAR являются лишь ресурсными оболочками
 * `Функция` Добавлен ограниченный сбор диагностики R8 со скрытием путей, покрывающий запуск provider и сбои импорта движка
 * `Улучшение` Проверен оптимизированный вывод на ART при API 25/28/37 (включая эмулятор со страницами 16 KiB): рефлексия, составляемые в рантайме имена классов, сериализация, скриптовая точка входа, проверка удалённой приманки, вызовы JNI arm64/x86/x86_64 и восстановление стека R8 Retrace после проверки хэша mapping
-
-# v0.1.0-provider-dev (local.4)
-
-###### 2026/08/25
-
-* `Исправление` Инспекция режима доступа через `/proc/self/fdinfo` заменена нулевыми публичными пробами ядра `Os.read`/`Os.write`, что устраняет ограничения procfs на некоторых устройствах (например, Sony API 28) при сохранении отклонения алиасов через `Os.fstat`
-* `Улучшение` Завершена меж-APK приёмка Binder/PFD на 1 физическом устройстве и 2 эмуляторах (API 25/28): счастливый путь, жизненный цикл, враждебный ввод и смерть процесса -- 9/9 тестов пройдены
 
 ##### Другие выпуски
 
@@ -391,7 +396,7 @@ ABI протокола предоставляют замороженные ко�
 
 ```text
 protocol-wire-api-0.1.0.aar
-r8-compiler-api-0.1.0.aar
+r8-compiler-api-0.2.0.aar
 ```
 
 Компилятор берётся из Maven как закреплённый R8 8.13.17. Официальные выпуски используют скрипты публикации и проверки в `scripts/` (append-only локальный каталог выпусков, воспроизводимые сборки из двух снимков и погейтовая проверка); для повседневной отладки достаточно команд Gradle выше.

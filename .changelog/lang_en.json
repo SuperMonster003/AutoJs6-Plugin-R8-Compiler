@@ -5,10 +5,17 @@
   "changelog_label_improvement": "Improvement",
   "changelog_label_dependency": "Dependency",
   "$data": {
-    "v0.2.0": {
-      "released_date": "2026/09/11",
+    "v0.2.1": {
+      "released_date": "2026/09/13",
       "improvement": [
-        "Build verification rejects accidental native dependencies and produces a JSON report"
+        "Consistent localized resources, explicit plugin activation and validated release preparation"
+      ]
+    },
+    "v0.2.0": {
+      "released_date": "2026/09/13",
+      "improvement": [
+        "Build verification rejects accidental native dependencies and produces a JSON report",
+        "Consistent localized resources, explicit plugin activation and validated release preparation"
       ]
     },
     "v0.1.0-provider-dev-private.1 (local.5)": {

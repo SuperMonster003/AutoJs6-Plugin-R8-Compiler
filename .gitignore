@@ -60,3 +60,4 @@ __pycache__/
 app/build/
 build-logic/build/
 build-logic/*/build/
+*.pre-platform-versions.bak

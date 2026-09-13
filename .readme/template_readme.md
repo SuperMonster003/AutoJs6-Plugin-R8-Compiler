@@ -1,7 +1,12 @@
 <!--suppress HtmlDeprecatedAttribute, HttpUrlsUsage -->
 
 <div align="center">
-  <h1>AutoJs6-Plugin-R8-Compiler</h1>
+  <p><img src="{{ repo_url }}/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="{{ icon_alt }}" width="128" /></p>
+  <p>
+    <a href="{{ repo_url }}/releases"><img alt="Release" src="https://img.shields.io/github/v/release/{{ repo_slug }}?label=Release" /></a>
+    <a href="{{ repo_url }}/issues"><img alt="Issues" src="https://img.shields.io/github/issues/{{ repo_slug }}?label=Issues" /></a>
+    <a href="{{ license_url }}"><img alt="License" src="https://img.shields.io/github/license/{{ repo_slug }}?label=License" /></a>
+  </p>
 
   <p>{{ text_plugin_synopsis }}</p>
 

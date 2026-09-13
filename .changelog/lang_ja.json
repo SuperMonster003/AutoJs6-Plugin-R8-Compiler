@@ -5,10 +5,17 @@
   "changelog_label_improvement": "改善",
   "changelog_label_dependency": "依存関係",
   "$data": {
-    "v0.2.0": {
-      "released_date": "2026/09/11",
+    "v0.2.1": {
+      "released_date": "2026/09/13",
       "improvement": [
-        "意図しないネイティブ依存関係をビルド時に拒否し, JSON レポートを生成"
+        "多言語リソースの統一, プラグイン有効化の明確化, リリース成果物の検証"
+      ]
+    },
+    "v0.2.0": {
+      "released_date": "2026/09/13",
+      "improvement": [
+        "意図しないネイティブ依存関係をビルド時に拒否し, JSON レポートを生成",
+        "多言語リソースの統一, プラグイン有効化の明確化, リリース成果物の検証"
       ]
     },
     "v0.1.0-provider-dev-private.1 (local.5)": {

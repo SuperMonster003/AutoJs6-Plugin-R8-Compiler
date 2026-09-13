@@ -1,14 +1,21 @@
 {
-  "changelog_label_hint": "Conseil",
-  "changelog_label_feature": "Fonction",
-  "changelog_label_fix": "Correction",
+  "changelog_label_hint": "Note",
+  "changelog_label_feature": "Fonctionnalité",
+  "changelog_label_fix": "Correctif",
   "changelog_label_improvement": "Amélioration",
   "changelog_label_dependency": "Dépendance",
   "$data": {
-    "v0.2.0": {
-      "released_date": "2026/09/11",
+    "v0.2.1": {
+      "released_date": "2026/09/13",
       "improvement": [
-        "La vérification de compilation rejette les dépendances natives involontaires et produit un rapport JSON"
+        "Ressources traduites cohérentes, activation explicite du plugin et validation des paquets de publication"
+      ]
+    },
+    "v0.2.0": {
+      "released_date": "2026/09/13",
+      "improvement": [
+        "La vérification de compilation rejette les dépendances natives involontaires et produit un rapport JSON",
+        "Ressources traduites cohérentes, activation explicite du plugin et validation des paquets de publication"
       ]
     },
     "v0.1.0-provider-dev-private.1 (local.5)": {

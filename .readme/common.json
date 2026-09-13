@@ -13,12 +13,14 @@
   "protocol_provider_id": "autojs6-r8",
   "plugin_engine": "r8-compiler",
   "plugin_variant": "r8",
-  "protocol_version": "1.0",
+  "protocol_version": "1.0–1.1",
   "compiler_profile": "FULL_RELEASE (shrink + optimize + obfuscate)",
   "api_namespace": "org.autojs.plugin.r8compiler.api",
-  "distribution_coordinate": "org.autojs.plugin.r8compiler:r8-compiler-api:0.1.0",
+  "distribution_coordinate": "org.autojs.plugin.r8compiler:r8-compiler-api:0.2.0",
   "cache_domain": "autojs6:r8-compiler:v1",
   "paired_host_build": "AutoJs6 6.8.0 (build 5276)",
   "compiler_dependency": "R8 8.13.17",
-  "local_aars": "protocol-wire-api-0.1.0.aar\nr8-compiler-api-0.1.0.aar"
+  "local_aars": "protocol-wire-api-0.1.0.aar\nr8-compiler-api-0.2.0.aar",
+  "license_url": "https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/LICENSE",
+  "icon_alt": "R8 Compiler icon"
 }

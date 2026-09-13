@@ -1,7 +1,12 @@
 <!--suppress HtmlDeprecatedAttribute, HttpUrlsUsage -->
 
 <div align="center">
-  <h1>AutoJs6-Plugin-R8-Compiler</h1>
+  <p><img src="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="R8 Compiler icon" width="128" /></p>
+  <p>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/releases"><img alt="Release" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-R8-Compiler?label=Release" /></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/issues"><img alt="Issues" src="https://img.shields.io/github/issues/SuperMonster003/AutoJs6-Plugin-R8-Compiler?label=Issues" /></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/github/license/SuperMonster003/AutoJs6-Plugin-R8-Compiler?label=License" /></a>
+  </p>
 
   <p>ملحق مترجم R8 مستقل لـ AutoJs6. يترجم ملفات JAR الخاصة بالسكربتات إلى DEX بملف release الكامل (shrink + optimize + obfuscate) داخل عملية معزولة</p>
 
@@ -293,9 +298,9 @@ plugin id: r8-compiler
 protocol provider id: autojs6-r8
 engine: r8-compiler
 variant: r8
-protocol: 1.0
+protocol: 1.0–1.1
 api namespace: org.autojs.plugin.r8compiler.api
-distribution: org.autojs.plugin.r8compiler:r8-compiler-api:0.1.0
+distribution: org.autojs.plugin.r8compiler:r8-compiler-api:0.2.0
 cache domain: autojs6:r8-compiler:v1
 ```
 
@@ -342,11 +347,18 @@ cache domain: autojs6:r8-compiler:v1
 
 ******
 
+# v0.2.1
+
+###### 2026/09/13
+
+* `تحسين` توحيد الموارد المترجمة وتوضيح تفعيل الإضافة والتحقق من حزم الإصدار
+
 # v0.2.0
 
-###### 2026/09/11
+###### 2026/09/13
 
 * `تحسين` التحقق أثناء البناء لمنع إدخال تبعيات أصلية غير مقصودة, مع تقرير JSON
+* `تحسين` توحيد الموارد المترجمة وتوضيح تفعيل الإضافة والتحقق من حزم الإصدار
 
 # v0.1.0-provider-dev-private.1 (local.5)
 
@@ -357,13 +369,6 @@ cache domain: autojs6:r8-compiler:v1
 * `ميزة` تضمين مكتبة منصة Android 36 متحقَّق منها بايتًا ببايت كمكتبة لمترجم R8 بدلًا من الاعتماد على boot classpath للجهاز؛ يصلح فشل الترجمة على الأجهزة التي تكون فيها ملفات boot JAR مجرد أغلفة موارد
 * `ميزة` إضافة جمع تشخيصات R8 محدود ومع حجب المسارات, يغطي بدء تشغيل provider وإخفاقات استيراد المحرك
 * `تحسين` التحقق من الناتج المحسَّن على ART في API 25/28/37 (بما فيها محاك بصفحات 16 KiB): الانعكاس, وأسماء الأصناف المركّبة وقت التشغيل, والتسلسل, ومدخل السكربت, وفحوص الطُعم المحذوف, واستدعاءات JNI على arm64/x86/x86_64, واستعادة المكدس عبر R8 Retrace بعد التحقق من تجزئة mapping
-
-# v0.1.0-provider-dev (local.4)
-
-###### 2026/08/25
-
-* `إصلاح` استبدال فحص وضع الوصول عبر `/proc/self/fdinfo` بمسابير نواة عامة صفرية البايت `Os.read`/`Os.write`, ما يحل قيود procfs على بعض الأجهزة (مثل Sony API 28) مع الإبقاء على رفض الأسماء البديلة عبر `Os.fstat`
-* `تحسين` إتمام قبول أجهزة Binder/PFD بين تطبيقات APK على جهاز فعلي واحد ومحاكيين (API 25/28): المسار السليم, ودورة الحياة, والمدخلات العدائية, وموت العملية -- نجاح 9/9 اختبارات
 
 ##### إصدارات أخرى
 
@@ -391,7 +396,7 @@ cache domain: autojs6:r8-compiler:v1
 
 ```text
 protocol-wire-api-0.1.0.aar
-r8-compiler-api-0.1.0.aar
+r8-compiler-api-0.2.0.aar
 ```
 
 يُجلب المترجم من Maven بوصفه R8 8.13.17 مثبَّتًا. تستخدم الإصدارات الرسمية سكربتات النشر والتحقق تحت `scripts/` (مجلد إصدارات محلي append-only, وبناءات قابلة لإعادة الإنتاج بلقطتين, وتحقق لكل بوابة)؛ أما للتصحيح اليومي فتكفي أوامر Gradle أعلاه.

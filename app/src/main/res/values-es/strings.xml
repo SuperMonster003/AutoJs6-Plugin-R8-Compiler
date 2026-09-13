@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">AutoJs6 R8 Compiler</string>
     <string name="app_summary">Proveedor del compilador R8 con perfil release completo para AutoJs6</string>
+    <string name="changelog_load_error">No se pudo cargar el registro de cambios incluido.</string>
+    <string name="changelog_title">Registro de cambios</string>
+    <string name="open_changelog">Ver registro de cambios</string>
+    <string name="plugin_description">Reduce, optimiza y ofusca bytecode de Java</string>
+    <string name="service_available">Disponible</string>
+    <string name="service_component_value">Componente\n%1$s</string>
+    <string name="service_label">Servicio de compilación</string>
+    <string name="service_status_note">Este estado solo confirma que el componente de servicio está instalado y habilitado. Selecciona el proveedor por separado en las opciones de desarrollador de AutoJs6.</string>
+    <string name="service_unavailable">No disponible o deshabilitado</string>
     <string name="version_label">Versiones</string>
     <string name="version_value">Plugin %1$s\nR8 %2$s</string>
-    <string name="service_label">Servicio de compilación</string>
-    <string name="service_available">Disponible</string>
-    <string name="service_unavailable">No disponible o deshabilitado</string>
-    <string name="service_component_value">Componente\n%1$s</string>
-    <string name="service_status_note">Este estado solo confirma que el componente de servicio está instalado y habilitado. Selecciona el proveedor por separado en las opciones de desarrollador de AutoJs6.</string>
-    <string name="open_changelog">Ver registro de cambios</string>
-    <string name="changelog_title">Registro de cambios</string>
-    <string name="changelog_load_error">No se pudo cargar el registro de cambios incluido.</string>
 </resources>
