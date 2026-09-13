@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">AutoJs6 R8 Compiler</string>
     <string name="app_summary">Fournisseur du compilateur R8 en profil release complet pour AutoJs6</string>
+    <string name="changelog_load_error">Impossible de charger le journal des modifications inclus.</string>
+    <string name="changelog_title">Journal des modifications</string>
+    <string name="open_changelog">Voir le journal des modifications</string>
+    <string name="plugin_description">Réduit, optimise et obscurcit le bytecode Java</string>
+    <string name="service_available">Disponible</string>
+    <string name="service_component_value">Composant\n%1$s</string>
+    <string name="service_label">Service de compilation</string>
+    <string name="service_status_note">Cet état confirme uniquement que le composant de service est installé et activé. Sélectionnez le fournisseur séparément dans les options développeur d\'AutoJs6.</string>
+    <string name="service_unavailable">Indisponible ou désactivé</string>
     <string name="version_label">Versions</string>
     <string name="version_value">Plugin %1$s\nR8 %2$s</string>
-    <string name="service_label">Service de compilation</string>
-    <string name="service_available">Disponible</string>
-    <string name="service_unavailable">Indisponible ou désactivé</string>
-    <string name="service_component_value">Composant\n%1$s</string>
-    <string name="service_status_note">Cet état confirme uniquement que le composant de service est installé et activé. Sélectionnez le fournisseur séparément dans les options développeur d’AutoJs6.</string>
-    <string name="open_changelog">Voir le journal des modifications</string>
-    <string name="changelog_title">Journal des modifications</string>
-    <string name="changelog_load_error">Impossible de charger le journal des modifications inclus.</string>
 </resources>

@@ -4,11 +4,18 @@
 
 ******
 
+# v0.2.1
+
+###### 2026/09/13
+
+* `Improvement` Consistent localized resources, explicit plugin activation and validated release preparation
+
 # v0.2.0
 
-###### 2026/09/11
+###### 2026/09/13
 
 * `Improvement` Build verification rejects accidental native dependencies and produces a JSON report
+* `Improvement` Consistent localized resources, explicit plugin activation and validated release preparation
 
 # v0.1.0-provider-dev-private.1 (local.5)
 

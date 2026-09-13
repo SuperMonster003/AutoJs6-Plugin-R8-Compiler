@@ -1,7 +1,12 @@
 <!--suppress HtmlDeprecatedAttribute, HttpUrlsUsage -->
 
 <div align="center">
-  <h1>AutoJs6-Plugin-R8-Compiler</h1>
+  <p><img src="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="R8 Compiler icon" width="128" /></p>
+  <p>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/releases"><img alt="Release" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-R8-Compiler?label=Release" /></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/issues"><img alt="Issues" src="https://img.shields.io/github/issues/SuperMonster003/AutoJs6-Plugin-R8-Compiler?label=Issues" /></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/github/license/SuperMonster003/AutoJs6-Plugin-R8-Compiler?label=License" /></a>
+  </p>
 
   <p>AutoJs6 独立 R8 编译插件. 在隔离进程中以完整 release 配置 (shrink + optimize + obfuscate) 将脚本 JAR 编译为 DEX</p>
 
@@ -293,9 +298,9 @@ plugin id: r8-compiler
 protocol provider id: autojs6-r8
 engine: r8-compiler
 variant: r8
-protocol: 1.0
+protocol: 1.0–1.1
 api namespace: org.autojs.plugin.r8compiler.api
-distribution: org.autojs.plugin.r8compiler:r8-compiler-api:0.1.0
+distribution: org.autojs.plugin.r8compiler:r8-compiler-api:0.2.0
 cache domain: autojs6:r8-compiler:v1
 ```
 
@@ -342,11 +347,18 @@ cache domain: autojs6:r8-compiler:v1
 
 ******
 
+# v0.2.1
+
+###### 2026/09/13
+
+* `优化` 统一多语言资源, 明确插件激活契约并校验发布产物
+
 # v0.2.0
 
-###### 2026/09/11
+###### 2026/09/13
 
 * `优化` 构建阶段阻止意外引入原生依赖, 并输出 JSON 校验报告
+* `优化` 统一多语言资源, 明确插件激活契约并校验发布产物
 
 # v0.1.0-provider-dev-private.1 (local.5)
 
@@ -357,13 +369,6 @@ cache domain: autojs6:r8-compiler:v1
 * `新增` 内置经字节校验的 Android 36 平台库作为 R8 编译库, 不再依赖设备 boot classpath; 修复部分设备上 boot JAR 为资源壳导致的编译失败
 * `新增` 添加有界且路径脱敏的 R8 诊断信息收集, 覆盖提供者启动与引擎导入失败场景
 * `优化` 在 API 25/28/37 (含 16 KiB 页大小模拟器) 的 ART 上完成优化产物运行验证: 反射, 动态类名, 序列化, 脚本入口, 移除诱饵检查, arm64/x86/x86_64 JNI 调用, 以及 mapping 哈希校验后的 R8 Retrace 堆栈还原
-
-# v0.1.0-provider-dev (local.4)
-
-###### 2026/08/25
-
-* `修复` 以零字节的公开 `Os.read`/`Os.write` 内核探针替换 `/proc/self/fdinfo` 访问模式检查, 解决部分设备 (如 Sony API 28) 的 procfs 访问限制; 继续保留 `Os.fstat` 别名拒绝
-* `优化` 在 1 台真机与 2 台模拟器 (API 25/28) 上完成跨 APK Binder/PFD 设备验收: 快乐路径, 生命周期, 恶意输入与进程死亡共 9/9 用例通过
 
 ##### 更多版本
 
@@ -391,7 +396,7 @@ cache domain: autojs6:r8-compiler:v1
 
 ```text
 protocol-wire-api-0.1.0.aar
-r8-compiler-api-0.1.0.aar
+r8-compiler-api-0.2.0.aar
 ```
 
 编译器通过 Maven 引入固定版本 R8 8.13.17. 正式发布使用 `scripts/` 目录下的发布与验证脚本 (append-only 本地发布目录, 双快照可复现构建与逐 Gate 校验); 日常调试直接使用上方 Gradle 命令即可.

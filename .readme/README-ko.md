@@ -1,7 +1,12 @@
 <!--suppress HtmlDeprecatedAttribute, HttpUrlsUsage -->
 
 <div align="center">
-  <h1>AutoJs6-Plugin-R8-Compiler</h1>
+  <p><img src="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="R8 Compiler icon" width="128" /></p>
+  <p>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/releases"><img alt="Release" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-R8-Compiler?label=Release" /></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/issues"><img alt="Issues" src="https://img.shields.io/github/issues/SuperMonster003/AutoJs6-Plugin-R8-Compiler?label=Issues" /></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/github/license/SuperMonster003/AutoJs6-Plugin-R8-Compiler?label=License" /></a>
+  </p>
 
   <p>AutoJs6용 독립 R8 컴파일러 플러그인. 격리된 프로세스에서 완전한 release 프로필 (shrink + optimize + obfuscate)로 스크립트 JAR를 DEX로 컴파일합니다</p>
 
@@ -293,9 +298,9 @@ plugin id: r8-compiler
 protocol provider id: autojs6-r8
 engine: r8-compiler
 variant: r8
-protocol: 1.0
+protocol: 1.0–1.1
 api namespace: org.autojs.plugin.r8compiler.api
-distribution: org.autojs.plugin.r8compiler:r8-compiler-api:0.1.0
+distribution: org.autojs.plugin.r8compiler:r8-compiler-api:0.2.0
 cache domain: autojs6:r8-compiler:v1
 ```
 
@@ -342,11 +347,18 @@ cache domain: autojs6:r8-compiler:v1
 
 ******
 
+# v0.2.1
+
+###### 2026/09/13
+
+* `개선` 다국어 리소스 통일, 명시적인 플러그인 활성화 및 릴리스 산출물 검증
+
 # v0.2.0
 
-###### 2026/09/11
+###### 2026/09/13
 
 * `개선` 빌드 시 의도하지 않은 네이티브 의존성을 거부하고 JSON 보고서 생성
+* `개선` 다국어 리소스 통일, 명시적인 플러그인 활성화 및 릴리스 산출물 검증
 
 # v0.1.0-provider-dev-private.1 (local.5)
 
@@ -357,13 +369,6 @@ cache domain: autojs6:r8-compiler:v1
 * `기능` 바이트 검증된 Android 36 플랫폼 라이브러리를 R8 컴파일 라이브러리로 내장하여 기기 boot classpath 의존을 제거; boot JAR가 리소스 껍데기뿐인 기기에서의 컴파일 실패를 수정
 * `기능` provider 시작과 엔진 가져오기 실패까지 다루는, 상한이 있고 경로가 마스킹된 R8 진단 수집 추가
 * `개선` API 25/28/37 (16 KiB 페이지 크기 에뮬레이터 포함)의 ART에서 최적화된 출력 검증: 리플렉션, 런타임 합성 클래스 이름, 직렬화, 스크립트 진입점, 제거 미끼 확인, arm64/x86/x86_64 JNI 호출, mapping 해시 검증 후 R8 Retrace 스택 복원
-
-# v0.1.0-provider-dev (local.4)
-
-###### 2026/08/25
-
-* `수정` `/proc/self/fdinfo` 접근 모드 검사를 0바이트 공개 `Os.read`/`Os.write` 커널 프로브로 교체하여 일부 기기 (예: Sony API 28)의 procfs 제한을 해결; `Os.fstat` 별칭 거부는 유지
-* `개선` 실기기 1대와 에뮬레이터 2대 (API 25/28)에서 APK 간 Binder/PFD 기기 수용 완료: 정상 경로, 수명 주기, 악의적 입력, 프로세스 종료 -- 9/9 테스트 통과
 
 ##### 추가 릴리스
 
@@ -391,7 +396,7 @@ cache domain: autojs6:r8-compiler:v1
 
 ```text
 protocol-wire-api-0.1.0.aar
-r8-compiler-api-0.1.0.aar
+r8-compiler-api-0.2.0.aar
 ```
 
 컴파일러는 Maven에서 고정된 R8 8.13.17로 가져옵니다. 공식 릴리스는 `scripts/` 아래의 게시·검증 스크립트 (append-only 로컬 릴리스 디렉터리, 두 스냅샷 재현 빌드, 게이트별 검증)를 사용합니다; 일상적인 디버깅에는 위의 Gradle 명령이면 충분합니다.

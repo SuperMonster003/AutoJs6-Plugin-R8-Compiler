@@ -1,7 +1,12 @@
 <!--suppress HtmlDeprecatedAttribute, HttpUrlsUsage -->
 
 <div align="center">
-  <h1>AutoJs6-Plugin-R8-Compiler</h1>
+  <p><img src="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="R8 Compiler icon" width="128" /></p>
+  <p>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/releases"><img alt="Release" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-R8-Compiler?label=Release" /></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/issues"><img alt="Issues" src="https://img.shields.io/github/issues/SuperMonster003/AutoJs6-Plugin-R8-Compiler?label=Issues" /></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/github/license/SuperMonster003/AutoJs6-Plugin-R8-Compiler?label=License" /></a>
+  </p>
 
   <p>Plugin compilador R8 independiente para AutoJs6. Compila los JAR de script a DEX con el perfil release completo (shrink + optimize + obfuscate) en un proceso aislado</p>
 
@@ -293,9 +298,9 @@ plugin id: r8-compiler
 protocol provider id: autojs6-r8
 engine: r8-compiler
 variant: r8
-protocol: 1.0
+protocol: 1.0–1.1
 api namespace: org.autojs.plugin.r8compiler.api
-distribution: org.autojs.plugin.r8compiler:r8-compiler-api:0.1.0
+distribution: org.autojs.plugin.r8compiler:r8-compiler-api:0.2.0
 cache domain: autojs6:r8-compiler:v1
 ```
 
@@ -342,28 +347,28 @@ El desarrollo avanza mediante gates verificables: G1 congelación del contrato, 
 
 ******
 
+# v0.2.1
+
+###### 2026/09/13
+
+* `Mejora` Recursos traducidos coherentes, activación explícita del complemento y validación de los paquetes de publicación
+
 # v0.2.0
 
-###### 2026/09/11
+###### 2026/09/13
 
 * `Mejora` La verificación de compilación rechaza dependencias nativas accidentales y genera un informe JSON
+* `Mejora` Recursos traducidos coherentes, activación explícita del complemento y validación de los paquetes de publicación
 
 # v0.1.0-provider-dev-private.1 (local.5)
 
 ###### 2026/08/25
 
-* `Consejo` Versión actual. Publicada como prelanzamiento privado de GitHub (5 recursos: APK firmado, dos AAR de contrato congelados, manifiesto de release y SHA256SUMS, todos vueltos a descargar y verificados byte a byte); aún sin publicación pública
-* `Consejo` Inerte por defecto tras la instalación; debe habilitarse manualmente en las opciones de desarrollador de AutoJs6 -- ver la sección "Instalación y uso" del README
+* `Aviso` Versión actual. Publicada como prelanzamiento privado de GitHub (5 recursos: APK firmado, dos AAR de contrato congelados, manifiesto de release y SHA256SUMS, todos vueltos a descargar y verificados byte a byte); aún sin publicación pública
+* `Aviso` Inerte por defecto tras la instalación; debe habilitarse manualmente en las opciones de desarrollador de AutoJs6 -- ver la sección "Instalación y uso" del README
 * `Función` Incluir una biblioteca de plataforma Android 36 verificada byte a byte como biblioteca del compilador R8, en lugar de depender del boot classpath del dispositivo; corrige fallos de compilación en dispositivos cuyos JAR de boot son solo cascarones de recursos
 * `Función` Añadir recolección de diagnósticos R8 acotada y con rutas censuradas, cubriendo el arranque del provider y los fallos de importación del motor
 * `Mejora` Verificar la salida optimizada en ART en API 25/28/37 (incluido un emulador con páginas de 16 KiB): reflexión, nombres de clase compuestos en tiempo de ejecución, serialización, la entrada para scripts, comprobaciones del señuelo eliminado, llamadas JNI arm64/x86/x86_64, y restauración de pilas con R8 Retrace tras verificar el hash del mapping
-
-# v0.1.0-provider-dev (local.4)
-
-###### 2026/08/25
-
-* `Corrección` Sustituir la inspección del modo de acceso por `/proc/self/fdinfo` por sondas de kernel públicas `Os.read`/`Os.write` de cero bytes, resolviendo las restricciones de procfs de algunos dispositivos (como Sony API 28) y conservando el rechazo de alias con `Os.fstat`
-* `Mejora` Completar la aceptación de dispositivo Binder/PFD entre APK en 1 dispositivo físico y 2 emuladores (API 25/28): camino feliz, ciclo de vida, entrada hostil y muerte de proceso -- 9/9 pruebas superadas
 
 ##### Más versiones
 
@@ -391,7 +396,7 @@ La ABI del protocolo proviene de los AAR de contrato 0.1.0 congelados dentro del
 
 ```text
 protocol-wire-api-0.1.0.aar
-r8-compiler-api-0.1.0.aar
+r8-compiler-api-0.2.0.aar
 ```
 
 El compilador se obtiene de Maven como R8 8.13.17 fijado. Las releases oficiales usan los scripts de publicación y verificación bajo `scripts/` (directorio de release local append-only, compilaciones reproducibles de dos instantáneas y verificación por gate); para la depuración diaria bastan los comandos de Gradle de arriba.

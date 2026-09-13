@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">AutoJs6 R8 Compiler</string>
     <string name="app_summary">為 AutoJs6 提供完整 release 配置的 R8 編譯服務</string>
+    <string name="changelog_load_error">無法讀取內置更新日誌.</string>
+    <string name="changelog_title">更新日誌</string>
+    <string name="open_changelog">查看更新日誌</string>
+    <string name="plugin_description">壓縮, 最佳化和混淆 Java 位元碼</string>
+    <string name="service_available">可用</string>
+    <string name="service_component_value">元件\n%1$s</string>
+    <string name="service_label">編譯服務</string>
+    <string name="service_status_note">此狀態只表示服務元件已安裝並可用.請另外在 AutoJs6 開發者選項中選擇並啟用 provider.</string>
+    <string name="service_unavailable">不可用或已停用</string>
     <string name="version_label">版本</string>
     <string name="version_value">插件 %1$s\nR8 %2$s</string>
-    <string name="service_label">編譯服務</string>
-    <string name="service_available">可用</string>
-    <string name="service_unavailable">不可用或已停用</string>
-    <string name="service_component_value">元件\n%1$s</string>
-    <string name="service_status_note">此狀態只表示服務元件已安裝並可用。請另外在 AutoJs6 開發者選項中選擇並啟用 provider。</string>
-    <string name="open_changelog">查看更新日誌</string>
-    <string name="changelog_title">更新日誌</string>
-    <string name="changelog_load_error">無法讀取內置更新日誌。</string>
 </resources>

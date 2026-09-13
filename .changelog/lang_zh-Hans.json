@@ -5,10 +5,17 @@
   "changelog_label_improvement": "优化",
   "changelog_label_dependency": "依赖",
   "$data": {
-    "v0.2.0": {
-      "released_date": "2026/09/11",
+    "v0.2.1": {
+      "released_date": "2026/09/13",
       "improvement": [
-        "构建阶段阻止意外引入原生依赖, 并输出 JSON 校验报告"
+        "统一多语言资源, 明确插件激活契约并校验发布产物"
+      ]
+    },
+    "v0.2.0": {
+      "released_date": "2026/09/13",
+      "improvement": [
+        "构建阶段阻止意外引入原生依赖, 并输出 JSON 校验报告",
+        "统一多语言资源, 明确插件激活契约并校验发布产物"
       ]
     },
     "v0.1.0-provider-dev-private.1 (local.5)": {

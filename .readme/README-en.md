@@ -1,7 +1,12 @@
 <!--suppress HtmlDeprecatedAttribute, HttpUrlsUsage -->
 
 <div align="center">
-  <h1>AutoJs6-Plugin-R8-Compiler</h1>
+  <p><img src="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="R8 Compiler icon" width="128" /></p>
+  <p>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/releases"><img alt="Release" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-R8-Compiler?label=Release" /></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/issues"><img alt="Issues" src="https://img.shields.io/github/issues/SuperMonster003/AutoJs6-Plugin-R8-Compiler?label=Issues" /></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/github/license/SuperMonster003/AutoJs6-Plugin-R8-Compiler?label=License" /></a>
+  </p>
 
   <p>Standalone R8 compiler plugin for AutoJs6. Compiles script JARs into DEX with the full release profile (shrink + optimize + obfuscate) in an isolated process</p>
 
@@ -293,9 +298,9 @@ plugin id: r8-compiler
 protocol provider id: autojs6-r8
 engine: r8-compiler
 variant: r8
-protocol: 1.0
+protocol: 1.0–1.1
 api namespace: org.autojs.plugin.r8compiler.api
-distribution: org.autojs.plugin.r8compiler:r8-compiler-api:0.1.0
+distribution: org.autojs.plugin.r8compiler:r8-compiler-api:0.2.0
 cache domain: autojs6:r8-compiler:v1
 ```
 
@@ -342,11 +347,18 @@ Development proceeds through verifiable gates: G1 contract freeze, G2 provider i
 
 ******
 
+# v0.2.1
+
+###### 2026/09/13
+
+* `Improvement` Consistent localized resources, explicit plugin activation and validated release preparation
+
 # v0.2.0
 
-###### 2026/09/11
+###### 2026/09/13
 
 * `Improvement` Build verification rejects accidental native dependencies and produces a JSON report
+* `Improvement` Consistent localized resources, explicit plugin activation and validated release preparation
 
 # v0.1.0-provider-dev-private.1 (local.5)
 
@@ -357,13 +369,6 @@ Development proceeds through verifiable gates: G1 contract freeze, G2 provider i
 * `Feature` Bundle a byte-verified Android 36 platform library as the R8 compiler library instead of relying on the device boot classpath; fixes compile failures on devices whose boot JARs are resource-only shells
 * `Feature` Add bounded, path-redacted R8 diagnostics collection covering provider startup and engine import failures
 * `Improvement` Verify optimized output on ART at API 25/28/37 (including a 16 KiB page-size emulator): reflection, runtime-composed class names, serialization, the script-facing entry, removed-decoy checks, arm64/x86/x86_64 JNI calls, and R8 Retrace stack restoration after mapping-hash verification
-
-# v0.1.0-provider-dev (local.4)
-
-###### 2026/08/25
-
-* `Fix` Replace `/proc/self/fdinfo` access-mode inspection with zero-byte public `Os.read`/`Os.write` kernel probes, resolving procfs restrictions on some devices (such as Sony API 28) while retaining `Os.fstat` alias rejection
-* `Improvement` Complete cross-APK Binder/PFD device acceptance on 1 physical device and 2 emulators (API 25/28): happy path, lifecycle, hostile input, and process death -- 9/9 tests passing
 
 ##### More releases
 
@@ -391,7 +396,7 @@ The protocol ABI comes from the frozen 0.1.0 contract AARs inside the repository
 
 ```text
 protocol-wire-api-0.1.0.aar
-r8-compiler-api-0.1.0.aar
+r8-compiler-api-0.2.0.aar
 ```
 
 The compiler is pulled from Maven as pinned R8 8.13.17. Official releases use the publishing and verification scripts under `scripts/` (append-only local release directory, two-snapshot reproducible builds, and per-gate verification); for day-to-day debugging the Gradle commands above are all you need.

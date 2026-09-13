@@ -1,0 +1,10 @@
+{
+  "file": "libs/common-plugin-api.aar",
+  "source": "AutoJs6 common plugin API, copied byte-for-byte from the pinned Pinyin repository artifact",
+  "copiedFromRepository": "https://github.com/SuperMonster003/AutoJs6-Plugin-Pinyin",
+  "copiedFromRevision": "f7dfc0b494940ad0ed998d989d2af873b20dedfa",
+  "copiedFromPath": "libs/common-plugin-api.aar",
+  "apiSourceDirectory": "AutoJs6/plugin-api/common-plugin-api",
+  "sha256": "f9ff9676543f45b2ff2b64bb832d377dbd5b7003acf3bb4239e98556c68b246f",
+  "license": "MPL-2.0"
+}

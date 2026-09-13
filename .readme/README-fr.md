@@ -1,7 +1,12 @@
 <!--suppress HtmlDeprecatedAttribute, HttpUrlsUsage -->
 
 <div align="center">
-  <h1>AutoJs6-Plugin-R8-Compiler</h1>
+  <p><img src="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="R8 Compiler icon" width="128" /></p>
+  <p>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/releases"><img alt="Release" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-R8-Compiler?label=Release" /></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/issues"><img alt="Issues" src="https://img.shields.io/github/issues/SuperMonster003/AutoJs6-Plugin-R8-Compiler?label=Issues" /></a>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-R8-Compiler/blob/master/LICENSE"><img alt="License" src="https://img.shields.io/github/license/SuperMonster003/AutoJs6-Plugin-R8-Compiler?label=License" /></a>
+  </p>
 
   <p>Plugin compilateur R8 autonome pour AutoJs6. Compile les JAR de script en DEX avec le profil release complet (shrink + optimize + obfuscate) dans un processus isolé</p>
 
@@ -293,9 +298,9 @@ plugin id: r8-compiler
 protocol provider id: autojs6-r8
 engine: r8-compiler
 variant: r8
-protocol: 1.0
+protocol: 1.0–1.1
 api namespace: org.autojs.plugin.r8compiler.api
-distribution: org.autojs.plugin.r8compiler:r8-compiler-api:0.1.0
+distribution: org.autojs.plugin.r8compiler:r8-compiler-api:0.2.0
 cache domain: autojs6:r8-compiler:v1
 ```
 
@@ -342,28 +347,28 @@ Le développement avance par gates vérifiables : G1 gel du contrat, G2 impléme
 
 ******
 
+# v0.2.1
+
+###### 2026/09/13
+
+* `Amélioration` Ressources traduites cohérentes, activation explicite du plugin et validation des paquets de publication
+
 # v0.2.0
 
-###### 2026/09/11
+###### 2026/09/13
 
 * `Amélioration` La vérification de compilation rejette les dépendances natives involontaires et produit un rapport JSON
+* `Amélioration` Ressources traduites cohérentes, activation explicite du plugin et validation des paquets de publication
 
 # v0.1.0-provider-dev-private.1 (local.5)
 
 ###### 2026/08/25
 
-* `Conseil` Version actuelle. Publiée en préversion GitHub privée (5 ressources : APK signé, deux AAR de contrat gelés, manifeste de release et SHA256SUMS, toutes retéléchargées et vérifiées octet par octet) ; pas encore de publication publique
-* `Conseil` Inerte par défaut après installation ; doit être activée manuellement dans les options développeur d'AutoJs6 -- voir la section « Installation et utilisation » du README
-* `Fonction` Embarquer une bibliothèque de plateforme Android 36 vérifiée octet par octet comme bibliothèque de compilation R8, au lieu de dépendre du boot classpath de l'appareil ; corrige les échecs de compilation sur les appareils dont les JAR de boot ne sont que des coquilles de ressources
-* `Fonction` Ajouter une collecte de diagnostics R8 bornée et expurgée des chemins, couvrant le démarrage du provider et les échecs d'import du moteur
+* `Note` Version actuelle. Publiée en préversion GitHub privée (5 ressources : APK signé, deux AAR de contrat gelés, manifeste de release et SHA256SUMS, toutes retéléchargées et vérifiées octet par octet) ; pas encore de publication publique
+* `Note` Inerte par défaut après installation ; doit être activée manuellement dans les options développeur d'AutoJs6 -- voir la section « Installation et utilisation » du README
+* `Fonctionnalité` Embarquer une bibliothèque de plateforme Android 36 vérifiée octet par octet comme bibliothèque de compilation R8, au lieu de dépendre du boot classpath de l'appareil ; corrige les échecs de compilation sur les appareils dont les JAR de boot ne sont que des coquilles de ressources
+* `Fonctionnalité` Ajouter une collecte de diagnostics R8 bornée et expurgée des chemins, couvrant le démarrage du provider et les échecs d'import du moteur
 * `Amélioration` Vérifier la sortie optimisée sur ART aux API 25/28/37 (y compris un émulateur à pages de 16 KiB) : réflexion, noms de classes composés à l'exécution, sérialisation, entrée côté script, contrôles du leurre supprimé, appels JNI arm64/x86/x86_64, et restauration de pile R8 Retrace après vérification du hachage du mapping
-
-# v0.1.0-provider-dev (local.4)
-
-###### 2026/08/25
-
-* `Correction` Remplacer l'inspection du mode d'accès via `/proc/self/fdinfo` par des sondes noyau publiques `Os.read`/`Os.write` à zéro octet, résolvant les restrictions procfs de certains appareils (comme Sony API 28) tout en conservant le rejet des alias `Os.fstat`
-* `Amélioration` Terminer l'acceptation Binder/PFD inter-APK sur 1 appareil physique et 2 émulateurs (API 25/28) : chemin nominal, cycle de vie, entrées hostiles et mort de processus -- 9/9 tests réussis
 
 ##### Autres versions
 
@@ -391,7 +396,7 @@ L'ABI du protocole provient des AAR de contrat 0.1.0 gelés dans le dépôt (sou
 
 ```text
 protocol-wire-api-0.1.0.aar
-r8-compiler-api-0.1.0.aar
+r8-compiler-api-0.2.0.aar
 ```
 
 Le compilateur est tiré de Maven en tant que R8 8.13.17 épinglé. Les releases officielles utilisent les scripts de publication et de vérification sous `scripts/` (répertoire de release local append-only, builds reproductibles à deux instantanés et vérification par gate) ; pour le débogage quotidien, les commandes Gradle ci-dessus suffisent.

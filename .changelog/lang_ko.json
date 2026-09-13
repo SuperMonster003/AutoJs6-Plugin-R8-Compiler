@@ -5,10 +5,17 @@
   "changelog_label_improvement": "개선",
   "changelog_label_dependency": "의존성",
   "$data": {
-    "v0.2.0": {
-      "released_date": "2026/09/11",
+    "v0.2.1": {
+      "released_date": "2026/09/13",
       "improvement": [
-        "빌드 시 의도하지 않은 네이티브 의존성을 거부하고 JSON 보고서 생성"
+        "다국어 리소스 통일, 명시적인 플러그인 활성화 및 릴리스 산출물 검증"
+      ]
+    },
+    "v0.2.0": {
+      "released_date": "2026/09/13",
+      "improvement": [
+        "빌드 시 의도하지 않은 네이티브 의존성을 거부하고 JSON 보고서 생성",
+        "다국어 리소스 통일, 명시적인 플러그인 활성화 및 릴리스 산출물 검증"
       ]
     },
     "v0.1.0-provider-dev-private.1 (local.5)": {

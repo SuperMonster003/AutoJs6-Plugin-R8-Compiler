@@ -1,14 +1,21 @@
 {
-  "changelog_label_hint": "Consejo",
+  "changelog_label_hint": "Aviso",
   "changelog_label_feature": "Función",
   "changelog_label_fix": "Corrección",
   "changelog_label_improvement": "Mejora",
   "changelog_label_dependency": "Dependencia",
   "$data": {
-    "v0.2.0": {
-      "released_date": "2026/09/11",
+    "v0.2.1": {
+      "released_date": "2026/09/13",
       "improvement": [
-        "La verificación de compilación rechaza dependencias nativas accidentales y genera un informe JSON"
+        "Recursos traducidos coherentes, activación explícita del complemento y validación de los paquetes de publicación"
+      ]
+    },
+    "v0.2.0": {
+      "released_date": "2026/09/13",
+      "improvement": [
+        "La verificación de compilación rechaza dependencias nativas accidentales y genera un informe JSON",
+        "Recursos traducidos coherentes, activación explícita del complemento y validación de los paquetes de publicación"
       ]
     },
     "v0.1.0-provider-dev-private.1 (local.5)": {

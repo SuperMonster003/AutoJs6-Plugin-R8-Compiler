@@ -14,6 +14,11 @@ import java.nio.file.Files
 import java.nio.file.StandardCopyOption
 import java.security.MessageDigest
 import java.util.UUID
+import java.util.Properties
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 
 abstract class PrepareR8PlatformLibraryAsset : DefaultTask() {
     @get:InputFile
@@ -83,18 +88,34 @@ plugins {
 val pinnedR8Version = libs.versions.r8.get()
 val pinnedAndroidPlatformLibrarySha256 = "d9eb9da824d9e247a352f570f01e1169e725b2954bca9e283a71786c59b59f9a"
 val pinnedAndroidPlatformLibrarySize = 27_768_026L
+val repositoryVersions = Properties().apply {
+    rootProject.file("version.properties").inputStream().use { load(it) }
+}
+val releaseSigning = Properties().apply {
+    rootProject.file("sign.properties").takeIf { it.isFile }?.inputStream()?.use { load(it) }
+}
+val hasReleaseSigning = listOf("storeFile", "storePassword", "keyAlias", "keyPassword")
+    .all { !releaseSigning.getProperty(it).isNullOrBlank() }
 
 android {
     namespace = "io.github.supermonster003.autojs6.plugin.r8compiler"
-    compileSdk = 36
+    compileSdk = repositoryVersions.getProperty("COMPILE_SDK_VERSION").toInt()
 
     defaultConfig {
         applicationId = "io.github.supermonster003.autojs6.plugin.r8compiler"
-        minSdk = 24
-        targetSdk = 36
-        versionCode = 1
-        versionName = "0.2.0-provider-dev"
+        minSdk = repositoryVersions.getProperty("MIN_SDK_VERSION").toInt()
+        targetSdk = repositoryVersions.getProperty("TARGET_SDK_VERSION").toInt()
+        versionCode = repositoryVersions.getProperty("VERSION_BUILD").toInt()
+        versionName = repositoryVersions.getProperty("VERSION_NAME")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        resValue("string", "app_name", "R8 Compiler")
+        resValue("string", "plugin_author", "SuperMonster003")
+        resValue("string", "plugin_id", "r8-compiler")
+        resValue("string", "plugin_engine", "r8-compiler")
+        resValue("string", "plugin_variant", "r8")
+        resValue("string", "plugin_version_date", SimpleDateFormat("MMM d, yyyy", Locale.US).apply {
+            timeZone = TimeZone.getTimeZone("GMT+08:00")
+        }.format(Date(repositoryVersions.getProperty("BUILD_TIME").toLong())))
 
         buildConfigField("String", "R8_COMPILER_VERSION", "\"$pinnedR8Version\"")
         buildConfigField(
@@ -105,17 +126,32 @@ android {
         buildConfigField("long", "R8_PLATFORM_LIBRARY_SIZE_BYTES", "${pinnedAndroidPlatformLibrarySize}L")
     }
 
+    signingConfigs {
+        if (hasReleaseSigning) {
+            create("release") {
+                storeFile = file(releaseSigning.getProperty("storeFile"))
+                storePassword = releaseSigning.getProperty("storePassword")
+                keyAlias = releaseSigning.getProperty("keyAlias")
+                keyPassword = releaseSigning.getProperty("keyPassword")
+            }
+        }
+    }
+
     buildTypes {
         debug {
             isMinifyEnabled = false
+            if (hasReleaseSigning) signingConfig = signingConfigs.getByName("release")
         }
         release {
+            // R8 is itself the compiler payload; shrinking it can remove reflectively loaded code.
             isMinifyEnabled = false
+            if (hasReleaseSigning) signingConfig = signingConfigs.getByName("release")
         }
     }
 
     buildFeatures {
         buildConfig = true
+        resValues = true
     }
 
     compileOptions {
@@ -162,6 +198,7 @@ androidComponents.onVariants(androidComponents.selector().all()) { variant ->
 }
 
 dependencies {
+    implementation(files(rootProject.file("libs/common-plugin-api.aar")))
     coreLibraryDesugaring(libs.desugar)
     implementation(
         files(
@@ -189,3 +226,7 @@ tasks.withType<Test>().configureEach {
 
 // Reject accidental native dependencies on every ABI.
 nativeAlignment { expectNoNativeLibraries.set(true) }
+
+tasks.withType<JavaCompile>().configureEach { options.encoding = "UTF-8" }
+
+apply(from = rootProject.file("gradle/release-archive.gradle"))
