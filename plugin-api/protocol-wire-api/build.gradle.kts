@@ -1,21 +1,28 @@
+import java.util.Properties
+
 plugins {
     id("com.android.library")
+}
+
+// The SDK levels follow the repository's version.properties, like the app module.
+val repositoryVersions = Properties().apply {
+    rootProject.file("version.properties").inputStream().use { load(it) }
 }
 
 android {
     namespace = "org.autojs.plugin.protocol.wire"
 
-    compileSdk = 36
+    compileSdk = repositoryVersions.getProperty("COMPILE_SDK_VERSION").toInt()
 
     defaultConfig {
-        minSdk = 24
+        minSdk = repositoryVersions.getProperty("MIN_SDK_VERSION").toInt()
         consumerProguardFiles("consumer-rules.pro")
     }
 
     lint {
-        targetSdk = 36
+        targetSdk = repositoryVersions.getProperty("TARGET_SDK_VERSION").toInt()
         abortOnError = true
-        // Protocol 0.1 is intentionally frozen to the API 24-36 compatibility range.
+        // Protocol 0.1 is intentionally frozen; its compatibility range starts at the minSdk above.
         disable += "GradleDependency"
     }
 
