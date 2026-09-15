@@ -1,6 +1,5 @@
 package io.github.supermonster003.autojs6.plugin.r8compiler
 
-import junit.framework.TestCase
 import org.autojs.plugin.r8compiler.api.R8CompilerCodec
 import org.autojs.plugin.r8compiler.api.R8CompilerContract
 import org.autojs.plugin.r8compiler.api.R8CompilerProfile
@@ -11,12 +10,15 @@ import org.autojs.plugin.r8compiler.api.R8RetraceInputRole
 import org.autojs.plugin.r8compiler.api.R8RetraceMetadata
 import org.autojs.plugin.r8compiler.api.R8RetraceRequest
 import org.autojs.plugin.r8compiler.api.R8Sha256
+import org.junit.Assert.assertTrue
+import org.junit.Test
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.nio.charset.StandardCharsets
 import java.util.UUID
 
-class R8RetraceAndroidTest : TestCase() {
+class R8RetraceAndroidTest {
+    @Test
     fun testEmbeddedR8RetracesRealObfuscatedFrameOnDevice() {
         val capabilities = R8CompilerRuntime.retraceCapabilities()
         val mapping = (
