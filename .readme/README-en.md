@@ -347,6 +347,12 @@ Development proceeds through verifiable gates: G1 contract freeze, G2 provider i
 
 ******
 
+# v0.2.2
+
+###### 2026/09/15
+
+* `Improvement` Raise compileSdk and targetSdk to 37 (Android 17); the plugin's behavior does not depend on the new target
+
 # v0.2.1
 
 ###### 2026/09/13
@@ -359,16 +365,6 @@ Development proceeds through verifiable gates: G1 contract freeze, G2 provider i
 
 * `Improvement` Build verification rejects accidental native dependencies and produces a JSON report
 * `Improvement` Consistent localized resources, explicit plugin activation and validated release preparation
-
-# v0.1.0-provider-dev-private.1 (local.5)
-
-###### 2026/08/25
-
-* `Hint` Current release. Published as a private GitHub prerelease (5 assets: signed APK, two frozen contract AARs, release manifest, and SHA256SUMS, all re-downloaded and byte-verified); not publicly released yet
-* `Hint` Inert after installation by default; it must be enabled manually in AutoJs6 developer options -- see the "Installation and usage" section of the README
-* `Feature` Bundle a byte-verified Android 36 platform library as the R8 compiler library instead of relying on the device boot classpath; fixes compile failures on devices whose boot JARs are resource-only shells
-* `Feature` Add bounded, path-redacted R8 diagnostics collection covering provider startup and engine import failures
-* `Improvement` Verify optimized output on ART at API 25/28/37 (including a 16 KiB page-size emulator): reflection, runtime-composed class names, serialization, the script-facing entry, removed-decoy checks, arm64/x86/x86_64 JNI calls, and R8 Retrace stack restoration after mapping-hash verification
 
 ##### More releases
 
@@ -390,7 +386,7 @@ Release build:
 .\gradlew.bat :app:assembleRelease
 ```
 
-Building requires JDK 17 or later (21 recommended) and Android SDK Platform 36: the build script byte-verifies `platforms/android-36/android.jar` and bundles it as the compiler-library asset, aborting on any mismatch. Current minSdk is 24 and targetSdk is 36.
+Building requires JDK 17 or later (21 recommended) and Android SDK Platform 36: the build script byte-verifies `platforms/android-36/android.jar` and bundles it as the compiler-library asset, aborting on any mismatch. Current minSdk is 24 and targetSdk is 37.
 
 The protocol ABI comes from the frozen 0.1.0 contract AARs inside the repository (under `plugin-api/r8-compiler-api/releases/0.1.0/`); the app consumes those AAR bytes rather than their source projects:
 

@@ -91,7 +91,7 @@
   "h5_for_more_release_history": "その他のリリース",
   "h3_build": "ビルド",
   "text_release_build": "リリースビルド",
-  "p_build_params": "ビルドには JDK 17 以降 (21 推奨) と Android SDK Platform 36 が必要です: ビルドスクリプトが `platforms/android-36/android.jar` をバイト検証してコンパイルライブラリ資産として同梱し, 不一致があれば中断します. 現在の minSdk は 24, targetSdk は 36 です",
+  "p_build_params": "ビルドには JDK 17 以降 (21 推奨) と Android SDK Platform 36 が必要です: ビルドスクリプトが `platforms/android-36/android.jar` をバイト検証してコンパイルライブラリ資産として同梱し, 不一致があれば中断します. 現在の minSdk は 24, targetSdk は 37 です",
   "p_local_aars": "プロトコル ABI はリポジトリ内の凍結済み 0.1.0 契約 AAR (`plugin-api/r8-compiler-api/releases/0.1.0/` 配下) が提供します; アプリはソースプロジェクトではなくこれらの AAR バイトを消費します",
   "p_build_architecture": "コンパイラは Maven から固定された {{ compiler_dependency }} として取得します. 正式リリースは `scripts/` 配下の公開・検証スクリプト (append-only なローカルリリースディレクトリ, 2 スナップショットの再現ビルド, Gate ごとの検証) を使います; 日常のデバッグには上記の Gradle コマンドで十分です.",
   "h3_license": "ライセンス",

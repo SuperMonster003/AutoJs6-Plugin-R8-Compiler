@@ -91,7 +91,7 @@
   "h5_for_more_release_history": "More releases",
   "h3_build": "Build",
   "text_release_build": "Release build",
-  "p_build_params": "Building requires JDK 17 or later (21 recommended) and Android SDK Platform 36: the build script byte-verifies `platforms/android-36/android.jar` and bundles it as the compiler-library asset, aborting on any mismatch. Current minSdk is 24 and targetSdk is 36",
+  "p_build_params": "Building requires JDK 17 or later (21 recommended) and Android SDK Platform 36: the build script byte-verifies `platforms/android-36/android.jar` and bundles it as the compiler-library asset, aborting on any mismatch. Current minSdk is 24 and targetSdk is 37",
   "p_local_aars": "The protocol ABI comes from the frozen 0.1.0 contract AARs inside the repository (under `plugin-api/r8-compiler-api/releases/0.1.0/`); the app consumes those AAR bytes rather than their source projects",
   "p_build_architecture": "The compiler is pulled from Maven as pinned {{ compiler_dependency }}. Official releases use the publishing and verification scripts under `scripts/` (append-only local release directory, two-snapshot reproducible builds, and per-gate verification); for day-to-day debugging the Gradle commands above are all you need.",
   "h3_license": "License",

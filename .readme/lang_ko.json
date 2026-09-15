@@ -91,7 +91,7 @@
   "h5_for_more_release_history": "추가 릴리스",
   "h3_build": "빌드",
   "text_release_build": "릴리스 빌드",
-  "p_build_params": "빌드에는 JDK 17 이상 (21 권장)과 Android SDK Platform 36이 필요합니다: 빌드 스크립트가 `platforms/android-36/android.jar`를 바이트 단위로 검증해 컴파일 라이브러리 에셋으로 내장하며, 불일치 시 중단합니다. 현재 minSdk는 24, targetSdk는 36입니다",
+  "p_build_params": "빌드에는 JDK 17 이상 (21 권장)과 Android SDK Platform 36이 필요합니다: 빌드 스크립트가 `platforms/android-36/android.jar`를 바이트 단위로 검증해 컴파일 라이브러리 에셋으로 내장하며, 불일치 시 중단합니다. 현재 minSdk는 24, targetSdk는 37입니다",
   "p_local_aars": "프로토콜 ABI는 저장소 안의 동결된 0.1.0 계약 AAR (`plugin-api/r8-compiler-api/releases/0.1.0/` 아래)가 제공합니다; 앱은 소스 프로젝트가 아니라 이 AAR 바이트를 소비합니다",
   "p_build_architecture": "컴파일러는 Maven에서 고정된 {{ compiler_dependency }}로 가져옵니다. 공식 릴리스는 `scripts/` 아래의 게시·검증 스크립트 (append-only 로컬 릴리스 디렉터리, 두 스냅샷 재현 빌드, 게이트별 검증)를 사용합니다; 일상적인 디버깅에는 위의 Gradle 명령이면 충분합니다.",
   "h3_license": "라이선스",
