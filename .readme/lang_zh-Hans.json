@@ -91,7 +91,7 @@
   "h5_for_more_release_history": "更多版本",
   "h3_build": "构建",
   "text_release_build": "发布构建",
-  "p_build_params": "构建要求 JDK 17 或更高 (建议 21) 与 Android SDK Platform 36: 构建脚本会按字节校验 `platforms/android-36/android.jar` 并将其内置为编译库资产, 校验失败即终止构建. 当前 minSdk 为 24, targetSdk 为 36",
+  "p_build_params": "构建要求 JDK 17 或更高 (建议 21) 与 Android SDK Platform 36: 构建脚本会按字节校验 `platforms/android-36/android.jar` 并将其内置为编译库资产, 校验失败即终止构建. 当前 minSdk 为 24, targetSdk 为 37",
   "p_local_aars": "协议 ABI 由仓库内冻结的 0.1.0 契约 AAR 提供 (位于 `plugin-api/r8-compiler-api/releases/0.1.0/`), 应用消费的是这些 AAR 字节而非其源码工程",
   "p_build_architecture": "编译器通过 Maven 引入固定版本 {{ compiler_dependency }}. 正式发布使用 `scripts/` 目录下的发布与验证脚本 (append-only 本地发布目录, 双快照可复现构建与逐 Gate 校验); 日常调试直接使用上方 Gradle 命令即可.",
   "h3_license": "许可证",

@@ -347,6 +347,12 @@ cache domain: autojs6:r8-compiler:v1
 
 ******
 
+# v0.2.2
+
+###### 2026/09/15
+
+* `优化` 将 compileSdk 与 targetSdk 提升到 37 (Android 17), 插件行为不受新目标版本影响
+
 # v0.2.1
 
 ###### 2026/09/13
@@ -359,16 +365,6 @@ cache domain: autojs6:r8-compiler:v1
 
 * `优化` 构建阶段阻止意外引入原生依赖, 并输出 JSON 校验报告
 * `优化` 统一多语言资源, 明确插件激活契约并校验发布产物
-
-# v0.1.0-provider-dev-private.1 (local.5)
-
-###### 2026/08/25
-
-* `提示` 当前版本. 通过私有 GitHub prerelease 发布 (含签名 APK, 两个冻结契约 AAR, 发布清单与 SHA256SUMS 共 5 项资产, 全部经重新下载与逐字节校验), 尚未公开发布
-* `提示` 安装后默认不生效, 需在 AutoJs6 开发者选项中手动启用; 详细步骤见 README 的 "安装与使用" 章节
-* `新增` 内置经字节校验的 Android 36 平台库作为 R8 编译库, 不再依赖设备 boot classpath; 修复部分设备上 boot JAR 为资源壳导致的编译失败
-* `新增` 添加有界且路径脱敏的 R8 诊断信息收集, 覆盖提供者启动与引擎导入失败场景
-* `优化` 在 API 25/28/37 (含 16 KiB 页大小模拟器) 的 ART 上完成优化产物运行验证: 反射, 动态类名, 序列化, 脚本入口, 移除诱饵检查, arm64/x86/x86_64 JNI 调用, 以及 mapping 哈希校验后的 R8 Retrace 堆栈还原
 
 ##### 更多版本
 
@@ -390,7 +386,7 @@ cache domain: autojs6:r8-compiler:v1
 .\gradlew.bat :app:assembleRelease
 ```
 
-构建要求 JDK 17 或更高 (建议 21) 与 Android SDK Platform 36: 构建脚本会按字节校验 `platforms/android-36/android.jar` 并将其内置为编译库资产, 校验失败即终止构建. 当前 minSdk 为 24, targetSdk 为 36.
+构建要求 JDK 17 或更高 (建议 21) 与 Android SDK Platform 36: 构建脚本会按字节校验 `platforms/android-36/android.jar` 并将其内置为编译库资产, 校验失败即终止构建. 当前 minSdk 为 24, targetSdk 为 37.
 
 协议 ABI 由仓库内冻结的 0.1.0 契约 AAR 提供 (位于 `plugin-api/r8-compiler-api/releases/0.1.0/`), 应用消费的是这些 AAR 字节而非其源码工程:
 

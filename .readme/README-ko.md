@@ -347,6 +347,12 @@ cache domain: autojs6:r8-compiler:v1
 
 ******
 
+# v0.2.2
+
+###### 2026/09/15
+
+* `개선` compileSdk 와 targetSdk 를 37 (Android 17) 로 올리며, 플러그인 동작은 새 대상 버전의 영향을 받지 않음
+
 # v0.2.1
 
 ###### 2026/09/13
@@ -359,16 +365,6 @@ cache domain: autojs6:r8-compiler:v1
 
 * `개선` 빌드 시 의도하지 않은 네이티브 의존성을 거부하고 JSON 보고서 생성
 * `개선` 다국어 리소스 통일, 명시적인 플러그인 활성화 및 릴리스 산출물 검증
-
-# v0.1.0-provider-dev-private.1 (local.5)
-
-###### 2026/08/25
-
-* `힌트` 현재 버전. 비공개 GitHub 프리릴리스로 게시 (서명된 APK, 동결된 계약 AAR 2개, 릴리스 매니페스트, SHA256SUMS 등 5개 에셋, 전부 다시 다운로드하여 바이트 단위로 검증); 아직 공개 릴리스는 아닙니다
-* `힌트` 설치 후 기본적으로 비활성 상태입니다. AutoJs6 개발자 옵션에서 수동으로 활성화해야 합니다 -- README의 "설치 및 사용" 절을 참조하세요
-* `기능` 바이트 검증된 Android 36 플랫폼 라이브러리를 R8 컴파일 라이브러리로 내장하여 기기 boot classpath 의존을 제거; boot JAR가 리소스 껍데기뿐인 기기에서의 컴파일 실패를 수정
-* `기능` provider 시작과 엔진 가져오기 실패까지 다루는, 상한이 있고 경로가 마스킹된 R8 진단 수집 추가
-* `개선` API 25/28/37 (16 KiB 페이지 크기 에뮬레이터 포함)의 ART에서 최적화된 출력 검증: 리플렉션, 런타임 합성 클래스 이름, 직렬화, 스크립트 진입점, 제거 미끼 확인, arm64/x86/x86_64 JNI 호출, mapping 해시 검증 후 R8 Retrace 스택 복원
 
 ##### 추가 릴리스
 
@@ -390,7 +386,7 @@ cache domain: autojs6:r8-compiler:v1
 .\gradlew.bat :app:assembleRelease
 ```
 
-빌드에는 JDK 17 이상 (21 권장)과 Android SDK Platform 36이 필요합니다: 빌드 스크립트가 `platforms/android-36/android.jar`를 바이트 단위로 검증해 컴파일 라이브러리 에셋으로 내장하며, 불일치 시 중단합니다. 현재 minSdk는 24, targetSdk는 36입니다.
+빌드에는 JDK 17 이상 (21 권장)과 Android SDK Platform 36이 필요합니다: 빌드 스크립트가 `platforms/android-36/android.jar`를 바이트 단위로 검증해 컴파일 라이브러리 에셋으로 내장하며, 불일치 시 중단합니다. 현재 minSdk는 24, targetSdk는 37입니다.
 
 프로토콜 ABI는 저장소 안의 동결된 0.1.0 계약 AAR (`plugin-api/r8-compiler-api/releases/0.1.0/` 아래)가 제공합니다; 앱은 소스 프로젝트가 아니라 이 AAR 바이트를 소비합니다:
 

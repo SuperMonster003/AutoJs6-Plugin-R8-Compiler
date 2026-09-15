@@ -91,7 +91,7 @@
   "h5_for_more_release_history": "إصدارات أخرى",
   "h3_build": "البناء",
   "text_release_build": "بناء الإصدار",
-  "p_build_params": "يتطلب البناء JDK 17 أو أحدث (يُنصح بـ 21) و Android SDK Platform 36: يتحقق سكربت البناء بايتًا ببايت من `platforms/android-36/android.jar` ويضمّنه كأصل مكتبة المترجم, ويتوقف عند أي اختلاف. minSdk الحالي 24 و targetSdk هو 36",
+  "p_build_params": "يتطلب البناء JDK 17 أو أحدث (يُنصح بـ 21) و Android SDK Platform 36: يتحقق سكربت البناء بايتًا ببايت من `platforms/android-36/android.jar` ويضمّنه كأصل مكتبة المترجم, ويتوقف عند أي اختلاف. minSdk الحالي 24 و targetSdk هو 37",
   "p_local_aars": "يأتي ABI البروتوكول من ملفات AAR العقدية المجمّدة 0.1.0 داخل المستودع (تحت `plugin-api/r8-compiler-api/releases/0.1.0/`)؛ يستهلك التطبيق بايتات هذه الملفات لا مشاريعها المصدرية",
   "p_build_architecture": "يُجلب المترجم من Maven بوصفه {{ compiler_dependency }} مثبَّتًا. تستخدم الإصدارات الرسمية سكربتات النشر والتحقق تحت `scripts/` (مجلد إصدارات محلي append-only, وبناءات قابلة لإعادة الإنتاج بلقطتين, وتحقق لكل بوابة)؛ أما للتصحيح اليومي فتكفي أوامر Gradle أعلاه.",
   "h3_license": "الترخيص",

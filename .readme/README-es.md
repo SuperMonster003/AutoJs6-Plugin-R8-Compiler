@@ -347,6 +347,12 @@ El desarrollo avanza mediante gates verificables: G1 congelación del contrato, 
 
 ******
 
+# v0.2.2
+
+###### 2026/09/15
+
+* `Mejora` compileSdk y targetSdk suben a 37 (Android 17); el comportamiento del plugin no depende del nuevo objetivo
+
 # v0.2.1
 
 ###### 2026/09/13
@@ -359,16 +365,6 @@ El desarrollo avanza mediante gates verificables: G1 congelación del contrato, 
 
 * `Mejora` La verificación de compilación rechaza dependencias nativas accidentales y genera un informe JSON
 * `Mejora` Recursos traducidos coherentes, activación explícita del complemento y validación de los paquetes de publicación
-
-# v0.1.0-provider-dev-private.1 (local.5)
-
-###### 2026/08/25
-
-* `Aviso` Versión actual. Publicada como prelanzamiento privado de GitHub (5 recursos: APK firmado, dos AAR de contrato congelados, manifiesto de release y SHA256SUMS, todos vueltos a descargar y verificados byte a byte); aún sin publicación pública
-* `Aviso` Inerte por defecto tras la instalación; debe habilitarse manualmente en las opciones de desarrollador de AutoJs6 -- ver la sección "Instalación y uso" del README
-* `Función` Incluir una biblioteca de plataforma Android 36 verificada byte a byte como biblioteca del compilador R8, en lugar de depender del boot classpath del dispositivo; corrige fallos de compilación en dispositivos cuyos JAR de boot son solo cascarones de recursos
-* `Función` Añadir recolección de diagnósticos R8 acotada y con rutas censuradas, cubriendo el arranque del provider y los fallos de importación del motor
-* `Mejora` Verificar la salida optimizada en ART en API 25/28/37 (incluido un emulador con páginas de 16 KiB): reflexión, nombres de clase compuestos en tiempo de ejecución, serialización, la entrada para scripts, comprobaciones del señuelo eliminado, llamadas JNI arm64/x86/x86_64, y restauración de pilas con R8 Retrace tras verificar el hash del mapping
 
 ##### Más versiones
 
@@ -390,7 +386,7 @@ Compilación de versión:
 .\gradlew.bat :app:assembleRelease
 ```
 
-Compilar requiere JDK 17 o posterior (se recomienda 21) y Android SDK Platform 36: el script de compilación verifica byte a byte `platforms/android-36/android.jar` y lo incluye como recurso de biblioteca del compilador, abortando ante cualquier discrepancia. El minSdk actual es 24 y el targetSdk es 36.
+Compilar requiere JDK 17 o posterior (se recomienda 21) y Android SDK Platform 36: el script de compilación verifica byte a byte `platforms/android-36/android.jar` y lo incluye como recurso de biblioteca del compilador, abortando ante cualquier discrepancia. El minSdk actual es 24 y el targetSdk es 37.
 
 La ABI del protocolo proviene de los AAR de contrato 0.1.0 congelados dentro del repositorio (bajo `plugin-api/r8-compiler-api/releases/0.1.0/`); la aplicación consume esos bytes de AAR en lugar de sus proyectos fuente:
 

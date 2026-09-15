@@ -91,7 +91,7 @@
   "h5_for_more_release_history": "Autres versions",
   "h3_build": "Build",
   "text_release_build": "Build de version",
-  "p_build_params": "La compilation requiert JDK 17 ou ultérieur (21 recommandé) et Android SDK Platform 36 : le script de build vérifie octet par octet `platforms/android-36/android.jar` et l'embarque comme ressource de bibliothèque de compilation, en s'interrompant à la moindre différence. minSdk actuel : 24, targetSdk : 36",
+  "p_build_params": "La compilation requiert JDK 17 ou ultérieur (21 recommandé) et Android SDK Platform 36 : le script de build vérifie octet par octet `platforms/android-36/android.jar` et l'embarque comme ressource de bibliothèque de compilation, en s'interrompant à la moindre différence. minSdk actuel : 24, targetSdk : 37",
   "p_local_aars": "L'ABI du protocole provient des AAR de contrat 0.1.0 gelés dans le dépôt (sous `plugin-api/r8-compiler-api/releases/0.1.0/`) ; l'application consomme ces octets d'AAR plutôt que leurs projets sources",
   "p_build_architecture": "Le compilateur est tiré de Maven en tant que {{ compiler_dependency }} épinglé. Les releases officielles utilisent les scripts de publication et de vérification sous `scripts/` (répertoire de release local append-only, builds reproductibles à deux instantanés et vérification par gate) ; pour le débogage quotidien, les commandes Gradle ci-dessus suffisent.",
   "h3_license": "Licence",
