@@ -8,8 +8,8 @@
 
 ###### 2026/09/19
 
-* `修复` AGP 9.1 构建时的 SDK XML v4 解析警告及 JVM 单元测试组装任务误触发 APK 原生库对齐检查的问题 (共享构建插件 1.8.3)
-* `优化` 将 compileSdk 与 targetSdk 提升到 37 (Android 17), 插件行为不受新目标版本影响
+* `修复` AGP 9.1 构建时的 SDK XML v4 解析警告, 以及 JVM 单元测试误触发 APK 原生库对齐检查的问题 (共享构建插件 1.8.3)
+* `优化` compileSdk/targetSdk 升级至 37 (Android 17)
 
 # v0.2.1
 
@@ -28,49 +28,49 @@
 
 ###### 2026/08/25
 
-* `提示` 当前版本. 通过私有 GitHub prerelease 发布 (含签名 APK, 两个冻结契约 AAR, 发布清单与 SHA256SUMS 共 5 项资产, 全部经重新下载与逐字节校验), 尚未公开发布
+* `提示` 私有预发布版本, 包含签名 APK, 契约 AAR 及校验清单, 尚未公开发布
 * `提示` 安装后默认不生效, 需在 AutoJs6 开发者选项中手动启用; 详细步骤见 README 的 "安装与使用" 章节
-* `新增` 内置经字节校验的 Android 36 平台库作为 R8 编译库, 不再依赖设备 boot classpath; 修复部分设备上 boot JAR 为资源壳导致的编译失败
-* `新增` 添加有界且路径脱敏的 R8 诊断信息收集, 覆盖提供者启动与引擎导入失败场景
-* `优化` 在 API 25/28/37 (含 16 KiB 页大小模拟器) 的 ART 上完成优化产物运行验证: 反射, 动态类名, 序列化, 脚本入口, 移除诱饵检查, arm64/x86/x86_64 JNI 调用, 以及 mapping 哈希校验后的 R8 Retrace 堆栈还原
+* `新增` 内置 Android 36 平台编译库, 避免部分设备的 boot JAR 缺少实际类内容而编译失败
+* `新增` R8 诊断信息, 覆盖插件启动及引擎导入失败, 隐去路径并限制输出大小
+* `优化` 补充 Android 7.1/9/17 及 16 KB 内存页环境的产物验证, 覆盖反射, 序列化, JNI 和 Retrace 调用栈还原
 
 # v0.1.0-provider-dev (local.4)
 
 ###### 2026/08/25
 
-* `修复` 以零字节的公开 `Os.read`/`Os.write` 内核探针替换 `/proc/self/fdinfo` 访问模式检查, 解决部分设备 (如 Sony API 28) 的 procfs 访问限制; 继续保留 `Os.fstat` 别名拒绝
-* `优化` 在 1 台真机与 2 台模拟器 (API 25/28) 上完成跨 APK Binder/PFD 设备验收: 快乐路径, 生命周期, 恶意输入与进程死亡共 9/9 用例通过
+* `修复` 部分设备限制访问 procfs 而无法校验文件描述符的问题, 改用 Os.read/Os.write 探测
+* `优化` 补充 Android 7.1/9 的跨进程设备测试, 覆盖正常调用, 生命周期, 非法输入及进程退出
 
 # v0.1.0-provider-dev (local.3)
 
 ###### 2026/08/25
 
-* `修复` 为 API 24 至 28 固定 core-library/NIO desugaring (desugar_jdk_libs_nio 2.1.5), 修复低版本设备缺失 Java 11 核心库能力导致的运行失败
+* `修复` Android 7 至 9 缺少 Java 11 核心库接口而运行失败的问题, 使用 desugar_jdk_libs_nio 2.1.5
 
 # v0.1.0-provider-dev (local.2)
 
 ###### 2026/08/25
 
-* `修复` 移除发布脚本对 PowerShell 模块自动加载哈希的依赖, 保证与发布环境无关的可复现签名流程
+* `修复` 发布流程受 PowerShell 模块自动加载影响而无法稳定复现签名产物的问题
 
 # v0.1.0-provider-dev (local.1)
 
 ###### 2026/08/25
 
-* `提示` 首个本地签名发布 (bootstrap 代次); 双离线快照字节级一致的可复现构建, append-only 本地发布目录自此建立
-* `新增` 作为 AutoJs6 的显式 R8 编译插件: 脚本通过 `runtime.loadJarWithR8()` 请求完整 release 编译 (shrinking + optimization + obfuscation)
-* `新增` 一次编译返回五件产物: DEX ZIP, mapping, seeds, usage 与 retrace 元数据, 逐项绑定 SHA-256 并由宿主独立复验
-* `新增` 无回退语义: 任何失败都以 R8 错误结束, 绝不静默改用 D8/dx; 宿主侧使用独立的 R8 缓存域 `autojs6:r8-compiler:v1`
-* `新增` 编译运行在插件独立 `:r8` 进程的私有沙箱中, 仅接受同签名 AutoJs6 调用 (受 `org.autojs.permission.PLUGIN` 权限保护), 无网络与存储权限
-* `新增` 严格校验输入: 规范化无路径输入包, 规则严格 UTF-8 且危险指令 fail-closed, 归档/类数据/输出各环节均有硬性上限
-* `新增` 编译参数 minApi 24 至 36 全覆盖: 26 格 Java/Kotlin 真实 R8 兼容语料, 含反射, 动态类名, JNI, 序列化与移除诱饵验证
+* `提示` 首个本地签名版本, 支持离线可复现构建及仅追加的本地发布归档
+* `新增` runtime.loadJarWithR8 编译接口, 支持代码裁剪, 优化及混淆
+* `新增` DEX ZIP, mapping, seeds, usage 及 retrace 元数据输出, 各产物提供 SHA-256 校验
+* `新增` 独立 R8 编译缓存, 编译失败时返回错误而不自动切换至 D8/dx
+* `新增` 独立进程编译, 仅接受同签名宿主调用, 无需网络及存储权限
+* `新增` 输入归档, UTF-8 规则, 类数据及输出大小校验, 拒绝非法或超限请求
+* `新增` minApi 24 至 36 编译支持, 覆盖 Java/Kotlin, 反射, JNI 及序列化
 * `新增` 纯 JVM 实现, 单个 universal APK 覆盖所有设备架构
-* `依赖` 内置 Google R8 8.13.17 (Maven `com.android.tools:r8`)
+* `依赖` 附加 Google R8 版本 8.13.17 (com.android.tools:r8)
 
 # v0.1.0 (contract)
 
 ###### 2026/08/14
 
 * `提示` 协议契约冻结, 不含应用与运行时行为; 本条目记录接口边界的建立
-* `新增` 冻结独立 R8 编译协议 1.0: API 命名空间 `org.autojs.plugin.r8compiler.api`, 发现 action `org.autojs.plugin.R8_COMPILER`, 引擎标识 `r8-compiler`
-* `新增` 冻结规范化输入/产物流式包格式, 三份 AIDL 描述符与 Java 可见 JVM ABI; 以 append-only 方式发布 0.1.0 契约 AAR (protocol-wire-api 与 r8-compiler-api)
+* `新增` 冻结独立 R8 编译协议 1.0: API 命名空间 org.autojs.plugin.r8compiler.api, 发现 action org.autojs.plugin.R8_COMPILER, 引擎标识 `r8-compiler`
+* `新增` R8 流式输入及产物格式, 提供 AIDL 接口及 protocol-wire-api/r8-compiler-api 0.1.0 契约包
