@@ -3,6 +3,15 @@
     <string name="app_summary">Fournisseur du compilateur R8 en profil release complet pour AutoJs6</string>
     <string name="changelog_load_error">Impossible de charger le journal des modifications inclus.</string>
     <string name="changelog_title">Journal des modifications</string>
+    <string name="launcher_icon_applied_note">Le lanceur peut prendre quelques secondes pour se rafraîchir. Certains raccourcis peuvent devoir être ajoutés a nouveau.</string>
+    <string name="launcher_icon_auto">Adaptative automatique</string>
+    <string name="launcher_icon_auto_note">Tente de suivre le thème du système. Certains lanceurs gardent les icônes en cache ou utilisent une seule palette.</string>
+    <string name="launcher_icon_dark">Adaptative sombre</string>
+    <string name="launcher_icon_failed">Impossible de changer l\'icône du lanceur. Veuillez réessayer.</string>
+    <string name="launcher_icon_light">Adaptative claire</string>
+    <string name="launcher_icon_title">Icône du lanceur</string>
+    <string name="launcher_icon_transparent">Fond transparent</string>
+    <string name="launcher_icon_transparent_note">Certains lanceurs ajoutent un fond ou un masque. La transparence peut ne pas être conservée.</string>
     <string name="open_changelog">Voir le journal des modifications</string>
     <string name="plugin_description">Réduit, optimise et obscurcit le bytecode Java</string>
     <string name="service_available">Disponible</string>

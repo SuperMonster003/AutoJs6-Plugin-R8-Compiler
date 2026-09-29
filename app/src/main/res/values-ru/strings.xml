@@ -3,6 +3,15 @@
     <string name="app_summary">Провайдер компилятора R8 с полным release-профилем для AutoJs6</string>
     <string name="changelog_load_error">Не удалось загрузить встроенный журнал изменений.</string>
     <string name="changelog_title">Журнал изменений</string>
+    <string name="launcher_icon_applied_note">Обновление значка может занять несколько секунд. Некоторые ярлыки на главном экране может потребоваться добавить заново.</string>
+    <string name="launcher_icon_auto">Адаптивный автоматический</string>
+    <string name="launcher_icon_auto_note">Пытается следовать системной теме. Некоторые лаунчеры кешируют значки или используют только одну цветовую схему.</string>
+    <string name="launcher_icon_dark">Адаптивный темный</string>
+    <string name="launcher_icon_failed">Не удалось изменить значок запуска. Повторите попытку.</string>
+    <string name="launcher_icon_light">Адаптивный светлый</string>
+    <string name="launcher_icon_title">Значок запуска</string>
+    <string name="launcher_icon_transparent">Прозрачный фон</string>
+    <string name="launcher_icon_transparent_note">Некоторые лаунчеры добавляют фон или маску, поэтому прозрачность может не сохраниться.</string>
     <string name="open_changelog">Открыть журнал изменений</string>
     <string name="plugin_description">Сокращение, оптимизация и обфускация байткода Java</string>
     <string name="service_available">Доступен</string>

@@ -3,6 +3,15 @@
     <string name="app_summary">Full-release R8 compiler provider for AutoJs6</string>
     <string name="changelog_load_error">The bundled changelog could not be loaded.</string>
     <string name="changelog_title">Changelog</string>
+    <string name="launcher_icon_applied_note">The launcher may take a few seconds to refresh. Some home-screen shortcuts may need to be added again.</string>
+    <string name="launcher_icon_auto">Adaptive automatic</string>
+    <string name="launcher_icon_auto_note">Tries to follow the system theme. Some launchers cache icons or use only one color scheme.</string>
+    <string name="launcher_icon_dark">Adaptive dark</string>
+    <string name="launcher_icon_failed">Unable to change the launcher icon. Please try again.</string>
+    <string name="launcher_icon_light">Adaptive light</string>
+    <string name="launcher_icon_title">Launcher icon</string>
+    <string name="launcher_icon_transparent">Transparent background</string>
+    <string name="launcher_icon_transparent_note">Some launchers add their own background or mask, so transparency may not be preserved.</string>
     <string name="open_changelog">View changelog</string>
     <string name="plugin_description">Shrinks, optimizes and obfuscates Java bytecode</string>
     <string name="service_available">Available</string>

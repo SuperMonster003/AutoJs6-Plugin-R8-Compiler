@@ -93,6 +93,8 @@ exact component: {{ exact_service_component }}
 
 {{ p_user_guide_status }}
 
+{{ p_launcher_modes }}
+
 #### {{ h4_user_guide_example }}
 
 {{ p_user_guide_example }}

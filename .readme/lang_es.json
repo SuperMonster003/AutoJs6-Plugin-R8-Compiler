@@ -103,5 +103,6 @@
   "text_link_autojs6_docs": "Documentación de AutoJs6",
   "text_link_upstream": "Proyecto R8",
   "text_link_dex_plugin": "Plugin DEX Compiler (D8)",
-  "text_link_release_page": "Página de release privada (requiere acceso)"
+  "text_link_release_page": "Página de release privada (requiere acceso)",
+  "p_launcher_modes": "El icono del lanzador admite adaptable claro, adaptable oscuro (predeterminado), adaptable automático y fondo transparente. El modo automático intenta seguir el tema del sistema, pero el lanzador puede guardar una sola paleta en caché; puede agregar un fondo o una máscara a los iconos transparentes. El cambio mantiene la aplicación en ejecución y puede tardar unos segundos."
 }

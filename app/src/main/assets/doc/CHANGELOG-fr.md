@@ -4,6 +4,12 @@
 
 ******
 
+# v0.3.0-provider-dev
+
+###### 2026/09/29
+
+* `Fonctionnalité` L'icône du lanceur propose les modes adaptatif clair, adaptatif sombre (par défaut), adaptatif automatique et fond transparent. Le mode automatique tente de suivre le thème système, mais le lanceur peut garder une palette en cache; il peut ajouter un fond ou un masque aux icônes transparentes. Le changement conserve l'application en cours et peut prendre quelques secondes.
+
 # v0.2.2
 
 ###### 2026/09/19
