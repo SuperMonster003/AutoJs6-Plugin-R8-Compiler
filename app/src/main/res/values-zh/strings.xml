@@ -3,6 +3,15 @@
     <string name="app_summary">为 AutoJs6 提供完整 release 配置的 R8 编译服务</string>
     <string name="changelog_load_error">无法读取内置更新日志.</string>
     <string name="changelog_title">更新日志</string>
+    <string name="launcher_icon_applied_note">启动器可能需要几秒钟刷新. 部分主屏幕快捷方式可能需要重新添加.</string>
+    <string name="launcher_icon_auto">自适应自动</string>
+    <string name="launcher_icon_auto_note">尝试跟随系统主题. 部分启动器会缓存图标或只使用一种配色.</string>
+    <string name="launcher_icon_dark">自适应暗色</string>
+    <string name="launcher_icon_failed">无法切换启动器图标, 请重试.</string>
+    <string name="launcher_icon_light">自适应亮色</string>
+    <string name="launcher_icon_title">启动器图标</string>
+    <string name="launcher_icon_transparent">透明背景</string>
+    <string name="launcher_icon_transparent_note">部分启动器会自行添加背景或遮罩, 透明效果可能无法保留.</string>
     <string name="open_changelog">查看更新日志</string>
     <string name="plugin_description">压缩, 优化和混淆 Java 字节码</string>
     <string name="service_available">可用</string>

@@ -9,6 +9,13 @@ import android.widget.Button
 import android.widget.TextView
 
 class MainActivity : Activity() {
+    internal var launcherIconDialog: android.app.AlertDialog? = null
+
+    override fun onDestroy() {
+        launcherIconDialog?.dismiss()
+        super.onDestroy()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -31,6 +38,14 @@ class MainActivity : Activity() {
             R.string.service_component_value,
             serviceComponent.flattenToString(),
         )
+
+        val launcherButton = findViewById<Button>(R.id.launcher_icon)
+        launcherButton.text = LauncherIconChooser.summary(this)
+        launcherButton.setOnClickListener {
+            launcherIconDialog = LauncherIconChooser.show(this) {
+                launcherButton.text = LauncherIconChooser.summary(this)
+            }
+        }
 
         findViewById<Button>(R.id.open_changelog).setOnClickListener {
             startActivity(Intent(this, ChangelogActivity::class.java))

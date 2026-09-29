@@ -34,3 +34,11 @@ git diff --check
 ```
 
 Run the relevant custom Python regression suites after changing their logic. After committing, run check_repository.py without --pending-commit and review git status. Install/activate/upgrade and Binder smoke tests on the exact signed release remain necessary evidence for an actual release.
+
+## Selectable launcher icons
+
+- Expose adaptive light, adaptive dark (default), adaptive automatic, and transparent modes in one settings row. Explain automatic/transparent launcher caching and background limitations.
+- Keep all four `launcher.*IconAlias` component names stable. Keep MainActivity enabled for existing explicit intents. Enable the new alias before disabling the old one with DONT_KILL_APP, migrate mutable shortcut ownership, and restore previous states if switching fails.
+- Regenerate the separate launcher resources with `py .python/generate_launcher_icons.py`; run its read-only `--check`. The source vector is preserved in `.python/icons/launcher-foreground.xml`. Original purpose-specific PNG/README/application resources remain unchanged.
+- Fixed dark uses glyph #D8D8D8/background #212121; fixed light uses glyph #272727/background #FAFAFA. Auto must have an independent resource ID: PackageManager eagerly resolves values aliases when parsing activity icons. Supply default dark and notnight light legacy XML plus matching default-v26 and notnight-v26 adaptive XML. Never put a legacy night PNG ahead of an adaptive v26 resource with the same name.
+- Run LauncherIconResourceTest and LauncherIconSelectionTest on API 24 and a modern API. Tests restore exact component states and remove only their own temporary shortcuts; do not clear user or launcher data.

@@ -138,6 +138,8 @@ Si el plugin no aparece en la lista, comprueba en orden: que el host sea un buil
 
 A diferencia del plugin DEX, esta entrada no tiene la ambigüedad de "quién compiló realmente": siempre que `runtime.loadJarWithR8()` retorna con éxito, el artefacto pasó necesariamente por el procesamiento R8 completo (en esta llamada o en una generación de caché ya verificada).
 
+El icono del lanzador admite adaptable claro, adaptable oscuro (predeterminado), adaptable automático y fondo transparente. El modo automático intenta seguir el tema del sistema, pero el lanzador puede guardar una sola paleta en caché; puede agregar un fondo o una máscara a los iconos transparentes. El cambio mantiene la aplicación en ejecución y puede tardar unos segundos.
+
 #### Ejemplo de script
 
 Coloca un JAR con archivos `.class` de JVM y un archivo de reglas keep en tu directorio de scripts, y llama a cualquier sobrecarga de la familia de entradas. Las reglas keep no son opcionales: R8 elimina y ofusca cada símbolo no conservado por una regla, así que una compilación sin reglas casi con seguridad produce clases a las que ya no se puede acceder por su nombre original.
@@ -347,6 +349,12 @@ El desarrollo avanza mediante gates verificables: G1 congelación del contrato, 
 
 ******
 
+# v0.3.0-provider-dev
+
+###### 2026/09/29
+
+* `Función` El icono del lanzador admite adaptable claro, adaptable oscuro (predeterminado), adaptable automático y fondo transparente. El modo automático intenta seguir el tema del sistema, pero el lanzador puede guardar una sola paleta en caché; puede agregar un fondo o una máscara a los iconos transparentes. El cambio mantiene la aplicación en ejecución y puede tardar unos segundos.
+
 # v0.2.2
 
 ###### 2026/09/19
@@ -358,13 +366,6 @@ El desarrollo avanza mediante gates verificables: G1 congelación del contrato, 
 
 ###### 2026/09/13
 
-* `Mejora` Recursos traducidos coherentes, activación explícita del complemento y validación de los paquetes de publicación
-
-# v0.2.0
-
-###### 2026/09/13
-
-* `Mejora` La verificación de compilación rechaza dependencias nativas accidentales y genera un informe JSON
 * `Mejora` Recursos traducidos coherentes, activación explícita del complemento y validación de los paquetes de publicación
 
 ##### Más versiones

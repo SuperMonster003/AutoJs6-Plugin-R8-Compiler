@@ -138,6 +138,8 @@ Si le plugin n'apparaît pas dans la liste, vérifiez dans l'ordre : l'hôte est
 
 Contrairement au plugin DEX, cette entrée n'a aucune ambiguïté « qui a réellement compilé » : dès que `runtime.loadJarWithR8()` retourne avec succès, l'artefact est nécessairement passé par un traitement R8 complet (dans cet appel ou dans une génération de cache déjà vérifiée).
 
+L'icône du lanceur propose les modes adaptatif clair, adaptatif sombre (par défaut), adaptatif automatique et fond transparent. Le mode automatique tente de suivre le thème système, mais le lanceur peut garder une palette en cache; il peut ajouter un fond ou un masque aux icônes transparentes. Le changement conserve l'application en cours et peut prendre quelques secondes.
+
 #### Exemple de script
 
 Placez un JAR contenant des fichiers `.class` JVM et un fichier de règles keep dans votre répertoire de scripts, puis appelez n'importe quelle surcharge de la famille d'entrées. Les règles keep ne sont pas optionnelles : R8 supprime et obfusque chaque symbole non conservé par une règle, donc une compilation sans règles produit presque à coup sûr des classes inaccessibles sous leur nom d'origine.
@@ -347,6 +349,12 @@ Le développement avance par gates vérifiables : G1 gel du contrat, G2 impléme
 
 ******
 
+# v0.3.0-provider-dev
+
+###### 2026/09/29
+
+* `Fonctionnalité` L'icône du lanceur propose les modes adaptatif clair, adaptatif sombre (par défaut), adaptatif automatique et fond transparent. Le mode automatique tente de suivre le thème système, mais le lanceur peut garder une palette en cache; il peut ajouter un fond ou un masque aux icônes transparentes. Le changement conserve l'application en cours et peut prendre quelques secondes.
+
 # v0.2.2
 
 ###### 2026/09/19
@@ -358,13 +366,6 @@ Le développement avance par gates vérifiables : G1 gel du contrat, G2 impléme
 
 ###### 2026/09/13
 
-* `Amélioration` Ressources traduites cohérentes, activation explicite du plugin et validation des paquets de publication
-
-# v0.2.0
-
-###### 2026/09/13
-
-* `Amélioration` La vérification de compilation rejette les dépendances natives involontaires et produit un rapport JSON
 * `Amélioration` Ressources traduites cohérentes, activation explicite du plugin et validation des paquets de publication
 
 ##### Autres versions

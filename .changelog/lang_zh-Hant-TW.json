@@ -5,6 +5,12 @@
   "changelog_label_improvement": "優化",
   "changelog_label_dependency": "相依性",
   "$data": {
+    "v0.3.0-provider-dev": {
+      "released_date": "2026/09/29",
+      "feature": [
+        "啟動器圖示可選擇自適應亮色, 自適應暗色 (預設), 自適應自動或透明背景. 自動模式嘗試跟隨系統主題, 但啟動器可能快取單一配色; 透明圖示可能被啟動器新增背景或遮罩. 切換保持應用程式執行, 顯示重新整理可能需要幾秒鐘."
+      ]
+    },
     "v0.2.2": {
       "released_date": "2026/09/19",
       "improvement": [

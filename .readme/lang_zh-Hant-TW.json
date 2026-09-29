@@ -103,5 +103,6 @@
   "text_link_autojs6_docs": "AutoJs6 文件",
   "text_link_upstream": "R8 專案",
   "text_link_dex_plugin": "DEX Compiler 外掛 (D8)",
-  "text_link_release_page": "私有發布頁 (需要存取權限)"
+  "text_link_release_page": "私有發布頁 (需要存取權限)",
+  "p_launcher_modes": "啟動器圖示可選擇自適應亮色, 自適應暗色 (預設), 自適應自動或透明背景. 自動模式嘗試跟隨系統主題, 但啟動器可能快取單一配色; 透明圖示可能被啟動器新增背景或遮罩. 切換保持應用程式執行, 顯示重新整理可能需要幾秒鐘."
 }

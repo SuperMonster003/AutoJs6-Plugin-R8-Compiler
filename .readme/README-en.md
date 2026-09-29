@@ -138,6 +138,8 @@ If the plugin does not appear in the list, check in order: the host is a paired 
 
 Unlike the DEX plugin, this entry has no "who actually compiled it" ambiguity: whenever `runtime.loadJarWithR8()` returns successfully, the artifact necessarily went through full R8 processing (either in this call or in a previously verified cache generation).
 
+Launcher icon can be set to adaptive light, adaptive dark (default), adaptive automatic or transparent background. Automatic mode tries to follow the system theme, but launchers may cache a single color scheme; transparent icons may receive a launcher background or mask. Switching preserves the running app and may take a few seconds to appear.
+
 #### Script example
 
 Put a JAR containing JVM `.class` files and a keep-rules file into your script directory, then call any overload of the entry family. Keep rules are not optional: R8 removes and obfuscates every symbol not kept by a rule, so a compilation without rules almost certainly produces classes that can no longer be accessed by their original names.
@@ -347,6 +349,12 @@ Development proceeds through verifiable gates: G1 contract freeze, G2 provider i
 
 ******
 
+# v0.3.0-provider-dev
+
+###### 2026/09/29
+
+* `Feature` Launcher icon can be set to adaptive light, adaptive dark (default), adaptive automatic or transparent background. Automatic mode tries to follow the system theme, but launchers may cache a single color scheme; transparent icons may receive a launcher background or mask. Switching preserves the running app and may take a few seconds to appear.
+
 # v0.2.2
 
 ###### 2026/09/19
@@ -358,13 +366,6 @@ Development proceeds through verifiable gates: G1 contract freeze, G2 provider i
 
 ###### 2026/09/13
 
-* `Improvement` Consistent localized resources, explicit plugin activation and validated release preparation
-
-# v0.2.0
-
-###### 2026/09/13
-
-* `Improvement` Build verification rejects accidental native dependencies and produces a JSON report
 * `Improvement` Consistent localized resources, explicit plugin activation and validated release preparation
 
 ##### More releases
