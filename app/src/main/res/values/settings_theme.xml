@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.StandaloneSettings" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/settings_background</item>
+        <item name="android:colorBackground">@color/settings_background</item>
+        <item name="android:textColorPrimary">@color/settings_text</item>
+        <item name="android:textColorSecondary">@color/settings_muted</item>
+        <item name="colorPrimary">@color/settings_seed</item>
+        <item name="colorSecondary">@color/settings_seed</item>
+        <item name="colorSurface">@color/settings_surface</item>
+        <item name="colorSurfaceContainer">@color/settings_surface</item>
+        <item name="colorOnSurface">@color/settings_text</item>
+        <item name="colorOnSurfaceVariant">@color/settings_muted</item>
+        <item name="colorOutline">@color/settings_outline</item>
+        <item name="colorError">@color/settings_error</item>
+    </style>
+</resources>

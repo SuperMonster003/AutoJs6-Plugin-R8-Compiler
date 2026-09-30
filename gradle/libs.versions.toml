@@ -1,9 +1,15 @@
 [versions]
+appcompat = "1.7.1"
+core-ktx = "1.15.0"
+material = "1.13.0"
 desugar = "2.1.5"
 junit = "4.13.2"
 r8 = "8.13.17"
 
 [libraries]
+appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
+material = { module = "com.google.android.material:material", version.ref = "material" }
 desugar = { module = "com.android.tools:desugar_jdk_libs_nio", version.ref = "desugar" }
 junit = { module = "junit:junit", version.ref = "junit" }
 r8 = { module = "com.android.tools:r8", version.ref = "r8" }

@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_settings_always_dark">一律使用深色</string>
+    <string name="app_settings_always_light">一律使用淺色</string>
+    <string name="app_settings_appearance">外觀</string>
+    <string name="app_settings_dark_mode">深色模式</string>
+    <string name="app_settings_follow_autojs6">跟隨 AutoJs6</string>
+    <string name="app_settings_follow_autojs6_summary">跟隨 AutoJs6 · %1$s</string>
+    <string name="app_settings_follow_system">跟隨系統</string>
+    <string name="app_settings_language">語言</string>
+    <string name="app_settings_theme_color">主題色</string>
+    <string name="app_settings_updates">Updates</string>
     <string name="app_summary">為 AutoJs6 提供完整 release 設定的 R8 編譯服務</string>
     <string name="changelog_load_error">無法讀取內建更新記錄.</string>
     <string name="changelog_title">更新記錄</string>
     <string name="launcher_icon_applied_note">啟動器可能需要幾秒鐘重新整理. 部分主畫面捷徑可能需要重新新增.</string>
-    <string name="launcher_icon_auto">自適應自動</string>
+    <string name="launcher_icon_auto">自適應圖示 (自動)</string>
     <string name="launcher_icon_auto_note">嘗試跟隨系統主題. 部分啟動器會快取圖示或只使用一種配色.</string>
-    <string name="launcher_icon_dark">自適應暗色</string>
+    <string name="launcher_icon_dark">自適應圖示 (暗色)</string>
     <string name="launcher_icon_failed">無法切換啟動器圖示, 請重試.</string>
-    <string name="launcher_icon_light">自適應亮色</string>
+    <string name="launcher_icon_light">自適應圖示 (亮色)</string>
     <string name="launcher_icon_title">啟動器圖示</string>
-    <string name="launcher_icon_transparent">透明背景</string>
+    <string name="launcher_icon_transparent">透明背景圖示</string>
     <string name="launcher_icon_transparent_note">部分啟動器會自行新增背景或遮罩, 透明效果可能無法保留.</string>
     <string name="open_changelog">檢視更新記錄</string>
     <string name="plugin_description">壓縮, 最佳化及混淆 Java 位元碼</string>
@@ -19,6 +29,13 @@
     <string name="service_label">編譯服務</string>
     <string name="service_status_note">此狀態僅表示服務元件已安裝且可用.請另外在 AutoJs6 開發者選項中選擇並啟用 provider.</string>
     <string name="service_unavailable">無法使用或已停用</string>
+    <string name="settings_apply_failed">無法套用此設定, 請重試.</string>
+    <string name="settings_title">設定</string>
+    <string name="theme_picker_custom">自訂色彩</string>
+    <string name="theme_picker_input">HEX / RGB</string>
+    <string name="theme_picker_invalid">請輸入 #RRGGBB, RRGGBB 或 rgb(r, g, b). RGB 數值須為 0..255.</string>
+    <string name="theme_picker_presets">預設色彩</string>
+    <string name="theme_picker_preview">預覽</string>
     <string name="version_label">版本</string>
     <string name="version_value">外掛 %1$s\nR8 %2$s</string>
 </resources>

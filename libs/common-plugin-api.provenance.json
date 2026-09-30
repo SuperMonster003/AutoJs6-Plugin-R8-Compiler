@@ -1,10 +1,11 @@
 {
   "file": "libs/common-plugin-api.aar",
-  "source": "AutoJs6 common plugin API, copied byte-for-byte from the pinned Pinyin repository artifact",
-  "copiedFromRepository": "https://github.com/SuperMonster003/AutoJs6-Plugin-Pinyin",
-  "copiedFromRevision": "f7dfc0b494940ad0ed998d989d2af873b20dedfa",
+  "source": "AutoJs6 6.8.0 / 5298 official release API including AutoJs6HostSettingsContract",
+  "copiedFromRepository": "https://github.com/SuperMonster003/AutoJs6-Plugin-Three-Stove-Agent",
+  "copiedFromRevision": "028a5b6aaf36a4a9c5e4e9362e00309bddc1c58c",
   "copiedFromPath": "libs/common-plugin-api.aar",
   "apiSourceDirectory": "AutoJs6/plugin-api/common-plugin-api",
-  "sha256": "f9ff9676543f45b2ff2b64bb832d377dbd5b7003acf3bb4239e98556c68b246f",
+  "hostSourceRevision": "86d9bfa26b",
+  "sha256": "ee7eb7879a53506c4cca5e2d19d3058e28df2168fb33351a52302a3b9e532e15",
   "license": "MPL-2.0"
 }

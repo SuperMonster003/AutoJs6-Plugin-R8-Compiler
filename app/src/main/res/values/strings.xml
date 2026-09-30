@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_settings_always_dark">Always dark</string>
+    <string name="app_settings_always_light">Always light</string>
+    <string name="app_settings_appearance">Appearance</string>
+    <string name="app_settings_dark_mode">Dark mode</string>
+    <string name="app_settings_follow_autojs6">Follow AutoJs6</string>
+    <string name="app_settings_follow_autojs6_summary">Follow AutoJs6 · %1$s</string>
+    <string name="app_settings_follow_system">Follow system</string>
+    <string name="app_settings_language">Language</string>
+    <string name="app_settings_theme_color">Theme color</string>
+    <string name="app_settings_updates">Updates</string>
     <string name="app_summary">Full-release R8 compiler provider for AutoJs6</string>
     <string name="changelog_load_error">The bundled changelog could not be loaded.</string>
     <string name="changelog_title">Changelog</string>
     <string name="launcher_icon_applied_note">The launcher may take a few seconds to refresh. Some home-screen shortcuts may need to be added again.</string>
-    <string name="launcher_icon_auto">Adaptive automatic</string>
+    <string name="launcher_icon_auto">Adaptive icon (automatic)</string>
     <string name="launcher_icon_auto_note">Tries to follow the system theme. Some launchers cache icons or use only one color scheme.</string>
-    <string name="launcher_icon_dark">Adaptive dark</string>
+    <string name="launcher_icon_dark">Adaptive icon (dark)</string>
     <string name="launcher_icon_failed">Unable to change the launcher icon. Please try again.</string>
-    <string name="launcher_icon_light">Adaptive light</string>
+    <string name="launcher_icon_light">Adaptive icon (light)</string>
     <string name="launcher_icon_title">Launcher icon</string>
-    <string name="launcher_icon_transparent">Transparent background</string>
+    <string name="launcher_icon_transparent">Transparent background icon</string>
     <string name="launcher_icon_transparent_note">Some launchers add their own background or mask, so transparency may not be preserved.</string>
     <string name="open_changelog">View changelog</string>
     <string name="plugin_description">Shrinks, optimizes and obfuscates Java bytecode</string>
@@ -19,6 +29,13 @@
     <string name="service_label">Compiler service</string>
     <string name="service_status_note">This status only confirms that the service component is installed and enabled. Select the provider separately in AutoJs6 developer options.</string>
     <string name="service_unavailable">Unavailable or disabled</string>
+    <string name="settings_apply_failed">Could not apply this setting. Please try again.</string>
+    <string name="settings_title">Settings</string>
+    <string name="theme_picker_custom">Custom color</string>
+    <string name="theme_picker_input">HEX / RGB</string>
+    <string name="theme_picker_invalid">Enter #RRGGBB, RRGGBB or rgb(r, g, b). RGB values must be 0..255.</string>
+    <string name="theme_picker_presets">Preset colors</string>
+    <string name="theme_picker_preview">Preview</string>
     <string name="version_label">Versions</string>
     <string name="version_value">Plugin %1$s\nR8 %2$s</string>
 </resources>
