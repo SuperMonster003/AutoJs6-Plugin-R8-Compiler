@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_settings_always_dark">Toujours sombre</string>
+    <string name="app_settings_always_light">Toujours clair</string>
+    <string name="app_settings_appearance">Apparence</string>
+    <string name="app_settings_dark_mode">Mode sombre</string>
+    <string name="app_settings_follow_autojs6">Suivre AutoJs6</string>
+    <string name="app_settings_follow_autojs6_summary">Suivre AutoJs6 · %1$s</string>
+    <string name="app_settings_follow_system">Suivre le système</string>
+    <string name="app_settings_language">Langue</string>
+    <string name="app_settings_theme_color">Couleur du thème</string>
+    <string name="app_settings_updates">Updates</string>
     <string name="app_summary">Fournisseur du compilateur R8 en profil release complet pour AutoJs6</string>
     <string name="changelog_load_error">Impossible de charger le journal des modifications inclus.</string>
     <string name="changelog_title">Journal des modifications</string>
     <string name="launcher_icon_applied_note">Le lanceur peut prendre quelques secondes pour se rafraîchir. Certains raccourcis peuvent devoir être ajoutés a nouveau.</string>
-    <string name="launcher_icon_auto">Adaptative automatique</string>
+    <string name="launcher_icon_auto">Icône adaptative (automatique)</string>
     <string name="launcher_icon_auto_note">Tente de suivre le thème du système. Certains lanceurs gardent les icônes en cache ou utilisent une seule palette.</string>
-    <string name="launcher_icon_dark">Adaptative sombre</string>
+    <string name="launcher_icon_dark">Icône adaptative (sombre)</string>
     <string name="launcher_icon_failed">Impossible de changer l\'icône du lanceur. Veuillez réessayer.</string>
-    <string name="launcher_icon_light">Adaptative claire</string>
+    <string name="launcher_icon_light">Icône adaptative (claire)</string>
     <string name="launcher_icon_title">Icône du lanceur</string>
-    <string name="launcher_icon_transparent">Fond transparent</string>
+    <string name="launcher_icon_transparent">Icône à fond transparent</string>
     <string name="launcher_icon_transparent_note">Certains lanceurs ajoutent un fond ou un masque. La transparence peut ne pas être conservée.</string>
     <string name="open_changelog">Voir le journal des modifications</string>
     <string name="plugin_description">Réduit, optimise et obscurcit le bytecode Java</string>
@@ -19,6 +29,13 @@
     <string name="service_label">Service de compilation</string>
     <string name="service_status_note">Cet état confirme uniquement que le composant de service est installé et activé. Sélectionnez le fournisseur séparément dans les options développeur d\'AutoJs6.</string>
     <string name="service_unavailable">Indisponible ou désactivé</string>
+    <string name="settings_apply_failed">Impossible d\'appliquer ce réglage. Réessayez.</string>
+    <string name="settings_title">Paramètres</string>
+    <string name="theme_picker_custom">Couleur personnalisée</string>
+    <string name="theme_picker_input">HEX / RGB</string>
+    <string name="theme_picker_invalid">Saisissez #RRGGBB, RRGGBB ou rgb(r, g, b). Les valeurs RGB doivent être comprises entre 0 et 255.</string>
+    <string name="theme_picker_presets">Couleurs prédéfinies</string>
+    <string name="theme_picker_preview">Aperçu</string>
     <string name="version_label">Versions</string>
     <string name="version_value">Plugin %1$s\nR8 %2$s</string>
 </resources>

@@ -8,14 +8,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 
-class MainActivity : Activity() {
-    internal var launcherIconDialog: android.app.AlertDialog? = null
-
-    override fun onDestroy() {
-        launcherIconDialog?.dismiss()
-        super.onDestroy()
-    }
-
+class MainActivity : AppearanceActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -39,12 +32,15 @@ class MainActivity : Activity() {
             serviceComponent.flattenToString(),
         )
 
-        val launcherButton = findViewById<Button>(R.id.launcher_icon)
-        launcherButton.text = LauncherIconChooser.summary(this)
-        launcherButton.setOnClickListener {
-            launcherIconDialog = LauncherIconChooser.show(this) {
-                launcherButton.text = LauncherIconChooser.summary(this)
-            }
+        findViewById<Button>(R.id.launcher_icon).apply {
+            setText(R.string.settings_title)
+            tag="open-settings"
+            setOnClickListener { startActivity(Intent(this@MainActivity,AppSettingsActivity::class.java)) }
+        }
+        SettingsUi(this,settingsPalette).tint(findViewById(android.R.id.content))
+        androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content)) { view,insets ->
+            val bars=insets.getInsets(androidx.core.view.WindowInsetsCompat.Type.systemBars())
+            view.setPadding(bars.left,bars.top,bars.right,bars.bottom); insets
         }
 
         findViewById<Button>(R.id.open_changelog).setOnClickListener {

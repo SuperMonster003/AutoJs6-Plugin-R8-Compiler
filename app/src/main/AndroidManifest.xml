@@ -3,7 +3,12 @@
 
     <uses-permission android:name="org.autojs.permission.PLUGIN" />
 
+    <queries>
+        <provider android:authorities="org.autojs.autojs6.plugin.settings" />
+    </queries>
+
     <application
+        android:theme="@style/Theme.StandaloneSettings"
         android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="false"
@@ -70,7 +75,7 @@
         <activity-alias
             android:name="${applicationId}.launcher.AdaptiveDarkIconAlias"
             android:targetActivity=".MainActivity"
-            android:enabled="true"
+            android:enabled="false"
             android:exported="true"
             android:icon="@mipmap/ic_launcher_system"
             android:label="@string/app_name">
@@ -83,7 +88,7 @@
         <activity-alias
             android:name="${applicationId}.launcher.AdaptiveAutoIconAlias"
             android:targetActivity=".MainActivity"
-            android:enabled="false"
+            android:enabled="true"
             android:exported="true"
             android:icon="@mipmap/ic_launcher_system_auto"
             android:label="@string/app_name">
@@ -117,6 +122,12 @@
             </intent-filter>
         </service>
 
+        <activity android:name=".AppSettingsActivity" android:exported="false" />
+        <receiver android:name=".LauncherIconUpdateReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

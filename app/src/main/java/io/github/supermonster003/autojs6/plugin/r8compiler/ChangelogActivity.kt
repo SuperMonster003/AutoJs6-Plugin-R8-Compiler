@@ -6,12 +6,24 @@ import android.view.MenuItem
 import android.widget.TextView
 import java.io.IOException
 
-class ChangelogActivity : Activity() {
+class ChangelogActivity : AppearanceActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_changelog)
-        title = getString(R.string.changelog_title)
-        actionBar?.setDisplayHomeAsUpEnabled(true)
+        val content=android.widget.LinearLayout(this).apply { orientation=android.widget.LinearLayout.VERTICAL }
+        val bar=com.google.android.material.appbar.MaterialToolbar(this).apply {
+            title=getString(R.string.changelog_title);setTitleTextColor(settingsPalette.text)
+            setNavigationIcon(R.drawable.ic_settings_back);setNavigationIconTint(settingsPalette.text)
+            navigationContentDescription=getString(androidx.appcompat.R.string.abc_action_bar_up_description)
+            setNavigationOnClickListener { finish() }
+        }
+        content.addView(bar,android.widget.LinearLayout.LayoutParams(-1,(56*resources.displayMetrics.density).toInt()))
+        layoutInflater.inflate(R.layout.activity_changelog,content,true)
+        setContentView(content)
+        androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener(content) { view,insets ->
+            val bars=insets.getInsets(androidx.core.view.WindowInsetsCompat.Type.systemBars())
+            view.setPadding(bars.left,bars.top,bars.right,bars.bottom);insets
+        }
+        SettingsUi(this,settingsPalette).tint(content)
 
         val locale = resources.configuration.locales[0]
         val changelog = ChangelogAssetSelector.candidates(locale).firstNotNullOfOrNull { name ->

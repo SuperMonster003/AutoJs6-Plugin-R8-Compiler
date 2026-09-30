@@ -99,6 +99,7 @@ val hasReleaseSigning = listOf("storeFile", "storePassword", "keyAlias", "keyPas
 
 android {
     namespace = "io.github.supermonster003.autojs6.plugin.r8compiler"
+    bundle { language { enableSplit = false } }
     compileSdk = repositoryVersions.getProperty("COMPILE_SDK_VERSION").toInt()
 
     defaultConfig {
@@ -198,6 +199,9 @@ androidComponents.onVariants(androidComponents.selector().all()) { variant ->
 }
 
 dependencies {
+    implementation(libs.appcompat)
+    implementation(libs.core.ktx)
+    implementation(libs.material)
     implementation(files(rootProject.file("libs/common-plugin-api.aar")))
     coreLibraryDesugaring(libs.desugar)
     implementation(
@@ -209,6 +213,7 @@ dependencies {
     implementation(libs.r8)
     testImplementation(libs.junit)
     androidTestImplementation(libs.junit)
+    androidTestImplementation("androidx.test:core:1.7.0")
     androidTestImplementation("androidx.test:runner:1.7.0")
 }
 

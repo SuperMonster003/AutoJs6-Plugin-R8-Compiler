@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_settings_always_dark">Всегда темная</string>
+    <string name="app_settings_always_light">Всегда светлая</string>
+    <string name="app_settings_appearance">Оформление</string>
+    <string name="app_settings_dark_mode">Темная тема</string>
+    <string name="app_settings_follow_autojs6">Следовать AutoJs6</string>
+    <string name="app_settings_follow_autojs6_summary">Следовать AutoJs6 · %1$s</string>
+    <string name="app_settings_follow_system">Следовать системе</string>
+    <string name="app_settings_language">Язык</string>
+    <string name="app_settings_theme_color">Цвет темы</string>
+    <string name="app_settings_updates">Updates</string>
     <string name="app_summary">Провайдер компилятора R8 с полным release-профилем для AutoJs6</string>
     <string name="changelog_load_error">Не удалось загрузить встроенный журнал изменений.</string>
     <string name="changelog_title">Журнал изменений</string>
     <string name="launcher_icon_applied_note">Обновление значка может занять несколько секунд. Некоторые ярлыки на главном экране может потребоваться добавить заново.</string>
-    <string name="launcher_icon_auto">Адаптивный автоматический</string>
+    <string name="launcher_icon_auto">Адаптивный значок (автоматически)</string>
     <string name="launcher_icon_auto_note">Пытается следовать системной теме. Некоторые лаунчеры кешируют значки или используют только одну цветовую схему.</string>
-    <string name="launcher_icon_dark">Адаптивный темный</string>
+    <string name="launcher_icon_dark">Адаптивный значок (тёмный)</string>
     <string name="launcher_icon_failed">Не удалось изменить значок запуска. Повторите попытку.</string>
-    <string name="launcher_icon_light">Адаптивный светлый</string>
+    <string name="launcher_icon_light">Адаптивный значок (светлый)</string>
     <string name="launcher_icon_title">Значок запуска</string>
-    <string name="launcher_icon_transparent">Прозрачный фон</string>
+    <string name="launcher_icon_transparent">Значок с прозрачным фоном</string>
     <string name="launcher_icon_transparent_note">Некоторые лаунчеры добавляют фон или маску, поэтому прозрачность может не сохраниться.</string>
     <string name="open_changelog">Открыть журнал изменений</string>
     <string name="plugin_description">Сокращение, оптимизация и обфускация байткода Java</string>
@@ -19,6 +29,13 @@
     <string name="service_label">Сервис компиляции</string>
     <string name="service_status_note">Этот статус подтверждает только установку и включение компонента сервиса. Провайдер выбирается отдельно в параметрах разработчика AutoJs6.</string>
     <string name="service_unavailable">Недоступен или отключён</string>
+    <string name="settings_apply_failed">Не удалось применить настройку. Повторите попытку.</string>
+    <string name="settings_title">Настройки</string>
+    <string name="theme_picker_custom">Свой цвет</string>
+    <string name="theme_picker_input">HEX / RGB</string>
+    <string name="theme_picker_invalid">Введите #RRGGBB, RRGGBB или rgb(r, g, b). Значения RGB должны быть от 0 до 255.</string>
+    <string name="theme_picker_presets">Готовые цвета</string>
+    <string name="theme_picker_preview">Предпросмотр</string>
     <string name="version_label">Версии</string>
     <string name="version_value">Плагин %1$s\nR8 %2$s</string>
 </resources>

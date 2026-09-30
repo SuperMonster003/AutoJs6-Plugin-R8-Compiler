@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_settings_always_dark">常にダーク</string>
+    <string name="app_settings_always_light">常にライト</string>
+    <string name="app_settings_appearance">外観</string>
+    <string name="app_settings_dark_mode">ダークモード</string>
+    <string name="app_settings_follow_autojs6">AutoJs6 に従う</string>
+    <string name="app_settings_follow_autojs6_summary">AutoJs6 に従う · %1$s</string>
+    <string name="app_settings_follow_system">システムに従う</string>
+    <string name="app_settings_language">言語</string>
+    <string name="app_settings_theme_color">テーマ色</string>
+    <string name="app_settings_updates">Updates</string>
     <string name="app_summary">AutoJs6 用フル release R8 コンパイラ provider</string>
     <string name="changelog_load_error">同梱の変更履歴を読み込めませんでした.</string>
     <string name="changelog_title">変更履歴</string>
     <string name="launcher_icon_applied_note">反映まで数秒かかる場合があります. ホーム画面のショートカットを再追加する必要がある場合があります.</string>
-    <string name="launcher_icon_auto">アダプティブ 自動</string>
+    <string name="launcher_icon_auto">アダプティブ アイコン (自動)</string>
     <string name="launcher_icon_auto_note">システムテーマへの追従を試みます. ランチャーによってはアイコンがキャッシュされ, 配色が固定されます.</string>
-    <string name="launcher_icon_dark">アダプティブ ダーク</string>
+    <string name="launcher_icon_dark">アダプティブ アイコン (ダーク)</string>
     <string name="launcher_icon_failed">ランチャーアイコンを変更できませんでした. もう一度お試しください.</string>
-    <string name="launcher_icon_light">アダプティブ ライト</string>
+    <string name="launcher_icon_light">アダプティブ アイコン (ライト)</string>
     <string name="launcher_icon_title">ランチャーアイコン</string>
-    <string name="launcher_icon_transparent">透明な背景</string>
+    <string name="launcher_icon_transparent">透明背景のアイコン</string>
     <string name="launcher_icon_transparent_note">ランチャーが背景やマスクを追加する場合, 透明な背景は維持されないことがあります.</string>
     <string name="open_changelog">変更履歴を表示</string>
     <string name="plugin_description">Java バイトコードの縮小, 最適化, 難読化</string>
@@ -19,6 +29,13 @@
     <string name="service_label">コンパイラサービス</string>
     <string name="service_status_note">この状態はサービスコンポーネントがインストール済みで有効なことだけを示します.provider は AutoJs6 の開発者オプションで別途選択してください.</string>
     <string name="service_unavailable">利用不可または無効</string>
+    <string name="settings_apply_failed">設定を適用できませんでした. もう一度お試しください.</string>
+    <string name="settings_title">設定</string>
+    <string name="theme_picker_custom">カスタム色</string>
+    <string name="theme_picker_input">HEX / RGB</string>
+    <string name="theme_picker_invalid">#RRGGBB, RRGGBB または rgb(r, g, b) を入力してください. RGB の値は 0..255 です.</string>
+    <string name="theme_picker_presets">プリセット色</string>
+    <string name="theme_picker_preview">プレビュー</string>
     <string name="version_label">バージョン</string>
     <string name="version_value">プラグイン %1$s\nR8 %2$s</string>
 </resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="settings_background">#121212</color>
+    <color name="settings_surface">#1E1E1E</color>
+    <color name="settings_text">#E6E1E5</color>
+    <color name="settings_muted">#B9BAC0</color>
+    <color name="settings_outline">#777A82</color>
+    <color name="settings_error">#FFB4AB</color>
+    <color name="settings_seed">#FFDEAD</color>
+</resources>
