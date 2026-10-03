@@ -9,7 +9,7 @@
 ###### 2026/10/03
 
 * `Amélioration` R8 Compiler fonctionne comme plugin AutoJs6 sans entrée dans le lanceur. Sélectionnez et activez le compilateur dans AutoJs6. Le service de compilation et les données existantes sont conservés.
-* `Amélioration` Taille visuelle harmonisée des icônes du lanceur et du Centre de plugins, avec des fonds transparents et des motifs noirs, blancs ou gris neutres
+* `Amélioration` Taille visuelle harmonisée des icônes du Centre de plugins, avec des fonds transparents et des motifs noirs, blancs ou gris neutres
 
 # v0.2.2
 

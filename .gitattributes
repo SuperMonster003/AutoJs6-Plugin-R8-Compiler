@@ -3,3 +3,4 @@
 *.bat text eol=crlf
 *.jar -text
 *.aar -text
+app/src/main/res/raw/keep_plugin_center_icon.xml text eol=lf
