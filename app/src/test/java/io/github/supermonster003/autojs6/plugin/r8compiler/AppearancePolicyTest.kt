@@ -24,12 +24,4 @@ class AppearancePolicyTest {
             assertTrue(SettingsColorMath.contrast(palette.onPrimary,palette.primary)>=4.5)
         }
     }
-    @Test fun autoDefaultAndMixedUpgradePreferTheExplicitOldChoice() {
-        val defaults=LauncherIconMode.entries.associateWith { 0 }
-        assertEquals(LauncherIconMode.AUTO,LauncherIconStatePolicy.resolve(defaults))
-        for(mode in LauncherIconMode.entries) {
-            assertEquals(mode,LauncherIconStatePolicy.resolve(defaults+(mode to 1)))
-        }
-        assertEquals(LauncherIconMode.AUTO,LauncherIconStatePolicy.resolve(defaults+(LauncherIconMode.DARK to 1)+(LauncherIconMode.AUTO to 1)))
-    }
 }

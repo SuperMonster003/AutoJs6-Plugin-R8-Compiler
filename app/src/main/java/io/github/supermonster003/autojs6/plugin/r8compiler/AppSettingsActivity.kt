@@ -60,8 +60,6 @@ class AppSettingsActivity : AppearanceActivity() {
         ui.divider(rows)
         val colorSummary=preferences.color?.let(ThemeColorValue::hex) ?: getString(R.string.app_settings_follow_autojs6_summary,ThemeColorValue.hex(resolvedAppearance.seed))
         rows.addView(ui.row(R.string.app_settings_theme_color,colorSummary,R.drawable.ic_settings_theme,"appearance-theme",::color))
-        ui.divider(rows)
-        rows.addView(ui.row(R.string.launcher_icon_title,getString(LauncherIconChooser.labels[LauncherIcons.current(this).ordinal]),R.drawable.ic_settings_launcher,"launcher-icon",::launcher))
 
         ui.section(rows,R.string.app_settings_updates)
         rows.addView(ui.row(R.string.changelog_title,packageManager.getPackageInfo(packageName,0).versionName.orEmpty(),R.drawable.ic_settings_history,"release-history") {
@@ -104,9 +102,6 @@ class AppSettingsActivity : AppearanceActivity() {
         }
     }
 
-    private fun launcher() {
-        prompt=LauncherIconChooser.show(this) { render() }
-    }
 
 
 }

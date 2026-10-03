@@ -6,11 +6,9 @@
   "changelog_label_dependency": "Dependency",
   "$data": {
     "v0.3.0-provider-dev": {
-      "released_date": "2026/09/30",
-      "feature": [
-        "Unify standalone settings with language, night mode, theme color and launcher icon in this order. Appearance follows AutoJs6 by default with system fallback, neutral surfaces and complete control tinting. Choices apply only after confirmation; add a shared HEX/RGB theme preview and make adaptive automatic the launcher default while preserving explicit choices during upgrades."
-      ],
+      "released_date": "2026/10/03",
       "improvement": [
+        "R8 Compiler runs as an AutoJs6 plugin without a launcher entry. Select and activate the compiler in AutoJs6; the compilation service and existing app data are retained.",
         "Consistent visual sizing for launcher and Plugin Center icons, with transparent backgrounds and neutral black, white or grayscale artwork"
       ]
     },
