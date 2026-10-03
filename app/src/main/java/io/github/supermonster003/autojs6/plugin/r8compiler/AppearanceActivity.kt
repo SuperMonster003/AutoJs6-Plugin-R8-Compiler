@@ -29,7 +29,6 @@ abstract class AppearanceActivity : AppCompatActivity() {
     @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        LauncherIcons.normalizeAsync(this)
         val palette = settingsPalette
         val decor = window.decorView
         if (Build.VERSION.SDK_INT >= 29) decor.isForceDarkAllowed = false

@@ -6,9 +6,9 @@
 
 # v0.3.0-provider-dev
 
-###### 2026/09/30
+###### 2026/10/03
 
-* `Fonctionnalité` Uniformiser les réglages autonomes: langue, mode nuit, couleur et icône. Suivre AutoJs6 par défaut avec repli système, surfaces neutres et contrôles adaptés. Appliquer les choix après confirmation, proposer un aperçu HEX/RGB et utiliser le mode adaptatif automatique par défaut tout en préservant les choix explicites lors des mises à jour.
+* `Amélioration` R8 Compiler fonctionne comme plugin AutoJs6 sans entrée dans le lanceur. Sélectionnez et activez le compilateur dans AutoJs6. Le service de compilation et les données existantes sont conservés.
 * `Amélioration` Taille visuelle harmonisée des icônes du lanceur et du Centre de plugins, avec des fonds transparents et des motifs noirs, blancs ou gris neutres
 
 # v0.2.2

@@ -138,7 +138,7 @@ Si le plugin n'apparaît pas dans la liste, vérifiez dans l'ordre : l'hôte est
 
 Contrairement au plugin DEX, cette entrée n'a aucune ambiguïté « qui a réellement compilé » : dès que `runtime.loadJarWithR8()` retourne avec succès, l'artefact est nécessairement passé par un traitement R8 complet (dans cet appel ou dans une génération de cache déjà vérifiée).
 
-Uniformiser les réglages autonomes: langue, mode nuit, couleur et icône. Suivre AutoJs6 par défaut avec repli système, surfaces neutres et contrôles adaptés. Appliquer les choix après confirmation, proposer un aperçu HEX/RGB et utiliser le mode adaptatif automatique par défaut tout en préservant les choix explicites lors des mises à jour.
+R8 Compiler fonctionne comme plugin AutoJs6 sans entrée dans le lanceur. Sélectionnez et activez le compilateur dans AutoJs6. Le service de compilation et les données existantes sont conservés.
 
 #### Exemple de script
 
@@ -250,9 +250,9 @@ R : Chaque compilation produit un mapping et des métadonnées retrace, que l'h�
 
 R : Non. Il n'a aucune permission réseau ou stockage, lit l'entrée de compilation uniquement depuis les descripteurs de fichiers transmis par AutoJs6, ne voit jamais de chemins de fichiers sur le canal, et garde ses fichiers temporaires strictement dans son propre répertoire privé.
 
-**Q : À quoi sert l'interface du lanceur ?**
+**Où se trouve le lanceur?**
 
-R : L'écran en lecture seule du plugin affiche sa version, la version R8 épinglée, la disponibilité du composant de service et le journal des modifications inclus. Il n'active pas le fournisseur ; sa sélection et son activation restent exclusivement dans les options développeur d'AutoJs6.
+R8 Compiler fonctionne comme plugin AutoJs6 sans entrée dans le lanceur. Sélectionnez et activez le compilateur dans AutoJs6. Le service de compilation et les données existantes sont conservés.
 
 ******
 
@@ -351,9 +351,9 @@ Le développement avance par gates vérifiables : G1 gel du contrat, G2 impléme
 
 # v0.3.0-provider-dev
 
-###### 2026/09/30
+###### 2026/10/03
 
-* `Fonctionnalité` Uniformiser les réglages autonomes: langue, mode nuit, couleur et icône. Suivre AutoJs6 par défaut avec repli système, surfaces neutres et contrôles adaptés. Appliquer les choix après confirmation, proposer un aperçu HEX/RGB et utiliser le mode adaptatif automatique par défaut tout en préservant les choix explicites lors des mises à jour.
+* `Amélioration` R8 Compiler fonctionne comme plugin AutoJs6 sans entrée dans le lanceur. Sélectionnez et activez le compilateur dans AutoJs6. Le service de compilation et les données existantes sont conservés.
 * `Amélioration` Taille visuelle harmonisée des icônes du lanceur et du Centre de plugins, avec des fonds transparents et des motifs noirs, blancs ou gris neutres
 
 # v0.2.2

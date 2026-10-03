@@ -32,7 +32,7 @@ class MainActivity : AppearanceActivity() {
             serviceComponent.flattenToString(),
         )
 
-        findViewById<Button>(R.id.launcher_icon).apply {
+        findViewById<Button>(R.id.open_settings).apply {
             setText(R.string.settings_title)
             tag="open-settings"
             setOnClickListener { startActivity(Intent(this@MainActivity,AppSettingsActivity::class.java)) }

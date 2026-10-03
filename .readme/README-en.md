@@ -138,7 +138,7 @@ If the plugin does not appear in the list, check in order: the host is a paired 
 
 Unlike the DEX plugin, this entry has no "who actually compiled it" ambiguity: whenever `runtime.loadJarWithR8()` returns successfully, the artifact necessarily went through full R8 processing (either in this call or in a previously verified cache generation).
 
-Unify standalone settings with language, night mode, theme color and launcher icon in this order. Appearance follows AutoJs6 by default with system fallback, neutral surfaces and complete control tinting. Choices apply only after confirmation; add a shared HEX/RGB theme preview and make adaptive automatic the launcher default while preserving explicit choices during upgrades.
+R8 Compiler runs as an AutoJs6 plugin without a launcher entry. Select and activate the compiler in AutoJs6; the compilation service and existing app data are retained.
 
 #### Script example
 
@@ -250,9 +250,9 @@ A: Every compilation produces mapping and retrace metadata, which the host verif
 
 A: No. It has no network or storage permission, reads compile input only from file descriptors handed over by AutoJs6, never sees file paths on the wire, and keeps temporary files strictly inside its own private directory.
 
-**Q: What does the launcher UI do?**
+**Where is the launcher entry?**
 
-A: The plugin's read-only screen shows the plugin version, pinned R8 version, service-component availability, and the bundled changelog. It does not enable the provider; selection and activation remain exclusively in AutoJs6 developer options.
+R8 Compiler runs as an AutoJs6 plugin without a launcher entry. Select and activate the compiler in AutoJs6; the compilation service and existing app data are retained.
 
 ******
 
@@ -351,9 +351,9 @@ Development proceeds through verifiable gates: G1 contract freeze, G2 provider i
 
 # v0.3.0-provider-dev
 
-###### 2026/09/30
+###### 2026/10/03
 
-* `Feature` Unify standalone settings with language, night mode, theme color and launcher icon in this order. Appearance follows AutoJs6 by default with system fallback, neutral surfaces and complete control tinting. Choices apply only after confirmation; add a shared HEX/RGB theme preview and make adaptive automatic the launcher default while preserving explicit choices during upgrades.
+* `Improvement` R8 Compiler runs as an AutoJs6 plugin without a launcher entry. Select and activate the compiler in AutoJs6; the compilation service and existing app data are retained.
 * `Improvement` Consistent visual sizing for launcher and Plugin Center icons, with transparent backgrounds and neutral black, white or grayscale artwork
 
 # v0.2.2
