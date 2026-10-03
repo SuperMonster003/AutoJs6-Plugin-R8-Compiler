@@ -354,6 +354,7 @@ Development proceeds through verifiable gates: G1 contract freeze, G2 provider i
 ###### 2026/09/30
 
 * `Feature` Unify standalone settings with language, night mode, theme color and launcher icon in this order. Appearance follows AutoJs6 by default with system fallback, neutral surfaces and complete control tinting. Choices apply only after confirmation; add a shared HEX/RGB theme preview and make adaptive automatic the launcher default while preserving explicit choices during upgrades.
+* `Improvement` Consistent visual sizing for launcher and Plugin Center icons, with transparent backgrounds and neutral black, white or grayscale artwork
 
 # v0.2.2
 
