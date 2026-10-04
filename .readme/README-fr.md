@@ -349,6 +349,12 @@ Le développement avance par gates vérifiables : G1 gel du contrat, G2 impléme
 
 ******
 
+# v0.3.0
+
+###### 2026/10/04
+
+* `Amélioration` Les icônes du centre de plugins utilisent les tailles, positions, images claires et sombres et fonds circulaires réglés dans Icon Studio, avec les sources et paramètres permettant de les reproduire
+
 # v0.3.0-provider-dev
 
 ###### 2026/10/03
@@ -362,12 +368,6 @@ Le développement avance par gates vérifiables : G1 gel du contrat, G2 impléme
 
 * `Correctif` Avertissements de lecture SDK XML v4 avec AGP 9.1 et contrôles d'alignement natif des APK déclenchés par erreur lors de l'assemblage des tests unitaires JVM, avec les plugins de compilation partagés 1.8.3
 * `Amélioration` compileSdk et targetSdk passent à 37 (Android 17) ; le comportement du plugin ne dépend pas de la nouvelle cible
-
-# v0.2.1
-
-###### 2026/09/13
-
-* `Amélioration` Ressources traduites cohérentes, activation explicite du plugin et validation des paquets de publication
 
 ##### Autres versions
 

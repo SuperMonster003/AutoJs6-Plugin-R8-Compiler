@@ -349,6 +349,12 @@ Development proceeds through verifiable gates: G1 contract freeze, G2 provider i
 
 ******
 
+# v0.3.0
+
+###### 2026/10/04
+
+* `Improvement` Plugin Center icons use the sizes, positions, light and dark artwork, and circular backgrounds adjusted in Icon Studio, retaining reproducible sources and parameters
+
 # v0.3.0-provider-dev
 
 ###### 2026/10/03
@@ -362,12 +368,6 @@ Development proceeds through verifiable gates: G1 contract freeze, G2 provider i
 
 * `Fix` SDK XML v4 parsing warnings with AGP 9.1 and APK native alignment checks incorrectly triggered by JVM unit-test assembly tasks, using shared build plugins 1.8.3
 * `Improvement` Raise compileSdk and targetSdk to 37 (Android 17); the plugin's behavior does not depend on the new target
-
-# v0.2.1
-
-###### 2026/09/13
-
-* `Improvement` Consistent localized resources, explicit plugin activation and validated release preparation
 
 ##### More releases
 
