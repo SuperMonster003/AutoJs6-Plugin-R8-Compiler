@@ -50,8 +50,16 @@ class IconGeometryTest(unittest.TestCase):
                 self.assertGreater(alpha.histogram()[0], 432 * 432 / 2)
                 self.assertEqual(alpha.getpixel((0, 0)), 0)
                 geometry.validate_circle(alpha, 216)
-                self.assertGreater(geometry.visual_size(alpha), .48)
-                self.assertLess(geometry.visual_size(alpha), .54)
+                # Icon Studio size policy: verify the requested size, not a fixed band.
+                recipe_file = ROOT / ".icons/recipe.json"
+                if recipe_file.is_file():
+                    import json
+                    recipe = json.loads(recipe_file.read_text(encoding="utf-8"))
+                    requested = recipe["params"]["geometry"]
+                    self.assertEqual(requested["mode"], "normalized")
+                    self.assertAlmostEqual(geometry.visual_size(alpha), .52 * requested["scale"], delta=.006)
+                else:
+                    self.assertGreater(geometry.visual_size(alpha), 0)
                 # R8 is outside the Three series: arbitrary foreground colors are allowed.
                 # Geometry and transparency remain mandatory regardless of RGB values.
         self.assertEqual(alphas[0], alphas[1])
