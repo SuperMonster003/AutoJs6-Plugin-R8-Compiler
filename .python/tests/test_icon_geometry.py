@@ -39,7 +39,7 @@ class IconGeometryTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             geometry.validate_circle(geometry.positioned_alpha(Image.new("L", (64, 64), 255), .8), 132)
 
-    def test_shipped_plugin_center_pair_is_transparent_neutral_and_normalized(self):
+    def test_shipped_plugin_center_pair_is_transparent_and_normalized(self):
         alphas = []
         for directory in ("mipmap", "mipmap-night"):
             with Image.open(ROOT / "app/src/main/res" / directory / "ic_plugin_center.png") as image:
@@ -52,9 +52,8 @@ class IconGeometryTest(unittest.TestCase):
                 geometry.validate_circle(alpha, 216)
                 self.assertGreater(geometry.visual_size(alpha), .48)
                 self.assertLess(geometry.visual_size(alpha), .54)
-                r, g, b, _ = image.split()
-                self.assertEqual(r.tobytes(), g.tobytes())
-                self.assertEqual(g.tobytes(), b.tobytes())
+                # R8 is outside the Three series: arbitrary foreground colors are allowed.
+                # Geometry and transparency remain mandatory regardless of RGB values.
         self.assertEqual(alphas[0], alphas[1])
 
 

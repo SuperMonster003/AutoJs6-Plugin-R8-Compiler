@@ -39,7 +39,7 @@ Run the relevant custom Python regression suites after changing their logic. Aft
 
 - R8 is a host-operated compiler plugin. Its Manifest must contain no MAIN/LAUNCHER filter or launcher alias, including disabled ones. Do not recreate the four icon modes or the package-update alias normalizer.
 - Preserve the protected Wake, INFO and R8 compiler services. Existing app data and the stable diagnostic/settings Activities are retained, but there is no launcher icon option in settings.
-- Keep the transparent neutral Plugin Center artwork. Remaining compatibility icon resources do not imply a launcher entry. Validate no launcher resolution and continued compiler-service discovery with LauncherEntryRemovalTest.
+- Keep transparent Plugin Center artwork and the shared optical geometry. As a non-Three plugin, R8 may use arbitrary foreground colors and independent light/dark backgrounds (including transparent); neutral grayscale remains allowed. The 2026-10-04 maintainer policy supersedes older neutral-only requirements. Remaining compatibility icon resources do not imply a launcher entry. Validate no launcher resolution and continued compiler-service discovery with LauncherEntryRemovalTest.
 
 ## Standalone settings standard (2026-09-29)
 
