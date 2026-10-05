@@ -357,10 +357,11 @@ Development proceeds through verifiable gates: G1 contract freeze, G2 provider i
 
 # v0.3.0-provider-dev
 
-###### 2026/10/03
+###### 2026/10/05
 
 * `Improvement` R8 Compiler runs as an AutoJs6 plugin without a launcher entry. Select and activate the compiler in AutoJs6; the compilation service and existing app data are retained.
 * `Improvement` Consistent visual sizing for Plugin Center icons, with transparent backgrounds and neutral black, white or grayscale artwork
+* `Improvement` Android App info icons share Icon Studio artwork and light/dark backgrounds while preserving transparent Plugin Center artwork and existing launcher choices
 
 # v0.2.2
 

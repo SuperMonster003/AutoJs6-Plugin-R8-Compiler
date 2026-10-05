@@ -12,10 +12,11 @@
 
 # v0.3.0-provider-dev
 
-###### 2026/10/03
+###### 2026/10/05
 
 * `Amélioration` R8 Compiler fonctionne comme plugin AutoJs6 sans entrée dans le lanceur. Sélectionnez et activez le compilateur dans AutoJs6. Le service de compilation et les données existantes sont conservés.
 * `Amélioration` Taille visuelle harmonisée des icônes du Centre de plugins, avec des fonds transparents et des motifs noirs, blancs ou gris neutres
+* `Amélioration` Les icônes des informations d'application Android utilisent les illustrations et les fonds clairs et sombres d'Icon Studio, en conservant les images transparentes du centre de plugins et les choix du lanceur
 
 # v0.2.2
 
