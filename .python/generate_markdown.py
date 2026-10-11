@@ -182,7 +182,8 @@ def check_outputs(outputs):
         expected = content.encode("utf-8")
         if not path.is_file():
             mismatches.append((path, "missing"))
-        elif path.read_bytes() != expected:
+        # Compare text without line endings so a CRLF checkout (Windows, core.autocrlf) is not reported as drift.
+        elif path.read_bytes().replace(b"\r\n", b"\n") != expected:
             mismatches.append((path, "content differs"))
 
     if mismatches:
